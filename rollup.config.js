@@ -5,18 +5,14 @@ import commonjs from 'rollup-plugin-commonjs';
 const { ENVIRONMENT } = process.env;
 
 const defaultOutput = {
-    input: 'src/index.ts',
-    plugins: [typescript(), commonjs(), resolve()],
-};
-
-const iifeBuild = {
-    ...defaultOutput,
-    output: {
-        file: 'dist/data-planning-snippets.iife.js',
-        format: 'iife',
-        name: 'MPDataPlanning',
-        sourcemap: ENVIRONMENT !== 'prod',
-    },
+    input: 'src/mpSnippets.ts',
+    plugins: [
+        typescript(),
+        commonjs({
+            include: 'node_modules/**',
+        }),
+        resolve(),
+    ],
 };
 
 const cjsBuild = {
@@ -28,4 +24,4 @@ const cjsBuild = {
     },
 };
 
-export default [iifeBuild, cjsBuild];
+export default [cjsBuild];
