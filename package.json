@@ -2,7 +2,7 @@
     "name": "@mparticle/data-planning-snippets",
     "version": "1.0.0",
     "author": "mParticle Developers <developers@mparticle.com> (https://www.mparticle.com)",
-    "description": "mParticle",
+    "description": "mParticle Snippet Generation Library",
     "files": [
         "dist/",
         "src"
