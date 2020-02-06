@@ -1,73 +1,81 @@
+// tslint:disable: max-line-length
 import { MPTranslator } from './translator';
 import { Dictionary } from './language';
-import { type } from 'os';
 
 export class MPObjectiveC implements MPTranslator {
-    public createSessionStartSnippet(exampleJSON: Dictionary): string {
-        return "[[MParticle sharedInstance] beginSession];";
-    }
+    createSessionStartSnippet = (exampleJSON: Dictionary) =>
+        '[[MParticle sharedInstance] beginSession];';
 
-    public createSessionEndSnippet(exampleJSON: Dictionary): string {
-        return "[[MParticle sharedInstance] endSession];";
-    }
+    createSessionEndSnippet = (exampleJSON: Dictionary) =>
+        '[[MParticle sharedInstance] endSession];';
 
-    public createScreenViewSnippet(exampleJSON: Dictionary): string {
-        var returnString = '';
-        const { data } = exampleJSON;
+    createScreenViewSnippet({ data }: Dictionary): string {
+        let returnString = '';
+        let eventInfo = 'nil';
 
-        if (data["custom_attributes"]) {
-            returnString = this.customAttributesLines(data["custom_attributes"]);
-            return returnString + '[[MParticle sharedInstance] logScreen:@\"' + data['screen_name'] + '\" eventInfo: eventInfo];\n';
-        } else {
-            return returnString + '[[MParticle sharedInstance] logScreen:@\"' + data['screen_name'] + '\" eventInfo: nil];\n';
+        if (data['custom_attributes']) {
+            returnString += this.customAttributesLines(
+                data['custom_attributes']
+            );
+            eventInfo = 'eventInfo';
         }
+        returnString += `[[MParticle sharedInstance] logScreen:@"${data['screen_name']}" eventInfo: ${eventInfo}];`;
+        return returnString + '\n';
     }
 
-    createCustomEventSnippet(exampleJSON: Dictionary): string {
-        var returnString = '';
-        const { data } = exampleJSON;
+    createCustomEventSnippet({ data }: Dictionary): string {
+        const customEventType = data['custom_event_type'] as string;
+        const typeString = this.stringEventType(customEventType);
 
-        var typeString = data["custom_event_type"] as String;
-        typeString = this.stringEventType(typeString);
-
-        var returnString = 'MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"' + data['event_name'] + '\" type: ' + typeString + '];\n';
-        if (data["custom_attributes"]) {
-            returnString = returnString + this.customAttributesLines(data["custom_attributes"]);
-            returnString = returnString + 'customEvent.customAttributes = eventInfo;\n\n';
+        let returnString = `MPEvent *customEvent = [[MPEvent alloc] initWithName:@"${data['event_name']}" type: ${typeString}];\n`;
+        if (data['custom_attributes']) {
+            returnString +=
+                this.customAttributesLines(data['custom_attributes']) +
+                'customEvent.customAttributes = eventInfo;\n\n';
         }
-        return returnString + '[[MParticle sharedInstance] logEvent:customEvent];\n';
+
+        returnString += '[[MParticle sharedInstance] logEvent:customEvent];';
+        return returnString + '\n';
     }
 
-    createCrashReportSnippet(exampleJSON: Dictionary): string {
-        return '[[MParticle sharedInstance] logException:' + exampleJSON['exception_name'] + ' topmostContext:self];\n';
-    }
+    createCrashReportSnippet = (exampleJSON: Dictionary) =>
+        `[[MParticle sharedInstance] logException:${exampleJSON['exception_name']} topmostContext:self];\n`;
 
-    createOptOutSnippet(exampleJSON: Dictionary): string {
-        return '[MParticle sharedInstance].optOut = true;\n';
-    }
+    createOptOutSnippet = (exampleJSON: Dictionary) =>
+        '[MParticle sharedInstance].optOut = true;\n';
 
-    createFirstRunSnippet(exampleJSON: Dictionary): string {
-        return 'First Run is not manually called\n';
-    }
+    createFirstRunSnippet = (exampleJSON: Dictionary) =>
+        'First Run is not manually called\n';
 
-    createApplicationStateTransitionSnippet(exampleJSON: Dictionary): string {
-        return 'Application State Transition is not manually called\n';
-    }
+    createApplicationStateTransitionSnippet = (exampleJSON: Dictionary) =>
+        'Application State Transition is not manually called\n';
 
-    createNetworkPerformanceSnippet(exampleJSON: Dictionary): string {
-        return '[[MParticle sharedInstance] logNetworkPerformance:' + exampleJSON['event_name'] + ' httpMethod: ' + exampleJSON['http_method'] + ' startTime: ' + exampleJSON['start_time'] + ' duration: ' + exampleJSON['duration'] + ' bytesSent: ' + exampleJSON['bytes_sent'] + ' bytesReceived: ' + exampleJSON['bytes_received'] + '];\n';
-    }
+    createNetworkPerformanceSnippet = (exampleJSON: Dictionary) =>
+        '[[MParticle sharedInstance] logNetworkPerformance:' +
+        exampleJSON['event_name'] +
+        ' httpMethod: ' +
+        exampleJSON['http_method'] +
+        ' startTime: ' +
+        exampleJSON['start_time'] +
+        ' duration: ' +
+        exampleJSON['duration'] +
+        ' bytesSent: ' +
+        exampleJSON['bytes_sent'] +
+        ' bytesReceived: ' +
+        exampleJSON['bytes_received'] +
+        '];\n';
 
-    createBreadcrumbSnippet(exampleJSON: Dictionary): string {
-        const { data } = exampleJSON;
-
-        if (data["custom_attributes"]) {
-            var returnString = '';
-            returnString = returnString + this.customAttributesLines(data["custom_attributes"]);
-
-            return returnString + '[[MParticle sharedInstance] leaveBreadcrumb:' + data['event_name'] + ' eventInfo: eventInfo];\n';
+    createBreadcrumbSnippet({ data }: Dictionary): string {
+        let returnString = '';
+        let eventInfo = 'nil';
+        if (data['custom_attributes']) {
+            returnString += this.customAttributesLines(
+                data['custom_attributes']
+            );
+            eventInfo = 'eventInfo';
         }
-        return '[[MParticle sharedInstance] leaveBreadcrumb:' + data['event_name'] + ' eventInfo: nil];\n';
+        returnString += `[[MParticle sharedInstance] leaveBreadcrumb:${data['event_name']} eventInfo: ${eventInfo}];`;
+        return returnString + '\n';
     }
 
     createProfileSnippet(exampleJSON: Dictionary): string {
@@ -94,128 +102,145 @@ export class MPObjectiveC implements MPTranslator {
         return 'Media Events are not manually called\n';
     }
 
-    createUserAttributesSnippet(exampleJSON: Dictionary): string {
-        return exampleJSON ? this.userAttributes(exampleJSON) : ''
-    }
+    createUserAttributesSnippet = (exampleJSON: Dictionary) =>
+        exampleJSON ? this.userAttributes(exampleJSON) : '';
 
-    createUserIdentitiesSnippet(exampleJSON: Dictionary): string {
-        return exampleJSON ? this.userIdentities(exampleJSON['user_identities']) : ''
-    }
+    createUserIdentitiesSnippet = (exampleJSON: Dictionary) =>
+        exampleJSON ? this.userIdentities(exampleJSON['user_identities']) : '';
 
-    createProductActionSnippet(exampleJSON: Dictionary): string {
-        var returnString = '';
+    createProductActionSnippet = (exampleJSON: Dictionary) => {
         const { data } = exampleJSON;
-
-        returnString = 'MPProduct *product = [[MPProduct alloc] initWithName:@\"' + data['product_name'] + '\" sku:@\"' + data['product_sku'] + '\" quantity:@' + data['product_quantity'] + ' price:@' + data['product_price'] + '];\n';
-        returnString = returnString + '[[MPCommerceEvent alloc] initWithAction:MPCommerceEventAction' + exampleJSON['product_action'] + ' product:product];\n';
-        returnString = returnString + '[[MParticle sharedInstance] logEvent:commerceEvent];\n';
-
-        return returnString;
-    }
+        return `\
+    MPProduct *product = [[MPProduct alloc] initWithName:@"${data['product_name']}" sku:@"${data['product_sku']}" quantity:@${data['product_quantity']} price:@${data['product_price']}];
+    [[MPCommerceEvent alloc] initWithAction:MPCommerceEventAction${exampleJSON['product_action']} product:product]
+    [[MParticle sharedInstance] logEvent:commerceEvent];
+        `;
+    };
 
     createProductImpressionSnippet(exampleJSON: Dictionary): string {
-        var returnString = '';
+        let returnString = '';
         const { data } = exampleJSON;
 
-        returnString = 'MPProduct *product = [[MPProduct alloc] initWithName:@\"' + data['product_name'] + '\" sku:@\"' + data['product_sku'] + '\" quantity:@' + data['product_quantity'] + ' price:@' + exampleJSON['product_price'] + '];\n';
-        returnString = returnString + '[[MPCommerceEvent alloc] initWithImpressionName:@\"' + data['impression_name'] + '\" product:product];\n';
-        returnString = returnString + '[[MParticle sharedInstance] logEvent:commerceEvent];\n';
+        returnString =
+            'MPProduct *product = [[MPProduct alloc] initWithName:@"' +
+            data['product_name'] +
+            '" sku:@"' +
+            data['product_sku'] +
+            '" quantity:@' +
+            data['product_quantity'] +
+            ' price:@' +
+            exampleJSON['product_price'] +
+            '];\n';
+        returnString =
+            returnString +
+            '[[MPCommerceEvent alloc] initWithImpressionName:@"' +
+            data['impression_name'] +
+            '" product:product];\n';
+        returnString =
+            returnString +
+            '[[MParticle sharedInstance] logEvent:commerceEvent];\n';
 
         return returnString;
     }
 
-    private customAttributesLines(customAttributesProperties: Dictionary): string {
-        var eventInfoString = "NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];\n";
+    private customAttributesLines(
+        customAttributesProperties: Dictionary
+    ): string {
+        let returnString =
+            'NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];\n';
 
         if (Object.keys(customAttributesProperties).length > 0) {
-            var sampleCode = "NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];\n";
+            let sampleCode = '';
             for (const property in customAttributesProperties) {
                 if (customAttributesProperties.hasOwnProperty(property)) {
-                    let valueType = this.stringForValue(customAttributesProperties[property]);
-                    sampleCode = sampleCode + 'eventInfo[@\"' + property + '\"] = ' + valueType + ';\n';
+                    const valueType = this.stringForValue(
+                        customAttributesProperties[property]
+                    );
+                    sampleCode += `eventInfo[@"${property}"] = ${valueType};\n`;
                 }
             }
-            eventInfoString = sampleCode + '\n';
+            returnString += sampleCode;
         }
-        return eventInfoString;
+        return returnString + '\n';
     }
 
     private userAttributes(userAttributesProperties: Dictionary): string {
-        var returnString = "";
+        let returnString = '';
 
         if (Object.keys(userAttributesProperties).length > 0) {
             for (const property in userAttributesProperties) {
-                let valueType = this.stringForValue(userAttributesProperties[property]);
-                returnString = returnString + '[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"' + property + '\"' + ' value:' + valueType + '];\n';
+                if (userAttributesProperties.hasOwnProperty(property)) {
+                    const valueType = this.stringForValue(
+                        userAttributesProperties[property]
+                    );
+                    returnString += `[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"${property}" value:${valueType}];\n`;
+                }
             }
         }
         return returnString;
     }
 
     private userIdentities(userIdentitiesProperties: Dictionary): string {
-        var returnString = "";
+        let returnString = '';
 
         if (Object.keys(userIdentitiesProperties).length > 0) {
             for (const property in userIdentitiesProperties) {
-                let valueType = this.stringForValue(userIdentitiesProperties[property]);
-                returnString = returnString + '[[MParticle sharedInstance].identity.currentUser setUserAttribute:@\"' + property + '\"' + ' value:' + valueType + '];\n';
+                if (userIdentitiesProperties.hasOwnProperty(property)) {
+                    const valueType = this.stringForValue(
+                        userIdentitiesProperties[property]
+                    );
+                    returnString += `[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"${property}" value:${valueType}];\n`;
+                }
             }
         }
         return returnString;
     }
 
+    // tslint:disable-next-line: no-any
     private stringForValue(value: any): string {
         if (value as string) {
-            return '@\"' + value + '\"';
-        } else if (value as Number) {
+            return `@"${value}"`;
+        } else if (value as number) {
             return '@' + value;
-        } else if (value as Boolean) {
-            if (value) {
-                return '@true';
-            } else {
-                return '@false';
-            }
+        } else if (value as boolean) {
+            return value ? '@true' : '@false';
         } else {
             return 'nil';
         }
     }
 
-    private stringEventType(value: any): string {
-        if (value as string) {
-            switch (value) {
-                case 'navigation': {
-                    return 'MPEventTypeNavigation';
-                }
-                case 'location': {
-                    return 'MPEventTypeLocation';
-                }
-                case 'search': {
-                    return 'MPEventTypeSearch';
-                }
-                case 'transaction': {
-                    return 'MPEventTypeTransaction';
-                }
-                case 'user_content': {
-                    return 'MPEventTypeUserContent';
-                }
-                case 'user_preference': {
-                    return 'MPEventTypeUserPreference';
-                }
-                case 'social': {
-                    return 'MPEventTypeSocial';
-                }
-                case 'other': {
-                    return 'MPEventTypeOther';
-                }
-                case 'unknown': {
-                    return 'MPEventTypeMedia';
-                }
-                default: {
-                    return 'MPEventTypeOther';
-                }
+    private stringEventType(value: string): string {
+        switch (value) {
+            case 'navigation': {
+                return 'MPEventTypeNavigation';
             }
-        } else {
-            return 'MPEventTypeOther';
+            case 'location': {
+                return 'MPEventTypeLocation';
+            }
+            case 'search': {
+                return 'MPEventTypeSearch';
+            }
+            case 'transaction': {
+                return 'MPEventTypeTransaction';
+            }
+            case 'user_content': {
+                return 'MPEventTypeUserContent';
+            }
+            case 'user_preference': {
+                return 'MPEventTypeUserPreference';
+            }
+            case 'social': {
+                return 'MPEventTypeSocial';
+            }
+            case 'other': {
+                return 'MPEventTypeOther';
+            }
+            case 'unknown': {
+                return 'MPEventTypeMedia';
+            }
+            default: {
+                return 'MPEventTypeOther';
+            }
         }
     }
 }

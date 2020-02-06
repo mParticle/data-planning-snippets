@@ -1,3 +1,4 @@
+// tslint:disable: max-line-length
 import { MPTranslator } from './translator';
 import jsf from 'json-schema-faker';
 import { DataPlanPoint } from '@mparticle/data-planning-models';
@@ -15,14 +16,14 @@ export class MPSnippets {
     static createSnippet(
         dataPlanPoint: DataPlanPoint,
         language: Language
-    ): String {
+    ): string {
         const validatorJSON = dataPlanPoint?.validator?.definition;
         jsf.option('alwaysFakeOptionals', true);
         const exampleJSON = jsf.generate(validatorJSON) as Dictionary;
-        if (language == Language.JSON) {
+        if (language === Language.JSON) {
             return exampleJSON.String;
         }
-        let translator = this.translatorForLanguage(language);
+        const translator = this.translatorForLanguage(language);
         switch (dataPlanPoint?.match?.type) {
             case DataPlanMatchType.Unknown: {
                 return translator.createCustomEventSnippet(exampleJSON);
