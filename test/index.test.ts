@@ -1,11 +1,12 @@
 // tslint:disable: max-line-length
 import { MPSnippets } from '../src/mpSnippets';
-import { Language, Dictionary, DataPlanMatchType } from '../src/language';
+import { Language, Dictionary } from '../src/language';
 import {
     DataPlanPoint,
     DataPlanValidator,
     DataPlanValidatorType,
     DataPlanMatch,
+    DataPlanMatchType,
 } from '@mparticle/data-planning-models';
 
 describe('MPSnippets ', () => {

@@ -1,10 +1,13 @@
 // tslint:disable: max-line-length
 import { MPTranslator } from './translator';
 import jsf from 'json-schema-faker';
-import { DataPlanPoint } from '@mparticle/data-planning-models';
+import {
+    DataPlanPoint,
+    DataPlanMatchType,
+} from '@mparticle/data-planning-models';
 import { MPObjectiveC } from './objective_c_translator';
 import { MPSwift } from './swift_translator';
-import { Language, Dictionary, DataPlanMatchType } from './language';
+import { Language, Dictionary } from './language';
 
 export class MPSnippets {
     /**

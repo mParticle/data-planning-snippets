@@ -10,6 +10,9 @@ const defaultOutput = {
         typescript(),
         commonjs({
             include: 'node_modules/**',
+            namedExports: {
+                '@mparticle/data-planning-models': ['DataPlanMatchType'],
+            },
         }),
         resolve(),
     ],

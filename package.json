@@ -18,6 +18,7 @@
         "build:dev": "ENVIRONMENT=dev rollup --config rollup.config.js",
         "build:prod": "ENVIRONMENT=prod rollup --config rollup.config.js",
         "test": "npm run build && jest --config jest.ts.config.js",
+        "test:watch": "jest --config jest.ts.config.js --watchAll",
         "lint": "npm run gts:check",
         "serve:dev": "npm run watch",
         "gts:check": "gts check",
@@ -44,7 +45,7 @@
     },
     "license": "Apache-2.0",
     "dependencies": {
-        "@mparticle/data-planning-models": "0.0.2-alpha.1",
+        "@mparticle/data-planning-models": "0.0.2-alpha.3",
         "json-schema-faker": "^0.5.0-rc23"
     }
 }
