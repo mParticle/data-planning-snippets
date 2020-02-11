@@ -1,5 +1,4 @@
 import { ValidationError } from '@mparticle/data-planning-models';
-import { Dictionary } from '../types';
 /**
  * This is an instance of a JSONSchemaValidator
  *
@@ -57,7 +56,11 @@ export declare class JSONSchemaValidator {
      * @param schema A valid JSON Schema
      * @returns An array of [[ValidationError]] Objects
      */
-    static validate(data: Dictionary, schema: Dictionary): ValidationError[];
+    static validate(data: {
+        [key: string]: any;
+    }, schema: {
+        [key: string]: any;
+    }): ValidationError[];
     /**
      * Converts an AJV error into a ValidationError
      */
