@@ -7,6 +7,8 @@ import {
 } from '@mparticle/data-planning-models';
 import { MPObjectiveC } from './objective_c_translator';
 import { MPSwift } from './swift_translator';
+import { MPKotlin } from './translators/kotlin_translator';
+import { MPJava } from './translators/java_translator';
 import { Language, Dictionary } from './language';
 
 export class MPSnippets {
@@ -105,6 +107,12 @@ export class MPSnippets {
             }
             case Language.ObjectiveC: {
                 return new MPObjectiveC();
+            }
+            case Language.Kotlin: {
+                return new MPKotlin();
+            }
+            case Language.Java: {
+                return new MPJava();
             }
             default: {
                 return new MPSwift();

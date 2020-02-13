@@ -39,3 +39,4 @@ Carthage
 
 *.sublime-project
 *.sublime-workspace
+.js

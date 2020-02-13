@@ -2,6 +2,8 @@ export enum Language {
     JSON = 1,
     Swift = 2,
     ObjectiveC = 3,
+    Kotlin = 4,
+    Java = 5
 }
 
 export type Dictionary = {
