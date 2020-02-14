@@ -199,13 +199,19 @@ export class MPObjectiveC implements MPTranslator {
     // tslint:disable-next-line: no-any
     private stringForValue(value: any): string {
         if (value as string) {
-            return `@"${value}"`;
+            if (value === 'true') {
+                return '@true';
+            } else if (value === 'false') {
+                return '@false';
+            } else {
+                return '@\"' + value + '\"';
+            }
         } else if (value as number) {
             return '@' + value;
         } else if (value as boolean) {
             return value ? '@true' : '@false';
         } else {
-            return 'nil';
+            return '[NSNull null]';
         }
     }
 

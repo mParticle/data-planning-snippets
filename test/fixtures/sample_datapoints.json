@@ -1,0 +1,411 @@
+{
+    "custom_event": {
+        "location": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "location"
+                        },
+                        "event_name": {
+                            "const": "loca"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "transaction": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "transaction"
+                        },
+                        "event_name": {
+                            "const": "transa"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "user_content": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "userContent"
+                        },
+                        "event_name": {
+                            "const": "userCont"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "user_preference": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "userPreference"
+                        },
+                        "event_name": {
+                            "const": "userPref"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "social": {
+            "data": {
+                "additionalProperties": false,
+                "properties": {
+                    "custom_event_type": {
+                        "const": "social"
+                    },
+                    "event_name": {
+                        "const": "soc"
+                    },
+                    "custom_attributes": {
+                        "additionalProperties": false,
+                        "properties": {},
+                        "required": []
+                    }
+                },
+                "required": [
+                    "custom_event_type",
+                    "event_name"
+                ]
+            }
+        },
+        "other": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "other"
+                        },
+                        "event_name": {
+                            "const": "other"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "unknown": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "unknown"
+                        },
+                        "event_name": {
+                            "const": "unk"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "navigation": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "navigation"
+                        },
+                        "event_name": {
+                            "const": "navi"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "viewName": {
+                                    "description": "",
+                                    "enum": [
+                                        "main menu"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "search": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "search"
+                        },
+                        "event_name": {
+                            "const": "search"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "filter1": {
+                                    "description": "",
+                                    "enum": [
+                                        "sci-fi"
+                                    ],
+                                    "type": "string"
+                                },
+                                "filter2": {
+                                    "description": "",
+                                    "enum": [
+                                        "2"
+                                    ],
+                                    "type": "number"
+                                },
+                                "filter3": {
+                                    "description": "",
+                                    "type": "boolean"
+                                },
+                                "filter4": {
+                                    "description": "",
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                "filter5": {
+                                    "description": "",
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                "filter6": {
+                                    "description": "",
+                                    "type": "null"
+                                }
+                            },
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        },
+        "default": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "custom_event_type": {
+                            "const": "transaction"
+                        },
+                        "event_name": {
+                            "const": "event name"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "A_String_Key": {
+                                    "const": "string",
+                                    "type": "string"
+                                },
+                                "A Date Key": {
+                                    "const": "date-time",
+                                    "type": "string"
+                                },
+                                "A Number Key": {
+                                    "const": "string",
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "custom_event_type",
+                        "event_name"
+                    ]
+                }
+            }
+        }
+    },
+    "screen_view": {
+        "first": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "screen_name": {
+                            "const": "screen"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "screen_name"
+                    ]
+                }
+            }
+        },
+        "second": {
+            "properties": {
+                "data": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "screen_name": {
+                            "const": "Video Streams"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Launch": {
+                                    "const": "true"
+                                }
+                            },
+                            "required": []
+                        }
+                    },
+                    "required": [
+                        "screen_name"
+                    ]
+                }
+            }
+        }
+    },
+    "simple_event": {
+        "properties": {
+            "data": {
+                "additionalProperties": false,
+                "properties": {
+                    "custom_event_type": {
+                        "const": "other"
+                    },
+                    "event_name": {
+                        "const": "Simple Event Name"
+                    },
+                    "custom_attributes": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "SimpleKey": {
+                                "const": "string"
+                            }
+                        },
+                        "required": []
+                    }
+                },
+                "required": [
+                    "custom_event_type",
+                    "event_name"
+                ]
+            }
+        }
+    },
+    "user_attribute": {
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "",
+                "enum": [
+                    "Sarah Conner"
+                ],
+                "type": "string"
+            },
+            "age": {
+                "description": "",
+                "enum": [
+                    "34"
+                ],
+                "type": "number"
+            },
+            "deceased": {
+                "description": "",
+                "type": "boolean",
+                "const": true
+            },
+            "deathDate": {
+                "description": "",
+                "format": "date-time",
+                "type": "string",
+                "const": "1996-02-24T17:32:31.082Z"
+            },
+            "birthDate": {
+                "description": "",
+                "format": "date",
+                "type": "string",
+                "const": "1984-05-15"
+            },
+            "xFactor": {
+                "description": "",
+                "type": "null"
+            }
+        },
+        "required": []
+    }
+}

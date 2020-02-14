@@ -24,7 +24,7 @@ export class MPSnippets {
         jsf.option('alwaysFakeOptionals', true);
         const exampleJSON = jsf.generate(validatorJSON) as Dictionary;
         if (language === Language.JSON) {
-            return exampleJSON.String;
+            return JSON.stringify(exampleJSON);
         }
         const translator = this.translatorForLanguage(language);
         switch (dataPlanPoint?.match?.type) {
