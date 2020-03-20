@@ -1,16 +1,16 @@
 var DataPlanning = (function (exports, path, url, http, https, assert, stream, tty, util$1, os, zlib) {
     'use strict';
 
-    path = path && path.hasOwnProperty('default') ? path['default'] : path;
+    path = path && Object.prototype.hasOwnProperty.call(path, 'default') ? path['default'] : path;
     var url__default = 'default' in url ? url['default'] : url;
-    http = http && http.hasOwnProperty('default') ? http['default'] : http;
-    https = https && https.hasOwnProperty('default') ? https['default'] : https;
-    assert = assert && assert.hasOwnProperty('default') ? assert['default'] : assert;
-    stream = stream && stream.hasOwnProperty('default') ? stream['default'] : stream;
-    tty = tty && tty.hasOwnProperty('default') ? tty['default'] : tty;
-    util$1 = util$1 && util$1.hasOwnProperty('default') ? util$1['default'] : util$1;
-    os = os && os.hasOwnProperty('default') ? os['default'] : os;
-    zlib = zlib && zlib.hasOwnProperty('default') ? zlib['default'] : zlib;
+    http = http && Object.prototype.hasOwnProperty.call(http, 'default') ? http['default'] : http;
+    https = https && Object.prototype.hasOwnProperty.call(https, 'default') ? https['default'] : https;
+    assert = assert && Object.prototype.hasOwnProperty.call(assert, 'default') ? assert['default'] : assert;
+    stream = stream && Object.prototype.hasOwnProperty.call(stream, 'default') ? stream['default'] : stream;
+    tty = tty && Object.prototype.hasOwnProperty.call(tty, 'default') ? tty['default'] : tty;
+    util$1 = util$1 && Object.prototype.hasOwnProperty.call(util$1, 'default') ? util$1['default'] : util$1;
+    os = os && Object.prototype.hasOwnProperty.call(os, 'default') ? os['default'] : os;
+    zlib = zlib && Object.prototype.hasOwnProperty.call(zlib, 'default') ? zlib['default'] : zlib;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -63,6 +63,389 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
+
+    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+    function unwrapExports (x) {
+    	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+    }
+
+    function createCommonjsModule(fn, module) {
+    	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    }
+
+    function getCjsExportFromNamespace (n) {
+    	return n && n['default'] || n;
+    }
+
+    var dist = createCommonjsModule(function (module, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+    /**
+     * Enum for the os property.
+     */
+    var ApplicationInformationOsEnum;
+    (function (ApplicationInformationOsEnum) {
+        ApplicationInformationOsEnum["unknown"] = "Unknown";
+        ApplicationInformationOsEnum["iOS"] = "IOS";
+        ApplicationInformationOsEnum["android"] = "Android";
+        ApplicationInformationOsEnum["windowsPhone"] = "WindowsPhone";
+        ApplicationInformationOsEnum["mobileWeb"] = "MobileWeb";
+        ApplicationInformationOsEnum["unityIOS"] = "UnityIOS";
+        ApplicationInformationOsEnum["unityAndroid"] = "UnityAndroid";
+        ApplicationInformationOsEnum["desktop"] = "Desktop";
+        ApplicationInformationOsEnum["tvOS"] = "TVOS";
+        ApplicationInformationOsEnum["roku"] = "Roku";
+        ApplicationInformationOsEnum["outOfBand"] = "OutOfBand";
+        ApplicationInformationOsEnum["alexa"] = "Alexa";
+        ApplicationInformationOsEnum["smartTV"] = "SmartTV";
+        ApplicationInformationOsEnum["fireTV"] = "FireTV";
+        ApplicationInformationOsEnum["xbox"] = "Xbox";
+    })(ApplicationInformationOsEnum = exports.ApplicationInformationOsEnum || (exports.ApplicationInformationOsEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var ApplicationStateTransitionEventEventTypeEnum;
+    (function (ApplicationStateTransitionEventEventTypeEnum) {
+        ApplicationStateTransitionEventEventTypeEnum["applicationStateTransition"] = "application_state_transition";
+    })(ApplicationStateTransitionEventEventTypeEnum = exports.ApplicationStateTransitionEventEventTypeEnum || (exports.ApplicationStateTransitionEventEventTypeEnum = {}));
+    /**
+     * Enum for the application_transition_type property.
+     */
+    var ApplicationStateTransitionEventDataApplicationTransitionTypeEnum;
+    (function (ApplicationStateTransitionEventDataApplicationTransitionTypeEnum) {
+        ApplicationStateTransitionEventDataApplicationTransitionTypeEnum["applicationInitialized"] = "application_initialized";
+        ApplicationStateTransitionEventDataApplicationTransitionTypeEnum["applicationExit"] = "application_exit";
+        ApplicationStateTransitionEventDataApplicationTransitionTypeEnum["applicationBackground"] = "application_background";
+        ApplicationStateTransitionEventDataApplicationTransitionTypeEnum["applicationForeground"] = "application_foreground";
+    })(ApplicationStateTransitionEventDataApplicationTransitionTypeEnum = exports.ApplicationStateTransitionEventDataApplicationTransitionTypeEnum || (exports.ApplicationStateTransitionEventDataApplicationTransitionTypeEnum = {}));
+    /**
+     * Enum for the environment property.
+     */
+    var BatchEnvironmentEnum;
+    (function (BatchEnvironmentEnum) {
+        BatchEnvironmentEnum["unknown"] = "unknown";
+        BatchEnvironmentEnum["development"] = "development";
+        BatchEnvironmentEnum["production"] = "production";
+    })(BatchEnvironmentEnum = exports.BatchEnvironmentEnum || (exports.BatchEnvironmentEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var BreadcrumbEventEventTypeEnum;
+    (function (BreadcrumbEventEventTypeEnum) {
+        BreadcrumbEventEventTypeEnum["breadcrumb"] = "breadcrumb";
+    })(BreadcrumbEventEventTypeEnum = exports.BreadcrumbEventEventTypeEnum || (exports.BreadcrumbEventEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var CommerceEventEventTypeEnum;
+    (function (CommerceEventEventTypeEnum) {
+        CommerceEventEventTypeEnum["commerceEvent"] = "commerce_event";
+    })(CommerceEventEventTypeEnum = exports.CommerceEventEventTypeEnum || (exports.CommerceEventEventTypeEnum = {}));
+    /**
+     * Enum for the custom_event_type property.
+     */
+    var CommerceEventDataCustomEventTypeEnum;
+    (function (CommerceEventDataCustomEventTypeEnum) {
+        CommerceEventDataCustomEventTypeEnum["addToCart"] = "add_to_cart";
+        CommerceEventDataCustomEventTypeEnum["removeFromCart"] = "remove_from_cart";
+        CommerceEventDataCustomEventTypeEnum["checkout"] = "checkout";
+        CommerceEventDataCustomEventTypeEnum["checkoutOption"] = "checkout_option";
+        CommerceEventDataCustomEventTypeEnum["click"] = "click";
+        CommerceEventDataCustomEventTypeEnum["viewDetail"] = "view_detail";
+        CommerceEventDataCustomEventTypeEnum["purchase"] = "purchase";
+        CommerceEventDataCustomEventTypeEnum["refund"] = "refund";
+        CommerceEventDataCustomEventTypeEnum["promotionView"] = "promotion_view";
+        CommerceEventDataCustomEventTypeEnum["promotionClick"] = "promotion_click";
+        CommerceEventDataCustomEventTypeEnum["addToWishlist"] = "add_to_wishlist";
+        CommerceEventDataCustomEventTypeEnum["removeFromWishList"] = "remove_from_wishlist";
+        CommerceEventDataCustomEventTypeEnum["impression"] = "impression";
+    })(CommerceEventDataCustomEventTypeEnum = exports.CommerceEventDataCustomEventTypeEnum || (exports.CommerceEventDataCustomEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var CrashReportEventEventTypeEnum;
+    (function (CrashReportEventEventTypeEnum) {
+        CrashReportEventEventTypeEnum["crashReport"] = "crash_report";
+    })(CrashReportEventEventTypeEnum = exports.CrashReportEventEventTypeEnum || (exports.CrashReportEventEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var CustomEventEventTypeEnum;
+    (function (CustomEventEventTypeEnum) {
+        CustomEventEventTypeEnum["customEvent"] = "custom_event";
+    })(CustomEventEventTypeEnum = exports.CustomEventEventTypeEnum || (exports.CustomEventEventTypeEnum = {}));
+    /**
+     * Enum for the custom_event_type property.
+     */
+    var CustomEventDataCustomEventTypeEnum;
+    (function (CustomEventDataCustomEventTypeEnum) {
+        CustomEventDataCustomEventTypeEnum["navigation"] = "navigation";
+        CustomEventDataCustomEventTypeEnum["location"] = "location";
+        CustomEventDataCustomEventTypeEnum["search"] = "search";
+        CustomEventDataCustomEventTypeEnum["transaction"] = "transaction";
+        CustomEventDataCustomEventTypeEnum["userContent"] = "user_content";
+        CustomEventDataCustomEventTypeEnum["userPreference"] = "user_preference";
+        CustomEventDataCustomEventTypeEnum["social"] = "social";
+        CustomEventDataCustomEventTypeEnum["other"] = "other";
+        CustomEventDataCustomEventTypeEnum["unknown"] = "unknown";
+    })(CustomEventDataCustomEventTypeEnum = exports.CustomEventDataCustomEventTypeEnum || (exports.CustomEventDataCustomEventTypeEnum = {}));
+    /**
+     * Enum for the device_orientation property.
+     */
+    var DeviceCurrentStateDeviceOrientationEnum;
+    (function (DeviceCurrentStateDeviceOrientationEnum) {
+        DeviceCurrentStateDeviceOrientationEnum["portrait"] = "portrait";
+        DeviceCurrentStateDeviceOrientationEnum["portraitUpsideDown"] = "portrait_upside_down";
+        DeviceCurrentStateDeviceOrientationEnum["landscape"] = "landscape";
+        DeviceCurrentStateDeviceOrientationEnum["landscapeLeft"] = "LandscapeLeft";
+        DeviceCurrentStateDeviceOrientationEnum["landscapeRight"] = "LandscapeRight";
+        DeviceCurrentStateDeviceOrientationEnum["faceUp"] = "FaceUp";
+        DeviceCurrentStateDeviceOrientationEnum["faceDown"] = "FaceDown";
+        DeviceCurrentStateDeviceOrientationEnum["square"] = "Square";
+    })(DeviceCurrentStateDeviceOrientationEnum = exports.DeviceCurrentStateDeviceOrientationEnum || (exports.DeviceCurrentStateDeviceOrientationEnum = {}));
+    /**
+     * Enum for the status_bar_orientation property.
+     */
+    var DeviceCurrentStateStatusBarOrientationEnum;
+    (function (DeviceCurrentStateStatusBarOrientationEnum) {
+        DeviceCurrentStateStatusBarOrientationEnum["portrait"] = "portrait";
+        DeviceCurrentStateStatusBarOrientationEnum["portraitUpsideDown"] = "portrait_upside_down";
+        DeviceCurrentStateStatusBarOrientationEnum["landscape"] = "landscape";
+        DeviceCurrentStateStatusBarOrientationEnum["landscapeLeft"] = "LandscapeLeft";
+        DeviceCurrentStateStatusBarOrientationEnum["landscapeRight"] = "LandscapeRight";
+        DeviceCurrentStateStatusBarOrientationEnum["faceUp"] = "FaceUp";
+        DeviceCurrentStateStatusBarOrientationEnum["faceDown"] = "FaceDown";
+        DeviceCurrentStateStatusBarOrientationEnum["square"] = "Square";
+    })(DeviceCurrentStateStatusBarOrientationEnum = exports.DeviceCurrentStateStatusBarOrientationEnum || (exports.DeviceCurrentStateStatusBarOrientationEnum = {}));
+    /**
+     * Enum for the platform property.
+     */
+    var DeviceInformationPlatformEnum;
+    (function (DeviceInformationPlatformEnum) {
+        DeviceInformationPlatformEnum["iOS"] = "iOS";
+        DeviceInformationPlatformEnum["android"] = "Android";
+        DeviceInformationPlatformEnum["web"] = "web";
+        DeviceInformationPlatformEnum["desktop"] = "desktop";
+        DeviceInformationPlatformEnum["tvOS"] = "tvOS";
+        DeviceInformationPlatformEnum["roku"] = "roku";
+        DeviceInformationPlatformEnum["outOfBand"] = "out_of_band";
+        DeviceInformationPlatformEnum["smartTV"] = "smart_tv";
+        DeviceInformationPlatformEnum["xbox"] = "xbox";
+    })(DeviceInformationPlatformEnum = exports.DeviceInformationPlatformEnum || (exports.DeviceInformationPlatformEnum = {}));
+    var EventTypeEnum;
+    (function (EventTypeEnum) {
+        EventTypeEnum["unknown"] = "unknown";
+        EventTypeEnum["sessionStart"] = "session_start";
+        EventTypeEnum["sessionEnd"] = "session_end";
+        EventTypeEnum["screenView"] = "screen_view";
+        EventTypeEnum["customEvent"] = "custom_event";
+        EventTypeEnum["crashReport"] = "crash_report";
+        EventTypeEnum["optOut"] = "opt_out";
+        EventTypeEnum["firstRun"] = "first_run";
+        EventTypeEnum["preAttribution"] = "pre_attribution";
+        EventTypeEnum["pushRegistration"] = "push_registration";
+        EventTypeEnum["applicationStateTransition"] = "application_state_transition";
+        EventTypeEnum["pushMessage"] = "push_message";
+        EventTypeEnum["networkPerformance"] = "network_performance";
+        EventTypeEnum["breadcrumb"] = "breadcrumb";
+        EventTypeEnum["profile"] = "profile";
+        EventTypeEnum["pushReaction"] = "push_reaction";
+        EventTypeEnum["commerceEvent"] = "commerce_event";
+        EventTypeEnum["userAttributeChange"] = "user_attribute_change";
+        EventTypeEnum["userIdentityChange"] = "user_identity_change";
+        EventTypeEnum["uninstall"] = "uninstall";
+        EventTypeEnum["validationResult"] = "validation_result";
+    })(EventTypeEnum = exports.EventTypeEnum || (exports.EventTypeEnum = {}));
+    var IdentityTypeEnum;
+    (function (IdentityTypeEnum) {
+        IdentityTypeEnum["other"] = "other";
+        IdentityTypeEnum["customerId"] = "customer_id";
+        IdentityTypeEnum["facebook"] = "facebook";
+        IdentityTypeEnum["twitter"] = "twitter";
+        IdentityTypeEnum["google"] = "google";
+        IdentityTypeEnum["microsoft"] = "microsoft";
+        IdentityTypeEnum["yahoo"] = "yahoo";
+        IdentityTypeEnum["email"] = "email";
+        IdentityTypeEnum["alias"] = "alias";
+        IdentityTypeEnum["facebookCustomAudienceId"] = "facebook_custom_audience_id";
+        IdentityTypeEnum["otherId2"] = "other_id_2";
+        IdentityTypeEnum["otherId3"] = "other_id_3";
+        IdentityTypeEnum["otherId4"] = "other_id_4";
+    })(IdentityTypeEnum = exports.IdentityTypeEnum || (exports.IdentityTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var NetworkPerformanceEventEventTypeEnum;
+    (function (NetworkPerformanceEventEventTypeEnum) {
+        NetworkPerformanceEventEventTypeEnum["networkPerformance"] = "network_performance";
+    })(NetworkPerformanceEventEventTypeEnum = exports.NetworkPerformanceEventEventTypeEnum || (exports.NetworkPerformanceEventEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var OptOutEventEnum;
+    (function (OptOutEventEnum) {
+        OptOutEventEnum["optOut"] = "opt_out";
+    })(OptOutEventEnum = exports.OptOutEventEnum || (exports.OptOutEventEnum = {}));
+    /**
+     * Enum for the action property.
+     */
+    var ProductActionActionEnum;
+    (function (ProductActionActionEnum) {
+        ProductActionActionEnum["unknown"] = "unknown";
+        ProductActionActionEnum["addToCart"] = "add_to_cart";
+        ProductActionActionEnum["removeFromCart"] = "remove_from_cart";
+        ProductActionActionEnum["checkout"] = "checkout";
+        ProductActionActionEnum["checkoutOption"] = "checkout_option";
+        ProductActionActionEnum["click"] = "click";
+        ProductActionActionEnum["viewDetail"] = "view_detail";
+        ProductActionActionEnum["purchase"] = "purchase";
+        ProductActionActionEnum["refund"] = "refund";
+        ProductActionActionEnum["addToWishlist"] = "add_to_wishlist";
+        ProductActionActionEnum["removeFromWishlist"] = "remove_from_wish_list";
+    })(ProductActionActionEnum = exports.ProductActionActionEnum || (exports.ProductActionActionEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var ProfileEventEventTypeEnum;
+    (function (ProfileEventEventTypeEnum) {
+        ProfileEventEventTypeEnum["profile"] = "profile";
+    })(ProfileEventEventTypeEnum = exports.ProfileEventEventTypeEnum || (exports.ProfileEventEventTypeEnum = {}));
+    /**
+     * Enum for the profile_event_type property.
+     */
+    var ProfileEventDataProfileEventTypeEnum;
+    (function (ProfileEventDataProfileEventTypeEnum) {
+        ProfileEventDataProfileEventTypeEnum["signup"] = "signup";
+        ProfileEventDataProfileEventTypeEnum["login"] = "login";
+        ProfileEventDataProfileEventTypeEnum["logout"] = "logout";
+        ProfileEventDataProfileEventTypeEnum["update"] = "update";
+        ProfileEventDataProfileEventTypeEnum["delete"] = "delete";
+    })(ProfileEventDataProfileEventTypeEnum = exports.ProfileEventDataProfileEventTypeEnum || (exports.ProfileEventDataProfileEventTypeEnum = {}));
+    /**
+     * Enum for the action property.
+     */
+    var PromotionActionActionEnum;
+    (function (PromotionActionActionEnum) {
+        PromotionActionActionEnum["view"] = "view";
+        PromotionActionActionEnum["click"] = "click";
+    })(PromotionActionActionEnum = exports.PromotionActionActionEnum || (exports.PromotionActionActionEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var PushMessageEventEventTypeEnum;
+    (function (PushMessageEventEventTypeEnum) {
+        PushMessageEventEventTypeEnum["pushMessage"] = "push_message";
+    })(PushMessageEventEventTypeEnum = exports.PushMessageEventEventTypeEnum || (exports.PushMessageEventEventTypeEnum = {}));
+    /**
+     * Enum for the push_message_type property.
+     */
+    var PushMessageEventDataPushMessageTypeEnum;
+    (function (PushMessageEventDataPushMessageTypeEnum) {
+        PushMessageEventDataPushMessageTypeEnum["sent"] = "sent";
+        PushMessageEventDataPushMessageTypeEnum["received"] = "received";
+        PushMessageEventDataPushMessageTypeEnum["action"] = "action";
+    })(PushMessageEventDataPushMessageTypeEnum = exports.PushMessageEventDataPushMessageTypeEnum || (exports.PushMessageEventDataPushMessageTypeEnum = {}));
+    /**
+     * Enum for the application_state property.
+     */
+    var PushMessageEventDataApplicationStateEnum;
+    (function (PushMessageEventDataApplicationStateEnum) {
+        PushMessageEventDataApplicationStateEnum["notRunning"] = "not_running";
+        PushMessageEventDataApplicationStateEnum["background"] = "background";
+        PushMessageEventDataApplicationStateEnum["foreground"] = "foreground";
+    })(PushMessageEventDataApplicationStateEnum = exports.PushMessageEventDataApplicationStateEnum || (exports.PushMessageEventDataApplicationStateEnum = {}));
+    /**
+     * Enum for the push_message_behavior property.
+     */
+    var PushMessageEventDataPushMessageBehaviorEnum;
+    (function (PushMessageEventDataPushMessageBehaviorEnum) {
+        PushMessageEventDataPushMessageBehaviorEnum["received"] = "Received";
+        PushMessageEventDataPushMessageBehaviorEnum["directOpen"] = "DirectOpen";
+        PushMessageEventDataPushMessageBehaviorEnum["read"] = "Read";
+        PushMessageEventDataPushMessageBehaviorEnum["influencedOpen"] = "InfluencedOpen";
+        PushMessageEventDataPushMessageBehaviorEnum["displayed"] = "Displayed";
+    })(PushMessageEventDataPushMessageBehaviorEnum = exports.PushMessageEventDataPushMessageBehaviorEnum || (exports.PushMessageEventDataPushMessageBehaviorEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var PushRegistrationEventEventTypeEnum;
+    (function (PushRegistrationEventEventTypeEnum) {
+        PushRegistrationEventEventTypeEnum["pushRegistration"] = "push_registration";
+    })(PushRegistrationEventEventTypeEnum = exports.PushRegistrationEventEventTypeEnum || (exports.PushRegistrationEventEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var SessionEndEventEventTypeEnum;
+    (function (SessionEndEventEventTypeEnum) {
+        SessionEndEventEventTypeEnum["sessionEnd"] = "session_end";
+    })(SessionEndEventEventTypeEnum = exports.SessionEndEventEventTypeEnum || (exports.SessionEndEventEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var SessionStartEventEventTypeEnum;
+    (function (SessionStartEventEventTypeEnum) {
+        SessionStartEventEventTypeEnum["sessionStart"] = "session_start";
+    })(SessionStartEventEventTypeEnum = exports.SessionStartEventEventTypeEnum || (exports.SessionStartEventEventTypeEnum = {}));
+    /**
+     * Enum for the channel property.
+     */
+    var SourceInformationChannelEnum;
+    (function (SourceInformationChannelEnum) {
+        SourceInformationChannelEnum["native"] = "native";
+        SourceInformationChannelEnum["javascript"] = "javascript";
+        SourceInformationChannelEnum["pixel"] = "pixel";
+        SourceInformationChannelEnum["desktop"] = "desktop";
+        SourceInformationChannelEnum["partner"] = "partner";
+        SourceInformationChannelEnum["serverToServer"] = "server_to_server";
+    })(SourceInformationChannelEnum = exports.SourceInformationChannelEnum || (exports.SourceInformationChannelEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var UserAttributeChangeEventEventTypeEnum;
+    (function (UserAttributeChangeEventEventTypeEnum) {
+        UserAttributeChangeEventEventTypeEnum["userAttributeChange"] = "user_attribute_change";
+    })(UserAttributeChangeEventEventTypeEnum = exports.UserAttributeChangeEventEventTypeEnum || (exports.UserAttributeChangeEventEventTypeEnum = {}));
+    /**
+     * Enum for the event_type property.
+     */
+    var UserIdentityChangeEventEventTypeEnum;
+    (function (UserIdentityChangeEventEventTypeEnum) {
+        UserIdentityChangeEventEventTypeEnum["userIdentityChange"] = "user_identity_change";
+    })(UserIdentityChangeEventEventTypeEnum = exports.UserIdentityChangeEventEventTypeEnum || (exports.UserIdentityChangeEventEventTypeEnum = {}));
+    });
+
+    unwrapExports(dist);
+    var dist_1 = dist.ApplicationInformationOsEnum;
+    var dist_2 = dist.ApplicationStateTransitionEventEventTypeEnum;
+    var dist_3 = dist.ApplicationStateTransitionEventDataApplicationTransitionTypeEnum;
+    var dist_4 = dist.BatchEnvironmentEnum;
+    var dist_5 = dist.BreadcrumbEventEventTypeEnum;
+    var dist_6 = dist.CommerceEventEventTypeEnum;
+    var dist_7 = dist.CommerceEventDataCustomEventTypeEnum;
+    var dist_8 = dist.CrashReportEventEventTypeEnum;
+    var dist_9 = dist.CustomEventEventTypeEnum;
+    var dist_10 = dist.CustomEventDataCustomEventTypeEnum;
+    var dist_11 = dist.DeviceCurrentStateDeviceOrientationEnum;
+    var dist_12 = dist.DeviceCurrentStateStatusBarOrientationEnum;
+    var dist_13 = dist.DeviceInformationPlatformEnum;
+    var dist_14 = dist.EventTypeEnum;
+    var dist_15 = dist.IdentityTypeEnum;
+    var dist_16 = dist.NetworkPerformanceEventEventTypeEnum;
+    var dist_17 = dist.OptOutEventEnum;
+    var dist_18 = dist.ProductActionActionEnum;
+    var dist_19 = dist.ProfileEventEventTypeEnum;
+    var dist_20 = dist.ProfileEventDataProfileEventTypeEnum;
+    var dist_21 = dist.PromotionActionActionEnum;
+    var dist_22 = dist.PushMessageEventEventTypeEnum;
+    var dist_23 = dist.PushMessageEventDataPushMessageTypeEnum;
+    var dist_24 = dist.PushMessageEventDataApplicationStateEnum;
+    var dist_25 = dist.PushMessageEventDataPushMessageBehaviorEnum;
+    var dist_26 = dist.PushRegistrationEventEventTypeEnum;
+    var dist_27 = dist.SessionEndEventEventTypeEnum;
+    var dist_28 = dist.SessionStartEventEventTypeEnum;
+    var dist_29 = dist.SourceInformationChannelEnum;
+    var dist_30 = dist.UserAttributeChangeEventEventTypeEnum;
+    var dist_31 = dist.UserIdentityChangeEventEventTypeEnum;
 
     var bind = function bind(fn, thisArg) {
       return function wrap() {
@@ -640,20 +1023,6 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
         ));
       }
     };
-
-    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-    function unwrapExports (x) {
-    	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-    }
-
-    function createCommonjsModule(fn, module) {
-    	return module = { exports: {} }, fn(module, module.exports), module.exports;
-    }
-
-    function getCjsExportFromNamespace (n) {
-    	return n && n['default'] || n;
-    }
 
     /**
      * Helpers.
@@ -3170,31 +3539,54 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             this.rootUrl = rootUrl;
             this.token = token;
         }
+        ApiClient.prototype.addTokens = function (token) {
+            if (token.type.toUpperCase() === 'BEARER') {
+                return {
+                    Authorization: token.type + " " + token.value,
+                };
+            }
+            else {
+                console.error('Received non-Bearer Token', JSON.stringify(token, null, 4));
+                throw new Error('Invalid Auth token type');
+            }
+        };
         ApiClient.prototype.fetch = function () {
             var headers = {};
             if (this.token) {
-                if (this.token.type.toUpperCase() === 'BEARER') {
-                    headers['Authorization'] = this.token.type + " " + this.token.value;
-                }
-                else {
-                    console.error('Received non-Bearer Token', this.token);
-                    throw new Error('Invalid Auth token type');
-                }
+                headers = this.addTokens(this.token);
             }
-            return axios$1.get("" + this.rootUrl, {
-                headers: headers,
-            });
+            return axios$1.get("" + this.rootUrl, { headers: headers });
         };
         // tslint:disable-next-line: no-any
         ApiClient.prototype.post = function (body) {
-            return axios$1.post("" + this.rootUrl, body);
+            var headers = {};
+            if (this.token) {
+                headers = this.addTokens(this.token);
+            }
+            return axios$1.post("" + this.rootUrl, body, { headers: headers });
+        };
+        // tslint:disable-next-line: no-any
+        ApiClient.prototype.patch = function (body) {
+            var headers = {};
+            if (this.token) {
+                headers = this.addTokens(this.token);
+            }
+            return axios$1.patch("" + this.rootUrl, body, { headers: headers });
+        };
+        // tslint:disable-next-line: no-any
+        ApiClient.prototype.delete = function () {
+            var headers = {};
+            if (this.token) {
+                headers = this.addTokens(this.token);
+            }
+            return axios$1.delete("" + this.rootUrl, { headers: headers });
         };
         return ApiClient;
     }());
 
     var config = {
         apiRoot: 'https://api.mparticle.com',
-        dataPlanningPath: 'planning/v1',
+        dataPlanningPath: 'platform/v2/workspaces',
         auth: {
             url: 'https://sso.auth.mparticle.com/oauth/token',
             apiRoot: 'https://sso.auth.mparticle.com',
@@ -3241,38 +3633,49 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
 
     var validation_error_type = createCommonjsModule(function (module, exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
-    var ValidationErrorType;
-    (function (ValidationErrorType) {
-        ValidationErrorType["Unknown"] = "unknown";
-        ValidationErrorType["Unplanned"] = "unplanned";
-        ValidationErrorType["MissingRequired"] = "missing_required";
-        ValidationErrorType["InvalidValue"] = "invalid_value";
-    })(ValidationErrorType = exports.ValidationErrorType || (exports.ValidationErrorType = {}));
-    var ErrorType;
-    (function (ErrorType) {
-        ErrorType["AdditionalItems"] = "additionalItems";
-        ErrorType["AdditionalProperties"] = "additionalProperties";
-        ErrorType["Const"] = "const";
-        ErrorType["Dependencies"] = "dependencies";
-        ErrorType["Enum"] = "enum";
-        ErrorType["ExclusiveMaximum"] = "exclusiveMaximum";
-        ErrorType["ExclusiveMinimum"] = "exclusiveMinimum";
-        ErrorType["Format"] = "format";
-        ErrorType["Maximum"] = "maximum";
-        ErrorType["MaxLength"] = "maxLength";
-        ErrorType["Minimum"] = "minimum";
-        ErrorType["MinLength"] = "minLength";
-        ErrorType["MultipleOf"] = "multipleOf";
-        ErrorType["Pattern"] = "pattern";
-        ErrorType["PatternProperties"] = "patternProperties";
-        ErrorType["Required"] = "required";
-        ErrorType["Type"] = "type";
-    })(ErrorType = exports.ErrorType || (exports.ErrorType = {}));
+    var ValidationErrorTypeEnum;
+    (function (ValidationErrorTypeEnum) {
+        ValidationErrorTypeEnum["Unknown"] = "unknown";
+        ValidationErrorTypeEnum["Unplanned"] = "unplanned";
+        ValidationErrorTypeEnum["MissingRequired"] = "missing_required";
+        ValidationErrorTypeEnum["InvalidValue"] = "invalid_value";
+    })(ValidationErrorTypeEnum = exports.ValidationErrorTypeEnum || (exports.ValidationErrorTypeEnum = {}));
+    var SchemaKeywordErrorTypeEnum;
+    (function (SchemaKeywordErrorTypeEnum) {
+        SchemaKeywordErrorTypeEnum["AdditionalItems"] = "additionalItems";
+        SchemaKeywordErrorTypeEnum["AdditionalProperties"] = "additionalProperties";
+        SchemaKeywordErrorTypeEnum["Const"] = "const";
+        SchemaKeywordErrorTypeEnum["Dependencies"] = "dependencies";
+        SchemaKeywordErrorTypeEnum["Enum"] = "enum";
+        SchemaKeywordErrorTypeEnum["ExclusiveMaximum"] = "exclusiveMaximum";
+        SchemaKeywordErrorTypeEnum["ExclusiveMinimum"] = "exclusiveMinimum";
+        SchemaKeywordErrorTypeEnum["Format"] = "format";
+        SchemaKeywordErrorTypeEnum["Maximum"] = "maximum";
+        SchemaKeywordErrorTypeEnum["MaxLength"] = "maxLength";
+        SchemaKeywordErrorTypeEnum["Minimum"] = "minimum";
+        SchemaKeywordErrorTypeEnum["MinLength"] = "minLength";
+        SchemaKeywordErrorTypeEnum["MultipleOf"] = "multipleOf";
+        SchemaKeywordErrorTypeEnum["Pattern"] = "pattern";
+        SchemaKeywordErrorTypeEnum["PatternProperties"] = "patternProperties";
+        SchemaKeywordErrorTypeEnum["Required"] = "required";
+        SchemaKeywordErrorTypeEnum["Type"] = "type";
+    })(SchemaKeywordErrorTypeEnum = exports.SchemaKeywordErrorTypeEnum || (exports.SchemaKeywordErrorTypeEnum = {}));
     });
 
     unwrapExports(validation_error_type);
-    var validation_error_type_1 = validation_error_type.ValidationErrorType;
-    var validation_error_type_2 = validation_error_type.ErrorType;
+    var validation_error_type_1 = validation_error_type.ValidationErrorTypeEnum;
+    var validation_error_type_2 = validation_error_type.SchemaKeywordErrorTypeEnum;
+
+    var validation_result_event = createCommonjsModule(function (module, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var ValidationResultEventEventTypeEnum;
+    (function (ValidationResultEventEventTypeEnum) {
+        ValidationResultEventEventTypeEnum["ValidationResult"] = "validation_result";
+    })(ValidationResultEventEventTypeEnum = exports.ValidationResultEventEventTypeEnum || (exports.ValidationResultEventEventTypeEnum = {}));
+    });
+
+    unwrapExports(validation_result_event);
+    var validation_result_event_1 = validation_result_event.ValidationResultEventEventTypeEnum;
 
     var types = createCommonjsModule(function (module, exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -3354,23 +3757,26 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
     var types_4 = types.EventType;
     var types_5 = types.DataPlanValidatorType;
 
-    var dist = createCommonjsModule(function (module, exports) {
+    var dist$1 = createCommonjsModule(function (module, exports) {
     function __export(m) {
         for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
     }
     Object.defineProperty(exports, "__esModule", { value: true });
     __export(validation_error_type);
+    __export(validation_result_event);
     __export(types);
     });
 
-    unwrapExports(dist);
-    var dist_1 = dist.ErrorType;
-    var dist_2 = dist.ValidationErrorType;
-    var dist_3 = dist.ValidationError;
-    var dist_4 = dist.MessageType;
-    var dist_5 = dist.DataPlanMatchType;
-    var dist_6 = dist.ScreenViewEventCriteria;
-    var dist_7 = dist.CustomEventCriteria;
+    unwrapExports(dist$1);
+    var dist_1$1 = dist$1.SchemaKeywordErrorTypeEnum;
+    var dist_2$1 = dist$1.ValidationErrorType;
+    var dist_3$1 = dist$1.ValidationError;
+    var dist_4$1 = dist$1.MessageType;
+    var dist_5$1 = dist$1.DataPlanMatchType;
+    var dist_6$1 = dist$1.ScreenViewEventCriteria;
+    var dist_7$1 = dist$1.CustomEventCriteria;
+    var dist_8$1 = dist$1.ValidationErrorTypeEnum;
+    var dist_9$1 = dist$1.ValidationResultEventEventTypeEnum;
 
     var uri_all = createCommonjsModule(function (module, exports) {
     /** @license URI.js v4.2.1 (c) 2011 Gary Court. License: http://github.com/garycourt/uri-js */
@@ -10579,48 +10985,51 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             error.schema_keyword = args.keyword;
             error.key = lastNode(nodes);
             switch (args.keyword) {
-                case dist_1.MultipleOf:
-                case dist_1.Maximum:
-                case dist_1.ExclusiveMaximum:
-                case dist_1.Minimum:
-                case dist_1.ExclusiveMinimum:
-                case dist_1.MaxLength:
-                case dist_1.MinLength:
-                case dist_1.Pattern:
-                case dist_1.Format:
-                    error.validation_error_type = dist_2.InvalidValue;
+                case dist_1$1.MultipleOf:
+                case dist_1$1.Maximum:
+                case dist_1$1.ExclusiveMaximum:
+                case dist_1$1.Minimum:
+                case dist_1$1.ExclusiveMinimum:
+                case dist_1$1.MaxLength:
+                case dist_1$1.MinLength:
+                case dist_1$1.Pattern:
+                case dist_1$1.Format:
+                    error.validation_error_type =
+                        dist_8$1.InvalidValue;
                     error.expected = args.message;
                     break;
-                case dist_1.AdditionalItems:
-                case dist_1.AdditionalProperties:
-                    error.validation_error_type = dist_2.Unplanned;
+                case dist_1$1.AdditionalItems:
+                case dist_1$1.AdditionalProperties:
+                    error.validation_error_type = dist_8$1.Unplanned;
                     var additionalProperty = args.params.additionalProperty;
                     error.key = additionalProperty;
                     error.actual = additionalProperty;
                     break;
-                case dist_1.Required:
+                case dist_1$1.Required:
                     var missingProperty = args.params.missingProperty;
                     error.validation_error_type =
-                        dist_2.MissingRequired;
+                        dist_8$1.MissingRequired;
                     error.expected = missingProperty;
                     error.actual = undefined;
                     break;
-                case dist_1.Type:
-                case dist_1.Const:
-                case dist_1.Enum:
-                    error.validation_error_type = dist_2.InvalidValue;
-                    error.expected = args.message;
-                    break;
-                case dist_1.Dependencies:
+                case dist_1$1.Type:
+                case dist_1$1.Const:
+                case dist_1$1.Enum:
                     error.validation_error_type =
-                        dist_2.MissingRequired;
+                        dist_8$1.InvalidValue;
                     error.expected = args.message;
                     break;
-                case dist_1.PatternProperties:
-                    error.validation_error_type = dist_2.InvalidValue;
+                case dist_1$1.Dependencies:
+                    error.validation_error_type =
+                        dist_8$1.MissingRequired;
+                    error.expected = args.message;
+                    break;
+                case dist_1$1.PatternProperties:
+                    error.validation_error_type =
+                        dist_8$1.InvalidValue;
                     break;
                 default:
-                    error.validation_error_type = dist_2.Unknown;
+                    error.validation_error_type = dist_8$1.Unknown;
                     error.expected = args.message;
                     break;
             }
@@ -10938,21 +11347,21 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             // Handle Unplannable Events
             if (!matchKey || !matchKey.trim()) {
                 var validationError = {
-                    validation_error_type: 'unplanned',
+                    validation_error_type: dist_8$1.Unplanned,
                     key: 'unknown',
                     error_pointer: '#',
                 };
                 errors.push(validationError);
                 result.validation_errors = errors;
                 return {
-                    event_type: 'validation_results',
+                    event_type: dist_14.validationResult,
                     data: result,
                 };
             }
             // Handle Unplanned Events
             if (matchKey && !(matchKey in this.dataPlanMatchLookups)) {
                 var validationError = {
-                    validation_error_type: 'unplanned',
+                    validation_error_type: dist_8$1.Unplanned,
                     key: this.getEventKey(event),
                     error_pointer: '#',
                 };
@@ -10963,7 +11372,7 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
                 }
                 result.validation_errors = errors;
                 return {
-                    event_type: 'validation_result',
+                    event_type: dist_14.validationResult,
                     data: result,
                 };
             }
@@ -10976,7 +11385,7 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             if (errors.length > 0) {
                 result.validation_errors = errors;
                 return {
-                    event_type: 'validation_result',
+                    event_type: dist_14.validationResult,
                     data: result,
                 };
             }
@@ -11003,16 +11412,16 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             var schema = (_a = point) === null || _a === void 0 ? void 0 : _a.schema;
             if (!schema || Object.keys(schema).length === 0) {
                 result.match = {
-                    type: dist_5.UserAttributes,
+                    type: dist_5$1.UserAttributes,
                 };
                 var error = {
-                    validation_error_type: dist_2.Unknown,
+                    validation_error_type: dist_8$1.Unknown,
                     error_pointer: '#',
                     actual: 'Invalid JSON Schema',
                     key: 'user_attributes',
                 };
                 return {
-                    event_type: 'validation_result',
+                    event_type: dist_14.validationResult,
                     data: {
                         match: result.match,
                         validation_errors: [error],
@@ -11027,7 +11436,7 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
                 return {};
             }
             return {
-                event_type: 'validation_result',
+                event_type: dist_14.validationResult,
                 data: {
                     match: result.match,
                     validation_errors: validationErrors,
@@ -11040,46 +11449,46 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
          */
         DataPlanEventValidator.generateMatchKey = function (match) {
             switch (match.type) {
-                case dist_5.Breadcrumb:
-                case dist_5.CrashReport:
-                case dist_5.FirstRun:
-                case dist_5.NetworkPerformance:
-                case dist_5.OptOut:
-                case dist_5.ProductImpression:
-                case dist_5.SessionStart:
-                case dist_5.SessionEnd:
-                case dist_5.Uninstall:
-                case dist_5.UserAttributes:
-                case dist_5.UserIdentities:
+                case dist_5$1.Breadcrumb:
+                case dist_5$1.CrashReport:
+                case dist_5$1.FirstRun:
+                case dist_5$1.NetworkPerformance:
+                case dist_5$1.OptOut:
+                case dist_5$1.ProductImpression:
+                case dist_5$1.SessionStart:
+                case dist_5$1.SessionEnd:
+                case dist_5$1.Uninstall:
+                case dist_5$1.UserAttributes:
+                case dist_5$1.UserIdentities:
                     return match.type;
-                case dist_5.ApplicationStateTransition:
+                case dist_5$1.ApplicationStateTransition:
                     // tslint:disable-next-line: max-line-length
                     var astCriteria = match.criteria;
                     return [
-                        dist_5.ApplicationStateTransition,
+                        dist_5$1.ApplicationStateTransition,
                         astCriteria.application_transition_type,
                     ].join(':');
-                case dist_5.CustomEvent:
+                case dist_5$1.CustomEvent:
                     // tslint:disable-next-line: max-line-length
                     var customEventCriteria = match.criteria;
                     return [
-                        dist_5.CustomEvent,
+                        dist_5$1.CustomEvent,
                         customEventCriteria.custom_event_type,
                         customEventCriteria.event_name,
                     ].join(':');
-                case dist_5.ScreenView:
+                case dist_5$1.ScreenView:
                     // tslint:disable-next-line: max-line-length
                     var screenViewCriteria = match.criteria;
                     return [
-                        dist_5.ScreenView,
+                        dist_5$1.ScreenView,
                         '',
                         screenViewCriteria.screen_name,
                     ].join(':');
-                case dist_5.ProductAction:
+                case dist_5$1.ProductAction:
                     // tslint:disable-next-line: max-line-length
                     var productActionMatch = match.criteria;
                     return [match.type, productActionMatch.action].join(':');
-                case dist_5.PromotionAction:
+                case dist_5$1.PromotionAction:
                     // tslint:disable-next-line: max-line-length
                     var promoActionMatch = match.criteria;
                     return [match.type, promoActionMatch.action].join(':');
@@ -11093,66 +11502,65 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
          * @returns A `matchKey` as a string
          */
         DataPlanEventValidator.getMatchKey = function (eventToMatch) {
-            var _a;
+            var _a, _b;
             switch (eventToMatch.event_type) {
-                case dist_4.Breadcrumb:
-                    return dist_5.Breadcrumb;
-                case dist_4.CrashReport:
-                    return dist_5.CrashReport;
-                case dist_4.FirstRun:
-                    return dist_5.FirstRun;
-                case dist_4.NetworkPerformance:
-                    return dist_5.NetworkPerformance;
-                case dist_4.OptOut:
-                    return dist_5.OptOut;
-                case dist_4.SessionStart:
-                    return dist_5.SessionStart;
-                case dist_4.SessionEnd:
-                    return dist_5.SessionEnd;
-                case dist_4.Uninstall:
-                    return dist_5.Uninstall;
-                case dist_4.ApplicationStateTransition:
+                case dist_4$1.Breadcrumb:
+                    return dist_5$1.Breadcrumb;
+                case dist_4$1.CrashReport:
+                    return dist_5$1.CrashReport;
+                case dist_4$1.FirstRun:
+                    return dist_5$1.FirstRun;
+                case dist_4$1.NetworkPerformance:
+                    return dist_5$1.NetworkPerformance;
+                case dist_4$1.OptOut:
+                    return dist_5$1.OptOut;
+                case dist_4$1.SessionStart:
+                    return dist_5$1.SessionStart;
+                case dist_4$1.SessionEnd:
+                    return dist_5$1.SessionEnd;
+                case dist_4$1.Uninstall:
+                    return dist_5$1.Uninstall;
+                case dist_4$1.ApplicationStateTransition:
                     // tslint:disable-next-line: max-line-length
-                    var appStateTransitionEvent = eventToMatch;
+                    var appStateTransitionEventData = eventToMatch.data;
                     return [
-                        dist_5.ApplicationStateTransition,
-                        (_a = appStateTransitionEvent.data) === null || _a === void 0 ? void 0 : _a.application_transition_type,
+                        dist_5$1.ApplicationStateTransition,
+                        (_a = appStateTransitionEventData) === null || _a === void 0 ? void 0 : _a.application_transition_type,
                     ].join(':');
-                case dist_4.ScreenView:
-                    var screenViewEvent = eventToMatch;
-                    if (screenViewEvent.data) {
-                        return [
-                            dist_5.ScreenView,
-                            '',
-                            screenViewEvent.data.screen_name,
-                        ].join(':');
-                    }
-                    return null;
-                case dist_4.Commerce:
-                    var commerceEvent = eventToMatch;
+                case dist_4$1.ScreenView:
+                    // tslint:disable-next-line: max-line-length
+                    var screenViewEventData = eventToMatch.data;
+                    return [
+                        dist_5$1.ScreenView,
+                        '',
+                        (_b = screenViewEventData) === null || _b === void 0 ? void 0 : _b.screen_name,
+                    ].join(':');
+                case dist_4$1.Commerce:
+                    // tslint:disable-next-line: max-line-length
+                    var commerceEventData = eventToMatch.data;
                     var matchKey = [];
-                    if (commerceEvent && commerceEvent.data) {
-                        var _b = commerceEvent.data, product_action = _b.product_action, product_impressions = _b.product_impressions, promotion_action = _b.promotion_action;
+                    if (commerceEventData) {
+                        var product_action = commerceEventData.product_action, product_impressions = commerceEventData.product_impressions, promotion_action = commerceEventData.promotion_action;
                         if (product_action) {
-                            matchKey.push(dist_5.ProductAction);
+                            matchKey.push(dist_5$1.ProductAction);
                             matchKey.push(product_action.action);
                         }
                         else if (promotion_action) {
-                            matchKey.push(dist_5.PromotionAction);
+                            matchKey.push(dist_5$1.PromotionAction);
                             matchKey.push(promotion_action.action);
                         }
                         else if (product_impressions) {
-                            matchKey.push(dist_5.ProductImpression);
+                            matchKey.push(dist_5$1.ProductImpression);
                         }
                     }
                     return matchKey.join(':');
-                case dist_4.CustomEvent:
-                    var customEvent = eventToMatch;
-                    if (customEvent.data) {
+                case dist_4$1.CustomEvent:
+                    var customEventData = eventToMatch.data;
+                    if (customEventData) {
                         return [
-                            dist_5.CustomEvent,
-                            customEvent.data.custom_event_type,
-                            customEvent.data.event_name,
+                            dist_5$1.CustomEvent,
+                            customEventData.custom_event_type,
+                            customEventData.event_name,
                         ].join(':');
                     }
                     return null;
@@ -11166,101 +11574,107 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
          * @returns A [[DataPlanMatch]] for the event
          */
         DataPlanEventValidator.synthesizeMatch = function (eventToMatch) {
-            var _a, _b, _c, _d, _e, _f;
+            var _a, _b, _c;
             switch (eventToMatch.event_type) {
-                case dist_4.SessionStart:
-                    return { type: dist_5.SessionStart };
-                case dist_4.SessionEnd:
-                    return { type: dist_5.SessionEnd };
-                case dist_4.ScreenView:
-                    var screenViewEvent = eventToMatch;
+                case dist_14.sessionStart:
+                    return { type: dist_5$1.SessionStart };
+                case dist_14.sessionEnd:
+                    return { type: dist_5$1.SessionEnd };
+                case dist_14.screenView:
+                    // tslint:disable-next-line: max-line-length
+                    var screenViewEventData = eventToMatch.data;
                     var screenName = '';
-                    if (screenViewEvent.data) {
-                        screenName = screenViewEvent.data.screen_name;
+                    if (screenViewEventData) {
+                        screenName = screenViewEventData.screen_name;
                     }
                     var screenViewCriteria = {
                         screen_name: screenName,
                     };
                     return {
-                        type: dist_5.ScreenView,
+                        type: dist_5$1.ScreenView,
                         criteria: screenViewCriteria,
                     };
-                case dist_4.CustomEvent:
-                    var customEvent = eventToMatch;
+                case dist_14.customEvent:
+                    var customEventData = eventToMatch.data;
                     var customEventCriteria = {
-                        event_name: ((_b = (_a = customEvent) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.event_name) || 'Custom Event',
+                        event_name: ((_a = customEventData) === null || _a === void 0 ? void 0 : _a.event_name) || 'Custom Event',
                         // tslint:disable-next-line: max-line-length
-                        custom_event_type: ((_d = (_c = customEvent) === null || _c === void 0 ? void 0 : _c.data) === null || _d === void 0 ? void 0 : _d.custom_event_type) || 'other',
+                        custom_event_type: ((_b = customEventData) === null || _b === void 0 ? void 0 : _b.custom_event_type) || 'other',
                     };
                     return {
-                        type: dist_5.CustomEvent,
+                        type: dist_5$1.CustomEvent,
                         criteria: customEventCriteria,
                     };
-                case dist_4.CrashReport:
-                    return { type: dist_5.CrashReport };
-                case dist_4.OptOut:
-                    return { type: dist_5.OptOut };
-                case dist_4.FirstRun:
-                    return { type: dist_5.FirstRun };
-                case dist_4.ApplicationStateTransition:
+                case dist_14.crashReport:
+                    return { type: dist_5$1.CrashReport };
+                case dist_14.optOut:
+                    return { type: dist_5$1.OptOut };
+                case dist_14.firstRun:
+                    return { type: dist_5$1.FirstRun };
+                case dist_14.applicationStateTransition:
                     // tslint:disable-next-line: max-line-length
-                    var appStateTransitionEvent = eventToMatch;
+                    var appStateTransitionEventData = eventToMatch.data;
                     // tslint:disable-next-line: max-line-length
                     var appStateTransitionCriteria = {
-                        application_transition_type: ((_f = (_e = appStateTransitionEvent) === null || _e === void 0 ? void 0 : _e.data) === null || _f === void 0 ? void 0 : _f.application_transition_type) || 'unknown',
+                        application_transition_type: 
+                        // tslint:disable-next-line: max-line-length
+                        ((_c = appStateTransitionEventData) === null || _c === void 0 ? void 0 : _c.application_transition_type) ||
+                            'unknown',
                     };
                     return {
-                        type: dist_5.ApplicationStateTransition,
+                        type: dist_5$1.ApplicationStateTransition,
                         criteria: appStateTransitionCriteria,
                     };
-                case dist_4.NetworkPerformance:
-                    return { type: dist_5.NetworkPerformance };
-                case dist_4.Breadcrumb:
-                    return { type: dist_5.Breadcrumb };
-                case dist_4.Uninstall:
-                    return { type: dist_5.Uninstall };
-                case dist_4.Commerce:
-                    var commerceEvent = eventToMatch;
-                    if (commerceEvent.data) {
-                        if (commerceEvent.data.product_action) {
+                case dist_14.networkPerformance:
+                    return { type: dist_5$1.NetworkPerformance };
+                case dist_14.breadcrumb:
+                    return { type: dist_5$1.Breadcrumb };
+                case dist_14.uninstall:
+                    return { type: dist_5$1.Uninstall };
+                case dist_14.commerceEvent:
+                    // tslint:disable-next-line: max-line-length
+                    var commerceEventData = eventToMatch.data;
+                    if (commerceEventData) {
+                        if (commerceEventData.product_action) {
                             var criteria = {
-                                action: commerceEvent.data.product_action.action,
+                                action: commerceEventData.product_action.action,
                             };
                             return {
-                                type: dist_5.ProductAction,
+                                type: dist_5$1.ProductAction,
                                 criteria: criteria,
                             };
                         }
-                        else if (commerceEvent.data.promotion_action) {
+                        else if (commerceEventData.promotion_action) {
                             var criteria = {
-                                action: commerceEvent.data.promotion_action.action,
+                                action: commerceEventData.promotion_action.action,
                             };
                             return {
-                                type: dist_5.PromotionAction,
+                                type: dist_5$1.PromotionAction,
                                 criteria: criteria,
                             };
                         }
-                        else if (commerceEvent.data.product_impressions) {
-                            return { type: dist_5.ProductImpression };
+                        else if (commerceEventData.product_impressions) {
+                            return { type: dist_5$1.ProductImpression };
                         }
                     }
                     break;
                 default:
-                    return { type: dist_5.Unknown };
+                    return { type: dist_5$1.Unknown };
             }
-            return { type: dist_5.Unknown };
+            return { type: dist_5$1.Unknown };
         };
         DataPlanEventValidator.prototype.getEventKey = function (eventToConvert) {
-            var _a, _b, _c, _d;
+            var _a, _b;
             var key;
             switch (eventToConvert.event_type) {
                 case 'custom_event':
-                    var customEvent = eventToConvert;
-                    key = (_b = (_a = customEvent) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.event_name;
+                    var customEventData = eventToConvert.data;
+                    key = (_a = customEventData) === null || _a === void 0 ? void 0 : _a.event_name;
                     break;
                 case 'screen_view':
-                    var screenViewEvent = eventToConvert;
-                    key = (_d = (_c = screenViewEvent) === null || _c === void 0 ? void 0 : _c.data) === null || _d === void 0 ? void 0 : _d.screen_name;
+                    // tslint:disable-next-line: max-line-length
+                    var screenViewEventData = eventToConvert.data;
+                    key = (_b = screenViewEventData) === null || _b === void 0 ? void 0 : _b.screen_name;
                     break;
             }
             return key || eventToConvert.event_type;
@@ -11270,14 +11684,18 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
 
     var DataPlanService = /** @class */ (function () {
         function DataPlanService(credentials) {
+            this.apiURL = '';
             if (credentials) {
-                var orgId = credentials.orgId, accountId = credentials.accountId, workspaceId = credentials.workspaceId, clientId = credentials.clientId, clientSecret = credentials.clientSecret;
-                this.orgId = orgId;
-                this.accountId = accountId;
-                this.workspaceId = workspaceId;
-                this.clientId = clientId;
-                this.clientSecret = clientSecret;
-                this.apiURL = this.getAPIURL();
+                var workspaceId = credentials.workspaceId, clientId = credentials.clientId, clientSecret = credentials.clientSecret;
+                if (workspaceId && clientId && clientSecret) {
+                    this.workspaceId = workspaceId;
+                    this.clientId = clientId;
+                    this.clientSecret = clientSecret;
+                    this.apiURL = this.getAPIURL();
+                }
+                else {
+                    throw new Error('Invalid Credentials for generating API Request');
+                }
             }
         }
         DataPlanService.prototype.getToken = function () {
@@ -11296,38 +11714,17 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
             return new url.URL(path, base).toString();
         };
         DataPlanService.prototype.getAPIURL = function () {
-            var _a = this, orgId = _a.orgId, accountId = _a.accountId, workspaceId = _a.workspaceId;
-            if (orgId && accountId && workspaceId) {
-                var urlPath = path.join(config.dataPlanningPath, "" + orgId, "" + accountId, "" + workspaceId, "plans/");
-                return this.buildUrl(config.apiRoot, urlPath);
-            }
-            throw new Error('Invalid Credentials for generating API Request');
+            var workspaceId = this.workspaceId;
+            var urlPath = path.join(config.dataPlanningPath, "" + workspaceId, "plans");
+            return this.buildUrl(config.apiRoot, urlPath);
         };
-        DataPlanService.prototype.getPlan = function (dataPlanId) {
-            return __awaiter(this, void 0, Promise, function () {
-                var token, api;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            if (!this.apiURL) {
-                                throw new Error('Invalid API URL');
-                            }
-                            return [4 /*yield*/, this.getToken()];
-                        case 1:
-                            token = _a.sent();
-                            api = new ApiClient(this.buildUrl(this.apiURL, dataPlanId), token);
-                            try {
-                                return [2 /*return*/, api.fetch().then(function (response) { return response.data; })];
-                            }
-                            catch (error) {
-                                return [2 /*return*/, error.response];
-                            }
-                            return [2 /*return*/];
-                    }
-                });
-            });
+        // TODO: Refactor this with getAPIUrl
+        DataPlanService.prototype.getValidationAPIURL = function () {
+            var workspaceId = this.workspaceId;
+            var urlPath = path.join(config.dataPlanningPath, "" + workspaceId, "test");
+            return this.buildUrl(config.apiRoot, urlPath);
         };
-        DataPlanService.prototype.getAllPlans = function () {
+        DataPlanService.prototype.createDataPlan = function (dataPlanToCreate) {
             return __awaiter(this, void 0, Promise, function () {
                 var token, api;
                 return __generator(this, function (_a) {
@@ -11335,10 +11732,97 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
                         case 0: return [4 /*yield*/, this.getToken()];
                         case 1:
                             token = _a.sent();
-                            if (!this.apiURL) {
-                                throw new Error('Invalid API URL');
-                            }
                             api = new ApiClient(this.apiURL, token);
+                            try {
+                                return [2 /*return*/, api
+                                        .post(dataPlanToCreate)
+                                        .then(function (response) { return response.data; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.createDataPlanVersion = function (dataPlanId, dataPlanVersion) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId + "/versions");
+                            api = new ApiClient(url, token);
+                            try {
+                                return [2 /*return*/, api
+                                        .post(dataPlanVersion)
+                                        .then(function (response) { return response.data; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.deleteDataPlan = function (dataPlanId) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId);
+                            api = new ApiClient(url, token);
+                            try {
+                                // If this doesn't throw an arror, it should return true
+                                return [2 /*return*/, api.delete().then(function (response) { return true; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.deleteDataPlanVersion = function (dataPlanId, versionNumber) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId + "/versions/" + versionNumber);
+                            api = new ApiClient(url, token);
+                            try {
+                                // If this doesn't throw an arror, it should return true
+                                return [2 /*return*/, api.delete().then(function (response) { return true; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.getDataPlan = function (dataPlanId) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId);
+                            api = new ApiClient(url, token);
                             try {
                                 return [2 /*return*/, api.fetch().then(function (response) { return response.data; })];
                             }
@@ -11350,21 +11834,167 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
                 });
             });
         };
-        DataPlanService.prototype.getVersionDocument = function (dataPlanId, versionNumber) {
+        DataPlanService.prototype.getDataPlans = function () {
             return __awaiter(this, void 0, Promise, function () {
-                var token, api;
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL;
+                            api = new ApiClient(url, token);
+                            try {
+                                return [2 /*return*/, api.fetch().then(function (response) { return response.data; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.getDataPlanVersion = function (dataPlanId, versionNumber) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId + "/versions/" + versionNumber);
+                            api = new ApiClient(url, token);
+                            try {
+                                return [2 /*return*/, api.fetch().then(function (response) { return response.data; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.updateDataPlan = function (dataPlanId, dataPlan) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId);
+                            api = new ApiClient(url, token);
+                            try {
+                                return [2 /*return*/, api
+                                        .patch(dataPlan)
+                                        .then(function (response) { return response.data; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.updateDataPlanVersion = function (dataPlanId, versionNumber, dataPlanVersion) {
+            return __awaiter(this, void 0, Promise, function () {
+                var token, url, api;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getToken()];
+                        case 1:
+                            token = _a.sent();
+                            url = this.apiURL + ("/" + dataPlanId + "/versions/" + versionNumber);
+                            api = new ApiClient(url, token);
+                            try {
+                                return [2 /*return*/, api
+                                        .patch(dataPlanVersion)
+                                        .then(function (response) { return response.data; })];
+                            }
+                            catch (error) {
+                                return [2 /*return*/, error.response];
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        DataPlanService.prototype.validateEvent = function (event, dataPlanVersion, options) {
+            var _a;
+            if (!event || !dataPlanVersion) {
+                return Promise.reject('Data Plan Version or Event is missing and required');
+            }
+            var document = dataPlanVersion.version_document;
+            if (!document) {
+                return Promise.reject('Data Plan Version does not contain a valid Version Document');
+            }
+            var serverMode = (_a = options) === null || _a === void 0 ? void 0 : _a.serverMode;
+            // Create a mock batch so we can pass an event to the server
+            var mpid = '';
+            var environment = dist_4.unknown;
+            if (serverMode) {
+                var batch = {
+                    events: [event],
+                    mpid: mpid,
+                    environment: environment,
+                };
+                return this.validateOnServer(batch, dataPlanVersion, options);
+            }
+            else {
+                var resultsDto = {};
+                var validator = new DataPlanEventValidator(document);
+                var result = validator.validateEvent(event);
+                resultsDto.results = [result];
+                return Promise.resolve(resultsDto);
+            }
+        };
+        DataPlanService.prototype.validateBatch = function (batch, dataPlanVersion, options) {
+            var _a;
+            if (!batch || !dataPlanVersion) {
+                return Promise.reject('Data Plan Version or Batch is missing and required');
+            }
+            var document = dataPlanVersion.version_document;
+            if (!document) {
+                return Promise.reject('Data Plan Version does not contain a valid Version Document');
+            }
+            var serverMode = (_a = options) === null || _a === void 0 ? void 0 : _a.serverMode;
+            if (serverMode) {
+                return this.validateOnServer(batch, dataPlanVersion, options);
+            }
+            else {
+                var resultsDto = {};
+                var validator = new DataPlanEventValidator(document, batch);
+                var results = validator.validateEventBatch(batch);
+                resultsDto.batch = batch;
+                resultsDto.results = results;
+                return Promise.resolve(resultsDto);
+            }
+        };
+        DataPlanService.prototype.validateOnServer = function (batch, dataPlanVersion, options) {
+            return __awaiter(this, void 0, Promise, function () {
+                var document, token, url, api;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            if (!this.apiURL) {
-                                throw new Error('Invalid API URL');
+                            document = dataPlanVersion.version_document;
+                            if (!document) {
+                                throw new Error('Data Plan Version does not contain a valid Version Document');
                             }
                             return [4 /*yield*/, this.getToken()];
                         case 1:
                             token = _a.sent();
-                            api = new ApiClient(this.buildUrl(this.apiURL, dataPlanId + "/versions/" + versionNumber), token);
+                            url = this.getValidationAPIURL();
+                            api = new ApiClient(url, token);
                             try {
-                                return [2 /*return*/, api.fetch().then(function (response) { return response.data; })];
+                                return [2 /*return*/, api
+                                        .post({
+                                        document: document,
+                                        batch: batch,
+                                    })
+                                        .then(function (response) { return response.data; })];
                             }
                             catch (error) {
                                 return [2 /*return*/, error.response];
@@ -11373,27 +12003,6 @@ var DataPlanning = (function (exports, path, url, http, https, assert, stream, t
                     }
                 });
             });
-        };
-        DataPlanService.prototype.validateEvent = function (event, document) {
-            if (!event || !document) {
-                throw new Error('Data Plan Document and Event are missing and required');
-            }
-            var resultsDto = {};
-            var validator = new DataPlanEventValidator(document);
-            var result = validator.validateEvent(event);
-            resultsDto.results = [result];
-            return resultsDto;
-        };
-        DataPlanService.prototype.validateBatch = function (batch, document) {
-            if (!batch || !document) {
-                throw new Error('Data Plan Document and Batch are missing and required');
-            }
-            var resultsDto = {};
-            var validator = new DataPlanEventValidator(document, batch);
-            var results = validator.validateEventBatch(batch);
-            resultsDto.batch = batch;
-            resultsDto.results = results;
-            return resultsDto;
         };
         return DataPlanService;
     }());
