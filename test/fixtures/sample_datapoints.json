@@ -337,6 +337,36 @@
                     ]
                 }
             }
+        },
+        "third": {
+            "properties": {
+                "data": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "screen_name": {
+                      "const": "abc"
+                    },
+                    "custom_attributes": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "foo": {
+                          "description": "",
+                          "maximum": 10,
+                          "minimum": 5,
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "foo"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "screen_name",
+                    "custom_attributes"
+                  ]
+                }
+            }
         }
     },
     "simple_event": {

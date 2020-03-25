@@ -6,6 +6,7 @@ import { MPObjectiveC } from './objective_c_translator';
 import { MPSwift } from './swift_translator';
 import { MPKotlin } from './translators/kotlin_translator';
 import { MPJava } from './translators/java_translator';
+import { MPJavaScript } from './javascript_translator';
 import { Language, Dictionary } from './language';
 
 export class MPSnippets {
@@ -154,6 +155,9 @@ ${resultString}
             }
             case Language.Java: {
                 return new MPJava();
+            }
+            case Language.JavaScript: {
+                return new MPJavaScript();
             }
             default: {
                 return new MPSwift();

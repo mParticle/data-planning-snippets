@@ -3,7 +3,8 @@ export enum Language {
     Swift = 2,
     ObjectiveC = 3,
     Kotlin = 4,
-    Java = 5
+    Java = 5,
+    JavaScript = 6,
 }
 
 export type Dictionary = {
