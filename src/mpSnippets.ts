@@ -1,10 +1,7 @@
 // tslint:disable: max-line-length
 import { MPTranslator } from './translator';
 import jsf from 'json-schema-faker';
-import {
-    DataPlanPoint,
-    DataPlanMatchType,
-} from '@mparticle/data-planning-models';
+import { DataPlanPoint, DataPlanValidator, DataPlanMatch, DataPlanMatchType, DataPlanValidatorType } from '@mparticle/data-planning-models';
 import { MPObjectiveC } from './objective_c_translator';
 import { MPSwift } from './swift_translator';
 import { MPKotlin } from './translators/kotlin_translator';
@@ -12,6 +9,50 @@ import { MPJava } from './translators/java_translator';
 import { Language, Dictionary } from './language';
 
 export class MPSnippets {
+    static translateDataPlanJSON(
+        dataPlanJSON: Dictionary,
+        language: Language
+    ): string {
+        var allExamples = `// The following is example code for every event in your Data Plan
+
+`;
+        const dataPlanPointArray = dataPlanJSON.version_document.data_points as [DataPlanPoint];
+
+        allExamples = dataPlanPointArray.map((point: DataPlanPoint, index: number) => {
+            if (point.match && point.validator) {
+                var description: string = "";
+                if (point.description) {
+                    description = point.description;
+                }
+                const matchType: DataPlanMatchType = point.match.type;
+                const jsonSchema: any = point.validator.definition;
+                const validatorType: DataPlanValidatorType = point.validator.type;
+
+                const validator: DataPlanValidator = { definition: jsonSchema, type: validatorType };
+                const match: DataPlanMatch = { type: matchType };
+                const dataPlanPoint: DataPlanPoint = { validator, match };
+                const resultString = MPSnippets.createSnippet(dataPlanPoint, language);
+
+                return MPSnippets.getDataPlanPointString(description, resultString, index);
+            }
+
+            return '';
+        }).join(`\
+`);
+
+        return allExamples;
+    }
+
+    private static getDataPlanPointString(description: string, resultString: string, index: number): string {
+        return `\
+// Data Plan Point ${index + 1}
+// ${description}
+${resultString}
+
+
+`;
+    }
+
     /**
      * Create a code snippet
      * @param dataPlanPoint An object representing an [[AdBreak]] (collection of ads)

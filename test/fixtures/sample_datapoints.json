@@ -407,5 +407,359 @@
             }
         },
         "required": []
+    },
+    "whole_data_plan": {
+        "version": 1,
+        "data_plan_id": "test",
+        "version_description": null,
+        "activated_environment": "none",
+        "created_on": "2019-11-18T16:04:56.93",
+        "created_by": "bstalnaker@mparticle.com",
+        "last_modified_on": "2020-01-22T14:34:48.663",
+        "last_modified_by": "bstalnaker@mparticle.com",
+        "version_document": {
+            "data_points": [
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "navi",
+                            "custom_event_type": "navigation"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "navigation"
+                                        },
+                                        "event_name": {
+                                            "const": "navi"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "loca",
+                            "custom_event_type": "location"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "location"
+                                        },
+                                        "event_name": {
+                                            "const": "loca"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "search",
+                            "custom_event_type": "search"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "search"
+                                        },
+                                        "event_name": {
+                                            "const": "search"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "transa",
+                            "custom_event_type": "transaction"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "transaction"
+                                        },
+                                        "event_name": {
+                                            "const": "transa"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "userCont",
+                            "custom_event_type": "user_content"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "userContent"
+                                        },
+                                        "event_name": {
+                                            "const": "userCont"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "userPref",
+                            "custom_event_type": "user_preference"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "userPreference"
+                                        },
+                                        "event_name": {
+                                            "const": "userPref"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "soc",
+                            "custom_event_type": "social"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "social"
+                                        },
+                                        "event_name": {
+                                            "const": "soc"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "other",
+                            "custom_event_type": "other"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "other"
+                                        },
+                                        "event_name": {
+                                            "const": "other"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "unk",
+                            "custom_event_type": "unknown"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "unknown"
+                                        },
+                                        "event_name": {
+                                            "const": "unk"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {},
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "settings": {
+                "validation_actions": {
+                    "event": "allow",
+                    "event_attribute": "allow",
+                    "user_attribute": "allow"
+                }
+            }
+        }
     }
 }

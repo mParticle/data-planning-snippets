@@ -4,6 +4,110 @@ import { DataPlanPoint, DataPlanValidator, DataPlanValidatorType, DataPlanMatch,
 import * as fixtures from '../fixtures/sample_datapoints.json';
 
 describe('MPSnippets ', () => {
+    it('testTranslateDataPlanJSON', () => {
+        const jsonSchema = fixtures.whole_data_plan;
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Swift)
+
+        console.log("Whole Data Plan:\n", resultString)
+
+        expect(resultString).toEqual(
+            // Beginning of matching string
+            `\
+// Data Plan Point 1
+// 
+let customEvent = MPEvent.init(name: "navi", type: .navigation)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 2
+// 
+let customEvent = MPEvent.init(name: "loca", type: .location)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 3
+// 
+let customEvent = MPEvent.init(name: "search", type: .search)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 4
+// 
+let customEvent = MPEvent.init(name: "transa", type: .transaction)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 5
+// 
+let customEvent = MPEvent.init(name: "userCont", type: .other)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 6
+// 
+let customEvent = MPEvent.init(name: "userPref", type: .other)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 7
+// 
+let customEvent = MPEvent.init(name: "soc", type: .social)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 8
+// 
+let customEvent = MPEvent.init(name: "other", type: .other)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+// Data Plan Point 9
+// 
+let customEvent = MPEvent.init(name: "unk", type: .media)
+let eventInfo = [String: Any].init()
+customEvent?.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(customEvent!)
+
+
+
+`
+            // End of matching string
+        );
+    });
+
     it('testLocationEvent', () => {
         const jsonSchema = fixtures.custom_event.location;
 
