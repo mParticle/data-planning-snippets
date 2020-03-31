@@ -326,7 +326,7 @@
                             "additionalProperties": false,
                             "properties": {
                                 "Launch": {
-                                    "const": "true"
+                                    "const": true
                                 }
                             },
                             "required": []
@@ -341,30 +341,30 @@
         "third": {
             "properties": {
                 "data": {
-                  "additionalProperties": true,
-                  "properties": {
-                    "screen_name": {
-                      "const": "abc"
-                    },
-                    "custom_attributes": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "foo": {
-                          "description": "",
-                          "maximum": 10,
-                          "minimum": 5,
-                          "type": "number"
+                    "additionalProperties": true,
+                    "properties": {
+                        "screen_name": {
+                            "const": "abc"
+                        },
+                        "custom_attributes": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "foo": {
+                                    "description": "",
+                                    "maximum": 10,
+                                    "minimum": 5,
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "foo"
+                            ]
                         }
-                      },
-                      "required": [
-                        "foo"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "screen_name",
-                    "custom_attributes"
-                  ]
+                    },
+                    "required": [
+                        "screen_name",
+                        "custom_attributes"
+                    ]
                 }
             }
         }
@@ -440,13 +440,13 @@
     },
     "whole_data_plan": {
         "version": 1,
-        "data_plan_id": "test",
+        "data_plan_id": "sample_test",
         "version_description": null,
-        "activated_environment": "none",
-        "created_on": "2019-11-18T16:04:56.93",
-        "created_by": "bstalnaker@mparticle.com",
-        "last_modified_on": "2020-01-22T14:34:48.663",
-        "last_modified_by": "bstalnaker@mparticle.com",
+        "activated_environment": "production",
+        "created_on": "2019-11-18T14:37:04.12",
+        "created_by": "X@mparticle.com",
+        "last_modified_on": "2019-11-18T14:37:39.027",
+        "last_modified_by": "X@mparticle.com",
         "version_document": {
             "data_points": [
                 {
@@ -454,118 +454,7 @@
                     "match": {
                         "type": "custom_event",
                         "criteria": {
-                            "event_name": "navi",
-                            "custom_event_type": "navigation"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "navigation"
-                                        },
-                                        "event_name": {
-                                            "const": "navi"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {},
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "loca",
-                            "custom_event_type": "location"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "location"
-                                        },
-                                        "event_name": {
-                                            "const": "loca"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {},
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "search",
-                            "custom_event_type": "search"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "search"
-                                        },
-                                        "event_name": {
-                                            "const": "search"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {},
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "transa",
+                            "event_name": "event name",
                             "custom_event_type": "transaction"
                         }
                     },
@@ -580,11 +469,25 @@
                                             "const": "transaction"
                                         },
                                         "event_name": {
-                                            "const": "transa"
+                                            "const": "event name"
                                         },
                                         "custom_attributes": {
                                             "additionalProperties": false,
-                                            "properties": {},
+                                            "properties": {
+                                                "A_String_Key": {
+                                                    "const": "non"
+                                                },
+                                                "A Date Key": {
+                                                    "format": "date-time",
+                                                    "const": "2006-12-23T04:29:08.365Z"
+                                                },
+                                                "A Number Key": {
+                                                    "const": 5.0906951716
+                                                },
+                                                "A Bool Key": {
+                                                    "const": true
+                                                }
+                                            },
                                             "required": []
                                         }
                                     },
@@ -602,118 +505,7 @@
                     "match": {
                         "type": "custom_event",
                         "criteria": {
-                            "event_name": "userCont",
-                            "custom_event_type": "user_content"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "userContent"
-                                        },
-                                        "event_name": {
-                                            "const": "userCont"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {},
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "userPref",
-                            "custom_event_type": "user_preference"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "userPreference"
-                                        },
-                                        "event_name": {
-                                            "const": "userPref"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {},
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "soc",
-                            "custom_event_type": "social"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "social"
-                                        },
-                                        "event_name": {
-                                            "const": "soc"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {},
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "other",
+                            "event_name": "Simple Event Name",
                             "custom_event_type": "other"
                         }
                     },
@@ -728,11 +520,94 @@
                                             "const": "other"
                                         },
                                         "event_name": {
-                                            "const": "other"
+                                            "const": "Simple Event Name"
                                         },
                                         "custom_attributes": {
                                             "additionalProperties": false,
-                                            "properties": {},
+                                            "properties": {
+                                                "SimpleKey": {
+                                                    "const": "eu dolore aute"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "screen_view",
+                        "criteria": {
+                            "screen_name": "Video Streams"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "screen_name": {
+                                            "const": "Video Streams"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "Launch": {
+                                                    "pattern": "^([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])$",
+                                                    "const": "FaLse"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "screen_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "Timed Event",
+                            "custom_event_type": "transaction"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "transaction"
+                                        },
+                                        "event_name": {
+                                            "const": "Timed Event"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "EventLength": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "46815516954.4"
+                                                }
+                                            },
                                             "required": []
                                         }
                                     },
@@ -750,8 +625,8 @@
                     "match": {
                         "type": "custom_event",
                         "criteria": {
-                            "event_name": "unk",
-                            "custom_event_type": "unknown"
+                            "event_name": "Simple Event",
+                            "custom_event_type": "other"
                         }
                     },
                     "validator": {
@@ -762,14 +637,18 @@
                                     "additionalProperties": true,
                                     "properties": {
                                         "custom_event_type": {
-                                            "const": "unknown"
+                                            "const": "other"
                                         },
                                         "event_name": {
-                                            "const": "unk"
+                                            "const": "Simple Event"
                                         },
                                         "custom_attributes": {
                                             "additionalProperties": false,
-                                            "properties": {},
+                                            "properties": {
+                                                "SimpleKey": {
+                                                    "const": "labore ipsum irure"
+                                                }
+                                            },
                                             "required": []
                                         }
                                     },
@@ -779,6 +658,403 @@
                                     ]
                                 }
                             }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "First Selection Time",
+                            "custom_event_type": "navigation"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "navigation"
+                                        },
+                                        "event_name": {
+                                            "const": "First Selection Time"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "title": {
+                                                    "const": "nisi irure"
+                                                },
+                                                "EventLength": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "10"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "Video Playback",
+                            "custom_event_type": "other"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "other"
+                                        },
+                                        "event_name": {
+                                            "const": "Video Playback"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "title": {
+                                                    "const": "nostrud est ut aute"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "Video Changed Rate",
+                            "custom_event_type": "other"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "other"
+                                        },
+                                        "event_name": {
+                                            "const": "Video Changed Rate"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "Rate": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "-870743973.1e293828302"
+                                                },
+                                                "title": {
+                                                    "const": "ea occaecat esse"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "play",
+                            "custom_event_type": "media"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "media"
+                                        },
+                                        "event_name": {
+                                            "const": "play"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "content_id": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "223015.501"
+                                                },
+                                                "stream_type": {
+                                                    "const": "amet reprehenderit in aute"
+                                                },
+                                                "media_session_id": {
+                                                    "const": "o"
+                                                },
+                                                "content_duration": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "-440540155"
+                                                },
+                                                "content_title": {
+                                                    "const": "laborum esse sunt officia"
+                                                },
+                                                "content_type": {
+                                                    "const": "laborum voluptate ex"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "Session Start",
+                            "custom_event_type": "media"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "media"
+                                        },
+                                        "event_name": {
+                                            "const": "Session Start"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "media_session_id": {
+                                                    "const": "ut laboris"
+                                                },
+                                                "content_duration": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "-825205"
+                                                },
+                                                "content_type": {
+                                                    "const": "ullamco et"
+                                                },
+                                                "content_title": {
+                                                    "const": "consectetur velit magna commodo anim"
+                                                },
+                                                "stream_type": {
+                                                    "const": "velit dolor Lorem elit officia"
+                                                },
+                                                "content_id": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "-082E+623365"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "Session End",
+                            "custom_event_type": "media"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "media"
+                                        },
+                                        "event_name": {
+                                            "const": "Session End"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "content_duration": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "13780778.38339081"
+                                                },
+                                                "stream_type": {
+                                                    "const": "nisi Except"
+                                                },
+                                                "media_session_id": {
+                                                    "const": "sunt id laborum sint pariatur"
+                                                },
+                                                "content_type": {
+                                                    "const": "enim ut quis aliqua labore"
+                                                },
+                                                "content_title": {
+                                                    "const": "elit ullamco sint voluptate"
+                                                },
+                                                "content_id": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "22006708.045"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "Media Content End",
+                            "custom_event_type": "media"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_event_type": {
+                                            "const": "media"
+                                        },
+                                        "event_name": {
+                                            "const": "Media Content End"
+                                        },
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "content_duration": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "-7030355303E972986971"
+                                                },
+                                                "content_type": {
+                                                    "const": "esse ut"
+                                                },
+                                                "content_id": {
+                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                                    "const": "-865711.6863"
+                                                },
+                                                "content_title": {
+                                                    "const": "esse"
+                                                },
+                                                "media_session_id": {
+                                                    "const": "consequat"
+                                                },
+                                                "stream_type": {
+                                                    "const": "ut non ea deserunt"
+                                                }
+                                            },
+                                            "required": []
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_event_type",
+                                        "event_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "User Attributes",
+                    "match": {
+                        "type": "user_attributes",
+                        "criteria": {}
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "example attribute key": {
+                                    "description": "",
+                                    "const": "esse Excepteur sit ipsum"
+                                },
+                                "$Age": {
+                                    "description": "",
+                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                    "const": "961.138597"
+                                },
+                                "$gender": {
+                                    "description": "",
+                                    "const": "aliquip enim id do"
+                                },
+                                "Achieved Level": {
+                                    "description": "",
+                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
+                                    "const": "-33028890.365"
+                                }
+                            },
+                            "required": []
                         }
                     }
                 }

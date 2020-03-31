@@ -2,110 +2,44 @@ import { MPSnippets } from '../../src/mpSnippets';
 import { Language, Dictionary } from '../../src/language';
 import { DataPlanPoint, DataPlanValidator, DataPlanValidatorType, DataPlanMatch, DataPlanMatchType } from '@mparticle/data-planning-models';
 import * as fixtures from '../fixtures/sample_datapoints.json';
+import { Results } from './testResults';
 
 describe('MPSnippets ', () => {
-    it('testTranslateDataPlanJSON', () => {
+    it('testTranslateDataPlanObjC', () => {
+        const jsonSchema = fixtures.whole_data_plan;
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.ObjectiveC)
+
+        expect(resultString).toEqual(Results.wholeObjC);
+    });
+
+    it('testTranslateDataPlanSwift', () => {
         const jsonSchema = fixtures.whole_data_plan;
         var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Swift)
 
+        expect(resultString).toEqual(Results.wholeSwift);
+    });
+
+    it('testTranslateDataPlanJava', () => {
+        const jsonSchema = fixtures.whole_data_plan;
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Java)
+
+        expect(resultString).toEqual(Results.wholeJava);
+    });
+
+    it('testTranslateDataPlanKotlin', () => {
+        const jsonSchema = fixtures.whole_data_plan;
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Kotlin)
+
+        expect(resultString).toEqual(Results.wholeKotlin);
+    });
+
+    it('testTranslateDataPlanJS', () => {
+        const jsonSchema = fixtures.whole_data_plan;
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.JavaScript)
+
         console.log("Whole Data Plan:\n", resultString)
 
-        expect(resultString).toEqual(
-            // Beginning of matching string
-            `\
-// Data Plan Point 1
-// 
-let customEvent = MPEvent.init(name: "navi", type: .navigation)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 2
-// 
-let customEvent = MPEvent.init(name: "loca", type: .location)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 3
-// 
-let customEvent = MPEvent.init(name: "search", type: .search)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 4
-// 
-let customEvent = MPEvent.init(name: "transa", type: .transaction)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 5
-// 
-let customEvent = MPEvent.init(name: "userCont", type: .other)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 6
-// 
-let customEvent = MPEvent.init(name: "userPref", type: .other)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 7
-// 
-let customEvent = MPEvent.init(name: "soc", type: .social)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 8
-// 
-let customEvent = MPEvent.init(name: "other", type: .other)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-// Data Plan Point 9
-// 
-let customEvent = MPEvent.init(name: "unk", type: .media)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
-MParticle.sharedInstance().logEvent(customEvent!)
-
-
-
-`
-            // End of matching string
-        );
+        expect(resultString).toEqual(Results.wholeJS);
     });
 
     it('testLocationEvent', () => {
@@ -222,8 +156,8 @@ customEvent.customAttributes = eventInfo;
         expect(MPSnippets.createSnippet(dataPlanPoint, Language.Swift)).toEqual(
             `\
 MParticle.sharedInstance().identity.currentUser?.setUserAttribute("name", value: "Sarah Conner")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute("age", value: "34")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute("deceased", value: "true")
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute("age", value: 34)
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute("deceased", value: true)
 MParticle.sharedInstance().identity.currentUser?.setUserAttribute("deathDate", value: "1996-02-24T17:32:31.082Z")
 MParticle.sharedInstance().identity.currentUser?.setUserAttribute("birthDate", value: "1984-05-15")
 MParticle.sharedInstance().identity.currentUser?.setUserAttribute("xFactor", value: NSNull.init())
@@ -232,8 +166,8 @@ MParticle.sharedInstance().identity.currentUser?.setUserAttribute("xFactor", val
         expect(MPSnippets.createSnippet(dataPlanPoint, Language.ObjectiveC)).toEqual(
             `\
 [[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"name" value:@"Sarah Conner"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"age" value:@"34"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"deceased" value:@"true"];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"age" value:@34];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"deceased" value:@true];
 [[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"deathDate" value:@"1996-02-24T17:32:31.082Z"];
 [[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"birthDate" value:@"1984-05-15"];
 [[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"xFactor" value:[NSNull null]];
@@ -248,7 +182,7 @@ MParticle.sharedInstance().identity.currentUser?.setUserAttribute("xFactor", val
             "data": {
                 "screen_name": "Video Streams",
                 "custom_attributes": {
-                    "Launch": "true"
+                    "Launch": true
                 }
             }
         }
@@ -262,7 +196,8 @@ MParticle.sharedInstance().identity.currentUser?.setUserAttribute("xFactor", val
         expect(MPSnippets.createSnippet(dataPlanPoint, Language.JSON)).toEqual(JSON.stringify(result));
         expect(MPSnippets.createSnippet(dataPlanPoint, Language.Swift)).toEqual(
             `\
-var eventInfo = [String: Any].init()\neventInfo["Launch"] = true
+var eventInfo = [String: Any].init()
+eventInfo["Launch"] = true
 MParticle.sharedInstance().logScreen("Video Streams", eventInfo: eventInfo)
 `
         );

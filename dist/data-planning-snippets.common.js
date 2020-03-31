@@ -316,21 +316,13 @@ var MPObjectiveC = /** @class */ (function () {
     };
     // tslint:disable-next-line: no-any
     MPObjectiveC.prototype.stringForValue = function (value) {
-        if (value) {
-            if (value === 'true') {
-                return '@true';
-            }
-            else if (value === 'false') {
-                return '@false';
-            }
-            else {
-                return '@\"' + value + '\"';
-            }
+        if (typeof (value) === 'string') {
+            return '@\"' + value + '\"';
         }
-        else if (value) {
+        else if (typeof (value) === 'number') {
             return '@' + value;
         }
-        else if (value) {
+        else if (typeof (value) === 'boolean') {
             return value ? '@true' : '@false';
         }
         else {
@@ -536,21 +528,13 @@ var MPSwift = /** @class */ (function () {
     };
     // tslint:disable-next-line: no-any
     MPSwift.prototype.stringForValue = function (value) {
-        if (value) {
-            if (value === 'true') {
-                return value;
-            }
-            else if (value === 'false') {
-                return value;
-            }
-            else {
-                return '\"' + value + '\"';
-            }
+        if (typeof (value) === 'string') {
+            return '\"' + value + '\"';
         }
-        else if (value) {
+        else if (typeof (value) === 'number') {
             return value;
         }
-        else if (value) {
+        else if (typeof (value) === 'boolean') {
             return value ? 'true' : 'false';
         }
         else {
@@ -667,11 +651,13 @@ var MPAndroid = /** @class */ (function () {
             return _this.getMParticleInstanceToCallSnippet() + '.setOptOut(true)' + _this.endStatement;
         };
     }
-    MPAndroid.prototype.createBreadcrumbSnippet = function (data) {
+    MPAndroid.prototype.createBreadcrumbSnippet = function (properties) {
+        var data = properties.data;
         var eventName = this.stringForValue(data['event_name']);
         return this.getMParticleInstanceToCallSnippet() + '.leaveBreadcrumb(' + eventName + ')' + this.endStatement;
     };
-    MPAndroid.prototype.createCustomEventSnippet = function (data) {
+    MPAndroid.prototype.createCustomEventSnippet = function (properties) {
+        var data = properties.data;
         var eventType = "MParticle.EventType." + this.capitalize(data['custom_event_type']);
         var eventName = this.stringForValue(data['event_name']);
         var attributes = this.getMapSnippet(data['custom_attributes'], 'Map<String, String>', 'attributes');
@@ -701,8 +687,8 @@ var MPAndroid = /** @class */ (function () {
             return '';
         }
     };
-    MPAndroid.prototype.createUserAttributesSnippet = function (data) {
-        var attributes = this.getMapSnippet(data, 'Map<String, String>', 'attributes');
+    MPAndroid.prototype.createUserAttributesSnippet = function (customAttributes) {
+        var attributes = this.getMapSnippet(customAttributes, 'Map<String, String>', 'attributes');
         if (attributes) {
             return attributes +
                 this.getDeclareVariableSnippet('MParticleUser', 'user') + ' = ' + this.getCurrentUserInstanceSnippet() + this.endStatement + '\n' +
@@ -710,7 +696,8 @@ var MPAndroid = /** @class */ (function () {
         }
         return '';
     };
-    MPAndroid.prototype.createScreenViewSnippet = function (data) {
+    MPAndroid.prototype.createScreenViewSnippet = function (properties) {
+        var data = properties.data;
         var screenName = this.stringForValue(data['screen_name']);
         var attributes = this.getMapSnippet(data['custom_attributes'], 'Map<String, String>', 'attributes');
         var snippet = '';
@@ -720,7 +707,8 @@ var MPAndroid = /** @class */ (function () {
         return snippet +
             this.getMParticleInstanceToCallSnippet() + '.logScreen(' + screenName + (attributes ? (', attributes') : '') + ')' + this.endStatement;
     };
-    MPAndroid.prototype.createCrashReportSnippet = function (data) {
+    MPAndroid.prototype.createCrashReportSnippet = function (properties) {
+        var data = properties.data;
         var message = this.stringForValue(data['exception_name']);
         var attributes = this.getMapSnippet(data['custom_attributes'], "Map<String, String>", "eventData");
         var snippet = '';
@@ -748,7 +736,8 @@ var MPAndroid = /** @class */ (function () {
             '"{REQUEST-STRING}", ' +
             responseCode + ')' + this.endStatement);
     };
-    MPAndroid.prototype.createProductActionSnippet = function (data) {
+    MPAndroid.prototype.createProductActionSnippet = function (properties) {
+        var data = properties.data;
         var name = data['product_name'];
         var sku = data['product_sku'];
         var quantity = data['product_quantity'];

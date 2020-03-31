@@ -8,18 +8,18 @@ import {
     DataPlanValidatorType,
     DataPlanMatch,
     DataPlanMatchType,
- } from '@mparticle/data-planning-models';
+} from '@mparticle/data-planning-models';
 import { stringify } from 'querystring';
 
- describe('Kotlin Snippets ', () => {
+describe('Kotlin Snippets ', () => {
     let customAttributes = {
         'A_String_Key': 'string',
         'A Date Key': 'date-time',
         'A Number Key': 'string',
     };
     it('Custom Attributes', () => {
-        let expected = 
-`val attributes = mapOf(
+        let expected =
+            `val attributes = mapOf(
     "A_String_Key" to "string",
     "A Date Key" to "date-time",
     "A Number Key" to "string"
@@ -38,17 +38,19 @@ import { stringify } from 'querystring';
 
     it('Create Screen View', () => {
         let payload = {
-            screen_name: 'test event',
-            custom_attributes: customAttributes
+            data: {
+                screen_name: 'test event',
+                custom_attributes: customAttributes
+            }
         }
-        let expected = 
-`val attributes = mapOf(
+        let expected =
+            `val attributes = mapOf(
     "A_String_Key" to "string",
     "A Date Key" to "date-time",
     "A Number Key" to "string"
 )
 MParticle.getInstance()?.logScreen("test event", attributes)`
-        
+
         let result = new MPKotlin().createScreenViewSnippet(payload);
         expect(result)
             .toEqual(expected)
@@ -56,23 +58,27 @@ MParticle.getInstance()?.logScreen("test event", attributes)`
 
     it('Create Screen View Withough Attributes', () => {
         let payload = {
-            screen_name: 'test event',
+            data: {
+                screen_name: 'test event',
+            }
         }
-        let expected = 
-`MParticle.getInstance()?.logScreen("test event")`
-        
+        let expected =
+            `MParticle.getInstance()?.logScreen("test event")`
+
         let result = new MPKotlin().createScreenViewSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
     it('Create Custom Event', () => {
         let payload = {
-            custom_event_type: 'location',
-            event_name: 'eventName',
-            custom_attributes: customAttributes
+            data: {
+                custom_event_type: 'location',
+                event_name: 'eventName',
+                custom_attributes: customAttributes
+            }
         }
-        let expected = 
-`val attributes = mapOf(
+        let expected =
+            `val attributes = mapOf(
     "A_String_Key" to "string",
     "A Date Key" to "date-time",
     "A Number Key" to "string"
@@ -81,7 +87,7 @@ val event = MPEvent.Builder("eventName", MParticle.EventType.Location)
     .customAttributes(attributes)
     .build()
 MParticle.getInstance()?.logEvent(event)`
-        
+
         let result = new MPKotlin().createCustomEventSnippet(payload);
         expect(result)
             .toEqual(expected)
@@ -89,8 +95,8 @@ MParticle.getInstance()?.logEvent(event)`
     it('Set User Attributes', () => {
         let payload = customAttributes
         let result = new MPKotlin().createUserAttributesSnippet(payload)
-        let expected = 
-`val attributes = mapOf(
+        let expected =
+            `val attributes = mapOf(
     "A_String_Key" to "string",
     "A Date Key" to "date-time",
     "A Number Key" to "string"
@@ -112,8 +118,8 @@ user?.setUserAttributes(attributes)`
             customerId: '1234'
         }
         let result = new MPKotlin().createUserIdentitiesSnippet(payload)
-        let expected = 
-`val userIdentities = mapOf(
+        let expected =
+            `val userIdentities = mapOf(
     MParticle.IdentityType.Facebook to "facebook id",
     MParticle.IdentityType.Email to "email@email.com",
     MParticle.IdentityType.CustomerId to "1234"
@@ -142,23 +148,27 @@ MParticle.getInstance()?.Identity()?.identify(request)`
     })
     it('Log Exception No Attributes', () => {
         let payload = {
-            exception_name: "the exception name"
+            data: {
+                exception_name: "the exception name"
+            }
         }
         let result = new MPKotlin().createCrashReportSnippet(payload)
-        let expected = 
-`val exception = Exception()    //replace this with your exception
+        let expected =
+            `val exception = Exception()    //replace this with your exception
 MParticle.getInstance()?.logException(exception, null, "the exception name")`
         expect(result)
             .toEqual(expected)
     })
     it('Log Exception With Attributes', () => {
         let payload = {
-            exception_name: "the exception name",
-            custom_attributes: customAttributes
+            data: {
+                exception_name: "the exception name",
+                custom_attributes: customAttributes
+            }
         }
         let result = new MPKotlin().createCrashReportSnippet(payload)
-        let expected = 
-`val eventData = mapOf(
+        let expected =
+            `val eventData = mapOf(
     "A_String_Key" to "string",
     "A Date Key" to "date-time",
     "A Number Key" to "string"
@@ -168,4 +178,4 @@ MParticle.getInstance()?.logException(exception, eventData, "the exception name"
         expect(result)
             .toEqual(expected)
     })
- })
+})

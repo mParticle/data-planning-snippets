@@ -212,18 +212,12 @@ MParticle.sharedInstance().logEvent(commerceEvent)\n`;
     }
 
     // tslint:disable-next-line: no-any
-    private stringForValue(value: any): string {
-        if (value as string) {
-            if (value === 'true') {
-                return value;
-            } else if (value === 'false') {
-                return value;
-            } else {
-                return '\"' + value + '\"';
-            }
-        } else if (value as number) {
+    private stringForValue(value: any) {
+        if (typeof (value) === 'string') {
+            return '\"' + value + '\"';
+        } else if (typeof (value) === 'number') {
             return value;
-        } else if (value as boolean) {
+        } else if (typeof (value) === 'boolean') {
             return value ? 'true' : 'false';
         } else {
             return 'NSNull.init()';
