@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/mParticle/data-planning-snippets/precache-manifest.ec9de266a2a5dae24b58eb29e1099a30.js"
+  "/mParticle/data-planning-snippets/precache-manifest.e2aeebc70cda8ddb7515f6dec79a0bf7.js"
 );
 
 self.addEventListener('message', (event) => {
