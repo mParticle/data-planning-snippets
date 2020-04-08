@@ -1,7 +1,8 @@
 // tslint:disable: max-line-length
-import { MPSnippets } from '../src/mpSnippets';
-import { Language, Dictionary } from '../src/language';
-import { MPJava } from '../src/translators/java_translator';
+import { MPSnippets } from '../../../src/mpSnippets';
+import { Language, Dictionary } from '../../../src/language';
+import { MPAndroid } from '../../../src/translators/android_translator';
+import { JavaDecorator } from '../../../src/language-decorators/java_decorator';
 import {
     DataPlanPoint,
     DataPlanValidator,
@@ -10,6 +11,12 @@ import {
     DataPlanMatchType,
 } from '@mparticle/data-planning-models';
 import { stringify } from 'querystring';
+import { Variable } from '../../../src/expressions/variable';
+import { Constructor } from '../../../src/expressions/call_expression';
+import { CodeBlock } from '../../../src/expressions/code_block';
+
+    let language = new JavaDecorator();
+    let instance: MPAndroid = new MPAndroid(language);
 
 describe('Java Snippets ', () => {
     let customAttributes = {
@@ -22,18 +29,18 @@ describe('Java Snippets ', () => {
             `Map<String, String> attributes = new HashMap<>();
 attributes.put("A_String_Key", "string");
 attributes.put("A Date Key", "date-time");
-attributes.put("A Number Key", "string");
-`
-        let result = new MPJava().getMapSnippet(customAttributes, 'Map<String, String>', 'attributes')
+attributes.put("A Number Key", "string");`  
+
+        let attributesVariable = new Variable('Map', 'attributes')
+                .setGenerics('String', 'String')
+        language.dictionaryInitializer(attributesVariable, customAttributes)
+        let result = new CodeBlock()
+                .addStatement(attributesVariable)
+                .toSnippet(language)
         expect(result)
             .toEqual(expected)
 
     });
-    it('Empty Custom Attributes', () => {
-        let result = new MPJava().getMapSnippet({}, 'Map<String, String>', 'attributes')
-        expect(result)
-            .toEqual(null)
-    })
 
     it('Create Screen View', () => {
         let payload = {
@@ -49,7 +56,7 @@ attributes.put("A Date Key", "date-time");
 attributes.put("A Number Key", "string");
 MParticle.getInstance().logScreen("test event", attributes);`
 
-        let result = new MPJava().createScreenViewSnippet(payload);
+        let result = instance.createScreenViewSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
@@ -63,7 +70,7 @@ MParticle.getInstance().logScreen("test event", attributes);`
         let expected =
             `MParticle.getInstance().logScreen("test event");`
 
-        let result = new MPJava().createScreenViewSnippet(payload);
+        let result = instance.createScreenViewSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
@@ -85,14 +92,14 @@ MPEvent event = new MPEvent.Builder("eventName", MParticle.EventType.Location)
     .build();
 MParticle.getInstance().logEvent(event);`
 
-        let result = new MPJava().createCustomEventSnippet(payload);
+        let result = instance.createCustomEventSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
     it('Set User Attributes', () => {
         let payload = customAttributes
 
-        let result = new MPJava().createUserAttributesSnippet(payload)
+        let result = instance.createUserAttributesSnippet(payload)
         let expected =
             `Map<String, String> attributes = new HashMap<>();
 attributes.put("A_String_Key", "string");
@@ -104,7 +111,7 @@ user.setUserAttributes(attributes);`
             .toEqual(expected)
     })
     it('Set User Attributes empty', () => {
-        let result = new MPJava().createUserAttributesSnippet({})
+        let result = instance.createUserAttributesSnippet({})
         expect(result)
             .toEqual('')
     })
@@ -114,7 +121,7 @@ user.setUserAttributes(attributes);`
             email: 'email@email.com',
             customerId: '1234'
         }
-        let result = new MPJava().createUserIdentitiesSnippet(payload)
+        let result = instance.createUserIdentitiesSnippet(payload)
         let expected =
             `Map<MParticle.IdentityType, String> userIdentities = new HashMap<>();
 userIdentities.put(MParticle.IdentityType.Facebook, "facebook id");
@@ -137,7 +144,7 @@ MParticle.getInstance().Identity().identify(request);`
             bytes_received: 3000,
             response_code: "202"
         }
-        let result = new MPJava().createNetworkPerformanceSnippet(payload)
+        let result = instance.createNetworkPerformanceSnippet(payload)
         let expected = `MParticle.getInstance().logNetworkPerformance("the url.com", 100, "http method", 123, 2000, 3000, "{REQUEST-STRING}", "202");`
         expect(result)
             .toEqual(expected)
@@ -148,7 +155,7 @@ MParticle.getInstance().Identity().identify(request);`
                 exception_name: "the exception name"
             }
         }
-        let result = new MPJava().createCrashReportSnippet(payload)
+        let result = instance.createCrashReportSnippet(payload)
         let expected =
             `Exception exception = new Exception();    //replace this with your exception
 MParticle.getInstance().logException(exception, null, "the exception name");`
@@ -162,7 +169,7 @@ MParticle.getInstance().logException(exception, null, "the exception name");`
                 custom_attributes: customAttributes
             }
         }
-        let result = new MPJava().createCrashReportSnippet(payload)
+        let result = instance.createCrashReportSnippet(payload)
         let expected =
             `Map<String, String> eventData = new HashMap<>();
 eventData.put("A_String_Key", "string");

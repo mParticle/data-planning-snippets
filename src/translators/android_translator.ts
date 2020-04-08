@@ -1,42 +1,27 @@
 import { MPTranslator } from '../translator';
 import { Dictionary } from '../language';
+import { JvmLangDecorator } from '../language-decorators/jvm_decorator';
+import { Utils } from '../utils';
+import { CodeBlock } from '../expressions/code_block'
+import { Variable } from '../expressions/variable'
+import { MethodCall, Constructor } from '../expressions/call_expression'
+import { Statement } from '../expressions/statement'
+import { Class } from '../expressions/class'
+import { ValueExpression } from '../expressions/value_expression';
 
-export abstract class MPAndroid implements MPTranslator {
-    static tab = '    '
+export class MPAndroid implements MPTranslator {
+    language: JvmLangDecorator;
+    utils = new Utils();
 
-    abstract nullabilityOperator = ''
-    abstract getCurrentUser: string
+    constructor(language: JvmLangDecorator) {
+        this.language = language;
+    }
+    
+    mparticleGetInstance = () => new MethodCall('MParticle', 'getInstance', [], true, true)
 
-    getMParticleInstanceSnippet = "MParticle.getInstance()"
-    getIdentityInstanceSnippet = this.getMParticleInstanceSnippet + '.Identity()'
+    getIdentityInstanceToCallSnippet = () => this.mparticleGetInstance().addMethodCallSameLine("Identity");
 
-    getMParticleInstanceToCallSnippet = () => this.getMParticleInstanceSnippet + this.nullabilityOperator
-    getIdentityInstanceToCallSnippet = () => this.getMParticleInstanceToCallSnippet() + '.Identity()' + this.nullabilityOperator
-    getCurrentUserInstanceSnippet = () => this.getIdentityInstanceToCallSnippet() + '.' + this.getCurrentUser
-
-    /**
-     * returns a snippet declaring a variable for the given name and type
-     * @param type the type of the variable
-     * @param name (optional) the name of the variable. if not provided, will be lowercase of "type"
-     */
-    abstract getDeclareVariableSnippet(type: string, name?: string): string
-
-    /**
-     * returns a snippet instantiating the given type, up to the constructor arguments. i.e "new Type("
-     * @param type 
-     */
-    abstract getCreateInstanceSnippet(type: String): string
-
-    /**
-    * returns a Stringified Kotlin example of creating a Map with the given Dictionary,
-    * or `null` if no attributes are provided
-    *  
-    * @param dictionary attributes in JSON form
-    */
-    abstract getMapSnippet(dictionary: Dictionary, type: string, variableName: string, wrapKeysinQuotes?: boolean): string | null
-
-    abstract endStatement: string
-
+    getCurrentUserInstanceSnippet = () => this.getIdentityInstanceToCallSnippet().addMethodCallSameLine("getCurrentUser")
 
     createSessionStartSnippet = (exampleJSON: Dictionary) =>
         '//Android Sessions will automatically be started when an Event is logged'
@@ -69,104 +54,155 @@ export abstract class MPAndroid implements MPTranslator {
         '//Media Events are not manually called';
 
     createOptOutSnippet = (exampleJSON: Dictionary) =>
-        this.getMParticleInstanceToCallSnippet() + '.setOptOut(true)' + this.endStatement;
+        this.mparticleGetInstance()
+            .addMethodCall('setOptOutTrue', [], true)
+            .toSnippet(this.language);
 
     createBreadcrumbSnippet(properties: Dictionary): string {
-        const { data } = properties;
-
-        let eventName = this.stringForValue(data['event_name']);
-        return this.getMParticleInstanceToCallSnippet() + '.leaveBreadcrumb(' + eventName + ')' + this.endStatement;
+        let eventName = properties['event_name'];
+        return this.mparticleGetInstance()
+            .addMethodCall('leaveBreadcrumb', [eventName])
+            .toSnippet(this.language)
     }
 
     createCustomEventSnippet(properties: Dictionary): string {
-        const { data } = properties;
+        const { data } = properties
+        let eventType = "MParticle.EventType." + this.utils.capitalize(data['custom_event_type']);
+        let eventName = data['event_name'];
+        let attributes = data['custom_attributes']
 
-        let eventType = "MParticle.EventType." + this.capitalize(data['custom_event_type']);
-        let eventName = this.stringForValue(data['event_name']);
-        let attributes = this.getMapSnippet(data['custom_attributes'], 'Map<String, String>', 'attributes');
-        let snippet = '';
+        let codeBlock = new CodeBlock();
 
+
+
+        let eventVariable = new Variable('MPEvent', 'event')
+            .initializer(new Constructor('MPEvent.Builder', [eventName, new ValueExpression(eventType, false)]))
+
+        let attributeVariable: Variable
         if (attributes) {
-            snippet = attributes;
+            attributeVariable = new Variable('Map', "attributes")
+                .setGenerics('String', 'String')
+            this.language.dictionaryInitializer(attributeVariable, attributes, true);
+            eventVariable.initialization?.addMethodCall('customAttributes', [attributeVariable])
+            codeBlock
+                .addStatement(attributeVariable)     
         }
-        return snippet + this.getDeclareVariableSnippet('MPEvent', 'event') + ' = ' + this.getCreateInstanceSnippet('MPEvent.Builder') + '(' + eventName + ', ' + eventType + ')' +
-            (attributes ? '\n' + MPAndroid.tab + '.customAttributes(attributes)' : '') +
-            '\n' + MPAndroid.tab + '.build()' + this.endStatement + '\n' +
-            this.getMParticleInstanceToCallSnippet() + '.logEvent(event)' + this.endStatement
+        eventVariable.initialization?.addMethodCall('build')
+        let logEvent = this.mparticleGetInstance().addMethodCall("logEvent", [eventVariable], true)
+
+        return codeBlock
+            .addStatement(eventVariable)
+            .addStatement(logEvent)
+            .toSnippet(this.language);
     }
 
     createUserIdentitiesSnippet(data: Dictionary): string {
         let userIdentities: Dictionary = [];
         if (data && Object.keys(data).length > 0) {
             for (const key in data) {
-                userIdentities['MParticle.IdentityType.' + this.capitalize(key)] = data[key]
+                userIdentities['MParticle.IdentityType.' + this.utils.capitalize(key)] = data[key]
             }
-            let userIdentitieSnippet = this.getMapSnippet(userIdentities, 'Map<MParticle.IdentityType, String>', 'userIdentities', false)
-            return userIdentitieSnippet +
-                this.getDeclareVariableSnippet('IdentityApiRequest', 'request') + ' = IdentityApiRequest.withEmptyUser()\n' +
-                MPAndroid.tab + '.userIdentities(userIdentities)\n' +
-                MPAndroid.tab + '.build()' + this.endStatement + '\n' +
-                this.getIdentityInstanceToCallSnippet() + '.identify(request)' + this.endStatement
+            let userIdentitiesVariable = new Variable('Map', 'userIdentities')
+                .setGenerics('MParticle.IdentityType', 'String')
+            let userIdentitieSnippet = this.language.dictionaryInitializer(userIdentitiesVariable, userIdentities, false)
+            let identityRequestVariable = new Variable('IdentityApiRequest', 'request')
+                .initializer(
+                    new MethodCall('IdentityApiRequest', 'withEmptyUser')
+                        .addMethodCall('userIdentities', [userIdentitiesVariable])
+                        .addMethodCall('build')
+                )
+            let identifyMethodCall = this.mparticleGetInstance()
+                .addMethodCallSameLine('Identity')
+                .addMethodCallSameLine('identify', [identityRequestVariable])
+            return new CodeBlock()
+                .addStatement(userIdentitiesVariable)
+                .addStatement(identityRequestVariable)
+                .addStatement(identifyMethodCall)
+                .toSnippet(this.language);
         } else {
             return ''
         }
     }
 
-    createUserAttributesSnippet(customAttributes: Dictionary): string {
-        let attributes = this.getMapSnippet(customAttributes, 'Map<String, String>', 'attributes');
-        if (attributes) {
-            return attributes +
-                this.getDeclareVariableSnippet('MParticleUser', 'user') + ' = ' + this.getCurrentUserInstanceSnippet() + this.endStatement + '\n' +
-                'user' + this.nullabilityOperator + '.setUserAttributes(attributes)' + this.endStatement;
+    createUserAttributesSnippet(customAttribteus: Dictionary): string {
+        if (customAttribteus && Object.keys(customAttribteus).length > 0) {
+            let attributesVariable = new Variable('Map', 'attributes')
+                .setGenerics('String, String')
+            let attributesStatement = this.language.dictionaryInitializer(attributesVariable, customAttribteus);
+            let mparticleUserVariable = new Variable('MParticleUser', 'user')
+                .initializer(this.mparticleGetInstance()
+                                    .addMethodCallSameLine('Identity')
+                                    .addMethodCallSameLine('getCurrentUser', [], true))
+            let setAttributesMethod = new MethodCall(mparticleUserVariable, 'setUserAttributes', [attributesVariable]);
+            return new CodeBlock()
+                .addStatement(attributesStatement)
+                .addStatement(mparticleUserVariable)
+                .addStatement(setAttributesMethod)
+                .toSnippet(this.language)
+        } else {
+            return ''
         }
-        return '';
     }
 
     createScreenViewSnippet(properties: Dictionary): string {
-        const { data } = properties;
+        const { data } = properties
+        let screenName = data['screen_name'];
+        let attributes = data['custom_attributes']
 
-        let screenName = this.stringForValue(data['screen_name']);
-        let attributes = this.getMapSnippet(data['custom_attributes'], 'Map<String, String>', 'attributes');
-        let snippet = '';
-
+        
         if (attributes) {
-            snippet = attributes
+            let attributesVariable = new Variable('Map', 'attributes')
+                .setGenerics('String', 'String')
+            
+            this.language.dictionaryInitializer(attributesVariable, attributes);
+            return new CodeBlock()
+                .addStatement(attributesVariable)
+                .addStatement(this.mparticleGetInstance().addMethodCall('logScreen', [screenName, attributesVariable]))
+                .toSnippet(this.language);
+        } else {
+            return new CodeBlock()
+                .addStatement(this.mparticleGetInstance().addMethodCall('logScreen', [screenName]))
+                .toSnippet(this.language);
         }
-        return snippet +
-            this.getMParticleInstanceToCallSnippet() + '.logScreen(' + screenName + (attributes ? (', attributes') : '') + ')' + this.endStatement;
     }
 
     createCrashReportSnippet(properties: Dictionary): string {
-        const { data } = properties;
+        const { data } = properties
+        let exceptionName = data['exception_name']
+        let attribtues = data['custom_attributes'];
 
-        let message = this.stringForValue(data['exception_name'])
-        let attributes = this.getMapSnippet(data['custom_attributes'], "Map<String, String>", "eventData")
-        let snippet = ''
-        if (attributes) {
-            snippet = attributes
+        let exceptionVariable = new Variable('Exception')
+            .initializer(new Constructor('Exception'))
+            .addComment('replace this with your exception')
+        let attributesVariable: Variable|null = null
+        if (attribtues) {
+            attributesVariable = new Variable('Map', 'eventData')
+                    .setGenerics('String', 'String')
+            let attributesStatement = this.language.dictionaryInitializer(attributesVariable, attribtues, true);
+            return new CodeBlock()
+                .addStatement(attributesStatement)
+                .addStatement(exceptionVariable)
+                .addStatement(this.mparticleGetInstance().addMethodCall('logException', [exceptionVariable, attributesVariable, exceptionName]))
+                .toSnippet(this.language)
+        } else {
+            return new CodeBlock()
+                .addStatement(exceptionVariable)
+                .addStatement(this.mparticleGetInstance().addMethodCall('logException', [exceptionVariable, attributesVariable, exceptionName]))
+                .toSnippet(this.language)
         }
-        return snippet += this.getDeclareVariableSnippet("Exception") + ' = ' + this.getCreateInstanceSnippet("Exception") + '()' + this.endStatement + MPAndroid.tab + '//replace this with your exception\n' +
-            this.getMParticleInstanceToCallSnippet() + '.logException(exception, ' + (attributes ? 'eventData' : 'null') + ', ' + message + ')' + this.endStatement;
     }
-    createNetworkPerformanceSnippet(exampleJSON: Dictionary): string {
-        let eventName = this.stringForValue(exampleJSON['event_name']);
-        let startTime = exampleJSON['start_time']
-        let httpMethod = this.stringForValue(exampleJSON['http_method'])
-        let duration = exampleJSON['duration']
-        let bytesSent = exampleJSON['bytes_sent']
-        let bytesReceived = exampleJSON['bytes_received']
-        let responseCode = this.stringForValue(exampleJSON['response_code'])
-        return (
-            this.getMParticleInstanceToCallSnippet() + '.logNetworkPerformance(' +
-            eventName + ', ' +
-            startTime + ', ' +
-            httpMethod + ', ' +
-            duration + ', ' +
-            bytesSent + ', ' +
-            bytesReceived + ', ' +
-            '"{REQUEST-STRING}", ' +
-            responseCode + ')' + this.endStatement
-        );
+
+    createNetworkPerformanceSnippet(properties: Dictionary): string {
+        let eventName = properties['event_name'];
+        let startTime = properties['start_time']
+        let httpMethod = properties['http_method']
+        let duration = properties['duration']
+        let bytesSent = properties['bytes_sent']
+        let bytesReceived = properties['bytes_received']
+        let responseCode = properties['response_code']
+        return new Statement(this.mparticleGetInstance().addMethodCall('logNetworkPerformance', [eventName, startTime, httpMethod, duration, bytesSent, bytesReceived, "{REQUEST-STRING}", responseCode]))
+            .toSnippet(this.language);
+            
     }
 
     createProductActionSnippet(properties: Dictionary): string {
@@ -178,44 +214,24 @@ export abstract class MPAndroid implements MPTranslator {
         let price = data['product_price']
         let productAction = data['product_action']
 
-        return this.getDeclareVariableSnippet('Product') + ' = ' + this.getCreateInstanceSnippet('Product.Builder') +
-            '(' + name + ', ' + sku + ', ' + price + ')\n' +
-            MPAndroid.tab + '.quantity(' + quantity + ')\n' +
-            MPAndroid.tab + '.build()' + this.endStatement + '\n' +
-            this.getDeclareVariableSnippet('CommerceEvent') + ' = ' + this.getCreateInstanceSnippet('CommerceEvent.Builder') +
-            '(' + productAction + ', product)' + this.endStatement + '\n' +
-            this.getMParticleInstanceToCallSnippet() + '.logEvent(commerceEvent)' + this.endStatement
+        let productVariable = new Variable('Product')
+            .initializer(
+                new Constructor('Product.Builder', [name, sku, price])
+                    .addMethodCall('quantity', [quantity])
+                    .addMethodCall('build')
+            );
+        let commerceEventVariable = new Variable('CommerceEvent')
+            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]))
+        let logEventMethodCall = this.mparticleGetInstance().addMethodCall('logEvent', [commerceEventVariable], true);
 
+        return new CodeBlock()
+            .addStatement(productVariable)
+            .addStatement(commerceEventVariable)
+            .addStatement(logEventMethodCall)
+            .toSnippet(this.language);
     }
-    createProductImpressionSnippet(exampleJSON: Dictionary): string {
+
+    createProductImpressionSnippet(properties: Dictionary): string {
         throw new Error("Method not implemented.");
-    }
-
-    protected stringForValue(value: any): string {
-        if (value as string) {
-            return `"${value}"`;
-        } else if (value as number) {
-            return value;
-        } else if (value as boolean) {
-            return value ? 'true' : 'false';
-        } else {
-            return 'nil';
-        }
-    }
-
-    protected capitalize(value: string): string {
-        if (value.length > 1) {
-            return value.charAt(0).toUpperCase() + value.slice(1);
-        } else {
-            return value.toUpperCase();
-        }
-    }
-
-    protected camelCase(value: string): string {
-        if (value.length > 1) {
-            return value.charAt(0).toLowerCase() + value.slice(1);
-        } else {
-            return value.toLowerCase();
-        }
     }
 }

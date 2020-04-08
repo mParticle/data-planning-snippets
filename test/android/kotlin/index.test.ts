@@ -1,7 +1,14 @@
 // tslint:disable: max-line-length
-import { MPSnippets } from '../src/mpSnippets';
-import { Language, Dictionary } from '../src/language';
-import { MPKotlin } from '../src/translators/kotlin_translator';
+import { MPSnippets } from '../../../src/mpSnippets';
+import { Language, Dictionary } from '../../../src/language';
+import { MPAndroid } from '../../../src/translators/android_translator';
+import { KotlinDecorator } from '../../../src/language-decorators/kotlin_decorator'; 
+import { Argument } from '../../../src/expressions/argument'
+import { Class } from '../../../src/expressions/class'
+import { Variable } from '../../../src/expressions/variable';
+
+
+
 import {
     DataPlanPoint,
     DataPlanValidator,
@@ -10,6 +17,9 @@ import {
     DataPlanMatchType,
 } from '@mparticle/data-planning-models';
 import { stringify } from 'querystring';
+
+let language = new KotlinDecorator()
+let instance: MPAndroid = new MPAndroid(language)
 
 describe('Kotlin Snippets ', () => {
     let customAttributes = {
@@ -23,18 +33,14 @@ describe('Kotlin Snippets ', () => {
     "A_String_Key" to "string",
     "A Date Key" to "date-time",
     "A Number Key" to "string"
-)
-`
-        let result = new MPKotlin().getMapSnippet(customAttributes, 'Map<String, String>', 'attributes')
+)`       
+        let mapClass = new Class('Map').setGenerics('String', 'String')
+        let attributesVariable = new Variable(mapClass, 'attributes')
+        let result = language.dictionaryInitializer(attributesVariable, customAttributes).toSnippet(language);
         expect(result)
             .toEqual(expected)
 
     });
-    it('Empty Custom Attributes', () => {
-        let result = new MPKotlin().getMapSnippet({}, 'Map<String, String>', 'attributes')
-        expect(result)
-            .toEqual(null)
-    })
 
     it('Create Screen View', () => {
         let payload = {
@@ -51,7 +57,7 @@ describe('Kotlin Snippets ', () => {
 )
 MParticle.getInstance()?.logScreen("test event", attributes)`
 
-        let result = new MPKotlin().createScreenViewSnippet(payload);
+        let result = instance.createScreenViewSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
@@ -65,7 +71,7 @@ MParticle.getInstance()?.logScreen("test event", attributes)`
         let expected =
             `MParticle.getInstance()?.logScreen("test event")`
 
-        let result = new MPKotlin().createScreenViewSnippet(payload);
+        let result = instance.createScreenViewSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
@@ -88,13 +94,13 @@ val event = MPEvent.Builder("eventName", MParticle.EventType.Location)
     .build()
 MParticle.getInstance()?.logEvent(event)`
 
-        let result = new MPKotlin().createCustomEventSnippet(payload);
+        let result = instance.createCustomEventSnippet(payload);
         expect(result)
             .toEqual(expected)
     })
     it('Set User Attributes', () => {
         let payload = customAttributes
-        let result = new MPKotlin().createUserAttributesSnippet(payload)
+        let result = instance.createUserAttributesSnippet(payload)
         let expected =
             `val attributes = mapOf(
     "A_String_Key" to "string",
@@ -102,12 +108,12 @@ MParticle.getInstance()?.logEvent(event)`
     "A Number Key" to "string"
 )
 val user = MParticle.getInstance()?.Identity()?.currentUser
-user?.setUserAttributes(attributes)`
+user?.userAttributes = attributes`
         expect(result)
             .toEqual(expected)
     })
     it('Set User Attributes empty', () => {
-        let result = new MPKotlin().createUserAttributesSnippet({})
+        let result = instance.createUserAttributesSnippet({})
         expect(result)
             .toEqual('')
     })
@@ -117,7 +123,7 @@ user?.setUserAttributes(attributes)`
             email: 'email@email.com',
             customerId: '1234'
         }
-        let result = new MPKotlin().createUserIdentitiesSnippet(payload)
+        let result = instance.createUserIdentitiesSnippet(payload)
         let expected =
             `val userIdentities = mapOf(
     MParticle.IdentityType.Facebook to "facebook id",
@@ -141,7 +147,7 @@ MParticle.getInstance()?.Identity()?.identify(request)`
             bytes_received: 3000,
             response_code: "202"
         }
-        let result = new MPKotlin().createNetworkPerformanceSnippet(payload)
+        let result = instance.createNetworkPerformanceSnippet(payload)
         let expected = `MParticle.getInstance()?.logNetworkPerformance("the url.com", 100, "http method", 123, 2000, 3000, "{REQUEST-STRING}", "202")`
         expect(result)
             .toEqual(expected)
@@ -152,7 +158,7 @@ MParticle.getInstance()?.Identity()?.identify(request)`
                 exception_name: "the exception name"
             }
         }
-        let result = new MPKotlin().createCrashReportSnippet(payload)
+        let result = instance.createCrashReportSnippet(payload)
         let expected =
             `val exception = Exception()    //replace this with your exception
 MParticle.getInstance()?.logException(exception, null, "the exception name")`
@@ -166,7 +172,7 @@ MParticle.getInstance()?.logException(exception, null, "the exception name")`
                 custom_attributes: customAttributes
             }
         }
-        let result = new MPKotlin().createCrashReportSnippet(payload)
+        let result = instance.createCrashReportSnippet(payload)
         let expected =
             `val eventData = mapOf(
     "A_String_Key" to "string",

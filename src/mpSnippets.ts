@@ -4,9 +4,10 @@ import jsf from 'json-schema-faker';
 import { DataPlanPoint, DataPlanValidator, DataPlanMatch, DataPlanMatchType, DataPlanValidatorType } from '@mparticle/data-planning-models';
 import { MPObjectiveC } from './objective_c_translator';
 import { MPSwift } from './swift_translator';
-import { MPKotlin } from './translators/kotlin_translator';
-import { MPJava } from './translators/java_translator';
 import { MPJavaScript } from './javascript_translator';
+import { MPAndroid } from './translators/android_translator'
+import { KotlinDecorator } from './language-decorators/kotlin_decorator';
+import { JavaDecorator } from './language-decorators/java_decorator';
 import { Language, Dictionary } from './language';
 
 export class MPSnippets {
@@ -150,11 +151,11 @@ ${resultString}
             case Language.ObjectiveC: {
                 return new MPObjectiveC();
             }
-            case Language.Kotlin: {
-                return new MPKotlin();
+            case Language.AndroidKotlin: {
+                return new MPAndroid(new KotlinDecorator());
             }
-            case Language.Java: {
-                return new MPJava();
+            case Language.AndroidJava: {
+                return new MPAndroid(new JavaDecorator());
             }
             case Language.JavaScript: {
                 return new MPJavaScript();
