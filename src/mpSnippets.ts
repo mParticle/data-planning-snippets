@@ -9,6 +9,7 @@ import { MPAndroid } from './translators/android_translator'
 import { KotlinDecorator } from './language-decorators/kotlin_decorator';
 import { JavaDecorator } from './language-decorators/java_decorator';
 import { Language, Dictionary } from './language';
+import { MPJavaEvents } from './translators/java_events_translator';
 
 export class MPSnippets {
     static translateDataPlanJSON(
@@ -159,6 +160,12 @@ ${resultString}
             }
             case Language.JavaScript: {
                 return new MPJavaScript();
+            }
+            case Language.JavaEventsJava: {
+                return new MPJavaEvents(new JavaDecorator());
+            }
+            case Language.JavaEventsKotlin: {
+                return new MPJavaEvents(new KotlinDecorator());
             }
             default: {
                 return new MPSwift();

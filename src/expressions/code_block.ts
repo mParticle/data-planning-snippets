@@ -1,14 +1,24 @@
-import { Expression } from './element'
+import { Expression } from './expressions'
 import { LanguageDecorator } from '../language-decorators/language_decorator'
 import { Statement } from './statement'
 
 export class CodeBlock {
 	statements: Statement[] = [];
 
-	addStatement(expression?: Expression): CodeBlock {
+	addStatement(expression?: Expression, index?: number): CodeBlock {
 		if (expression) {
-			this.statements.push(new Statement(...expression.getExpressions()))
+			let statement = new Statement(...expression.getExpressions())
+			if (index) {
+				this.statements.splice(index, 0, statement).join()
+			} else {
+				this.statements.push(statement)
+			}
 		}
+		return this;
+	}
+
+	addStatements(expression: Expression[]): CodeBlock {
+		expression.forEach(x => this.addStatement(x))
 		return this;
 	}
 

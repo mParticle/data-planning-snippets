@@ -21,14 +21,14 @@ describe('MPSnippets ', () => {
 
     it('testTranslateDataPlanJava', () => {
         const jsonSchema = fixtures.whole_data_plan;
-        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Java)
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.AndroidJava)
 
         expect(resultString).toEqual(Results.wholeJava);
     });
 
     it('testTranslateDataPlanKotlin', () => {
         const jsonSchema = fixtures.whole_data_plan;
-        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Kotlin)
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.AndroidKotlin)
 
         expect(resultString).toEqual(Results.wholeKotlin);
     });

@@ -1,7 +1,5 @@
-import { Class } from '../expressions/class'
 import { Argument } from '../expressions/argument'
-import { MethodCall} from '../expressions/call_expression'
-import { Variable } from '../expressions/variable';
+import { MethodCall, Class, Variable} from '../expressions/expressions'
 import { Dictionary } from '..';
 
 export interface LanguageDecorator {
@@ -30,7 +28,7 @@ export interface LanguageDecorator {
 	nullValue: string
 
 	//just the actual declaration, no assignemnt. i.e `MPEvent event`
-	variableDeclarationSnippet(type: Class, name: string): string
+	variableDeclarationSnippet(type: Class, name: string, forceExplicitType?: boolean): string
 
 	//just constructor statment, no terminator. i.e new `MPEvent("foo", "bar")`
 	constructorSnippet(type: Class, args: Argument[], argsFormatted: boolean): string
@@ -70,7 +68,7 @@ export abstract class AbstractLanguageDecorator implements LanguageDecorator {
 	
 	abstract dictionaryInitializer(variable: Variable, dictionary: Dictionary, wrapKeysInQuotes?: boolean): Variable
 
-	abstract variableDeclarationSnippet(type: Class, name: string): string
+	abstract variableDeclarationSnippet(type: Class, name: string, forceExplicitType?: boolean): string
 
 	constructorSnippet(type: Class, args: Argument[], argsFormatted: boolean): string {
 		let constructorKeyword = this.constructorKeyword ? this.constructorKeyword + ' ' : ''

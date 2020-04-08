@@ -1,18 +1,8 @@
 // tslint:disable: max-line-length
-import { MPSnippets } from '../../../src/mpSnippets';
-import { Language, Dictionary } from '../../../src/language';
 import { MPAndroid } from '../../../src/translators/android_translator';
 import { JavaDecorator } from '../../../src/language-decorators/java_decorator';
-import {
-    DataPlanPoint,
-    DataPlanValidator,
-    DataPlanValidatorType,
-    DataPlanMatch,
-    DataPlanMatchType,
-} from '@mparticle/data-planning-models';
-import { stringify } from 'querystring';
-import { Variable } from '../../../src/expressions/variable';
-import { Constructor } from '../../../src/expressions/call_expression';
+
+import { Variable } from '../../../src/expressions/expressions';
 import { CodeBlock } from '../../../src/expressions/code_block';
 
     let language = new JavaDecorator();

@@ -1,14 +1,18 @@
-import { Expression } from './element'
+import { Expression } from './expressions'
 import { LanguageDecorator } from '../language-decorators/language_decorator'
 
-export class Statement extends Expression {
+export class Statement {
 	comment?: string;
 	
 	expressions: Expression[];
 	
 	constructor(...expressions: Expression[]) {
-		super();
 		this.expressions = expressions;
+	}
+
+	addComment(comment: string): Statement {
+		this.comment = comment;
+		return this;
 	}
 
 	toSnippet(languageDecorator: LanguageDecorator): string {

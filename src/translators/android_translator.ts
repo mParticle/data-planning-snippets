@@ -1,19 +1,16 @@
 import { MPTranslator } from '../translator';
 import { Dictionary } from '../language';
-import { JvmLangDecorator } from '../language-decorators/jvm_decorator';
 import { Utils } from '../utils';
 import { CodeBlock } from '../expressions/code_block'
-import { Variable } from '../expressions/variable'
-import { MethodCall, Constructor } from '../expressions/call_expression'
+import { MethodCall, Constructor, ValueExpression, Variable } from '../expressions/expressions'
 import { Statement } from '../expressions/statement'
-import { Class } from '../expressions/class'
-import { ValueExpression } from '../expressions/value_expression';
+import { LanguageDecorator } from '../language-decorators/language_decorator';
 
 export class MPAndroid implements MPTranslator {
-    language: JvmLangDecorator;
+    language: LanguageDecorator;
     utils = new Utils();
 
-    constructor(language: JvmLangDecorator) {
+    constructor(language: LanguageDecorator) {
         this.language = language;
     }
     
@@ -88,7 +85,7 @@ export class MPAndroid implements MPTranslator {
                 .addStatement(attributeVariable)     
         }
         eventVariable.initialization?.addMethodCall('build')
-        let logEvent = this.mparticleGetInstance().addMethodCall("logEvent", [eventVariable], true)
+        let logEvent = this.mparticleGetInstance().addMethodCallSameLine("logEvent", [eventVariable], true)
 
         return codeBlock
             .addStatement(eventVariable)
@@ -157,11 +154,11 @@ export class MPAndroid implements MPTranslator {
             this.language.dictionaryInitializer(attributesVariable, attributes);
             return new CodeBlock()
                 .addStatement(attributesVariable)
-                .addStatement(this.mparticleGetInstance().addMethodCall('logScreen', [screenName, attributesVariable]))
+                .addStatement(this.mparticleGetInstance().addMethodCallSameLine('logScreen', [screenName, attributesVariable]))
                 .toSnippet(this.language);
         } else {
             return new CodeBlock()
-                .addStatement(this.mparticleGetInstance().addMethodCall('logScreen', [screenName]))
+                .addStatement(this.mparticleGetInstance().addMethodCallSameLine('logScreen', [screenName]))
                 .toSnippet(this.language);
         }
     }
@@ -182,12 +179,12 @@ export class MPAndroid implements MPTranslator {
             return new CodeBlock()
                 .addStatement(attributesStatement)
                 .addStatement(exceptionVariable)
-                .addStatement(this.mparticleGetInstance().addMethodCall('logException', [exceptionVariable, attributesVariable, exceptionName]))
+                .addStatement(this.mparticleGetInstance().addMethodCallSameLine('logException', [exceptionVariable, attributesVariable, exceptionName]))
                 .toSnippet(this.language)
         } else {
             return new CodeBlock()
                 .addStatement(exceptionVariable)
-                .addStatement(this.mparticleGetInstance().addMethodCall('logException', [exceptionVariable, attributesVariable, exceptionName]))
+                .addStatement(this.mparticleGetInstance().addMethodCallSameLine('logException', [exceptionVariable, attributesVariable, exceptionName]))
                 .toSnippet(this.language)
         }
     }
@@ -200,7 +197,7 @@ export class MPAndroid implements MPTranslator {
         let bytesSent = properties['bytes_sent']
         let bytesReceived = properties['bytes_received']
         let responseCode = properties['response_code']
-        return new Statement(this.mparticleGetInstance().addMethodCall('logNetworkPerformance', [eventName, startTime, httpMethod, duration, bytesSent, bytesReceived, "{REQUEST-STRING}", responseCode]))
+        return new Statement(this.mparticleGetInstance().addMethodCallSameLine('logNetworkPerformance', [eventName, startTime, httpMethod, duration, bytesSent, bytesReceived, "{REQUEST-STRING}", responseCode]))
             .toSnippet(this.language);
             
     }

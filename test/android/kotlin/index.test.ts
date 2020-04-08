@@ -1,22 +1,7 @@
 // tslint:disable: max-line-length
-import { MPSnippets } from '../../../src/mpSnippets';
-import { Language, Dictionary } from '../../../src/language';
 import { MPAndroid } from '../../../src/translators/android_translator';
 import { KotlinDecorator } from '../../../src/language-decorators/kotlin_decorator'; 
-import { Argument } from '../../../src/expressions/argument'
-import { Class } from '../../../src/expressions/class'
-import { Variable } from '../../../src/expressions/variable';
-
-
-
-import {
-    DataPlanPoint,
-    DataPlanValidator,
-    DataPlanValidatorType,
-    DataPlanMatch,
-    DataPlanMatchType,
-} from '@mparticle/data-planning-models';
-import { stringify } from 'querystring';
+import { Class, Variable } from '../../../src/expressions/expressions'
 
 let language = new KotlinDecorator()
 let instance: MPAndroid = new MPAndroid(language)

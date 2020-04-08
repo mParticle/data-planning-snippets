@@ -1,19 +1,17 @@
 import { MPTranslator } from '../translator';
 import { Dictionary } from '../language';
-import { JvmLangDecorator } from './jvm_decorator';
 import { Utils } from '../utils';
-import { Class } from '../expressions/class'
-import { Variable } from '../expressions/variable';
-import { Constructor, MethodCall, CallExpression } from '../expressions/call_expression';
-import { ValueExpression } from '../expressions/value_expression';
+import { ValueExpression, MethodCall, CallExpression, Class, Variable } from '../expressions/expressions';
+import { AbstractLanguageDecorator } from './language_decorator';
 
-export class KotlinDecorator extends JvmLangDecorator {
+export class KotlinDecorator extends AbstractLanguageDecorator {
     constructorKeyword = ''
     statementTerminator = ''
     nullabilityOperator = '?'
+    private utils = new Utils()
 
-    variableDeclarationSnippet(type: Class, variableName: string): string {
-        return 'val ' + variableName;
+    variableDeclarationSnippet(type: Class, variableName: string, forceExplicitType = false): string {
+        return 'val ' + variableName + (forceExplicitType? ': ' + type.className : '');
     }
 
     getCreateInstanceSnippet = (type: string) => type

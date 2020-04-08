@@ -1,14 +1,9 @@
-import { MPTranslator } from '../translator';
 import { Dictionary } from '../language';
-import { JvmLangDecorator} from './jvm_decorator'
-import { Utils } from '../utils';
-import { Class } from '../expressions/class'
-import { Variable } from '../expressions/variable';
-import { Constructor } from '../expressions/call_expression';
-import { ValueExpression } from '../expressions/value_expression';
+import { Constructor, ValueExpression, Class, Variable } from '../expressions/expressions';
 import { Argument } from '../expressions/argument';
+import { AbstractLanguageDecorator } from './language_decorator';
 
-export class JavaDecorator extends JvmLangDecorator {
+export class JavaDecorator extends AbstractLanguageDecorator {
     nullabilityOperator: string = '' 
     constructorKeyword: string = 'new'   
     
