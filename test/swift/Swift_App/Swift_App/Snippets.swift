@@ -4,8 +4,7 @@ import mParticle_Apple_SDK
 class Snippets: NSObject {
 
             func testFirst() { 
- let eventInfo = [String: Any].init()
-MParticle.sharedInstance().logScreen("screen", eventInfo: eventInfo)
+ MParticle.sharedInstance().logScreen("screen", eventInfo: nil)
  
 }
 

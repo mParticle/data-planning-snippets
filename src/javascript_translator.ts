@@ -21,7 +21,7 @@ export class MPJavaScript implements MPTranslator {
             returnString = `mParticle.logPageView('${data['screen_name']}'`;
         }
 
-        if (Object.keys(data['custom_attributes']).length) {
+        if (data['custom_attributes'] && Object.keys(data['custom_attributes']).length) {
             attributes = this.customAttributesLines(data['custom_attributes']);
             returnString = `${attributes}\n${returnString}, customAttributes)`
         } else {
@@ -41,7 +41,7 @@ export class MPJavaScript implements MPTranslator {
         let returnString =
             `mParticle.logEvent('${data['event_name']}', mParticle.EventType.${typeString}`;
 
-        if (Object.keys(data['custom_attributes']).length) {
+        if (data['custom_attributes'] && Object.keys(data['custom_attributes']).length) {
             attributes = this.customAttributesLines(data['custom_attributes']);
             returnString = `${attributes}\n${returnString}, customAttributes)`
         } else {
@@ -68,8 +68,8 @@ export class MPJavaScript implements MPTranslator {
         return 'Application State Transition is not manually called\n';
     }
 
-    createNetworkPerformanceSnippet = (exampleJSON: Dictionary) => 
-         'Breadcrump snippet not available in JS\n';
+    createNetworkPerformanceSnippet = (exampleJSON: Dictionary) =>
+        'Breadcrump snippet not available in JS\n';
 
     createBreadcrumbSnippet = (exampleJSON: Dictionary) =>
         'Breadcrump snippet not available in JS\n';
@@ -160,11 +160,11 @@ export class MPJavaScript implements MPTranslator {
 
     // tslint:disable-next-line: no-any
     private stringForValue(value: any) {
-        if (typeof(value) === 'string') {
+        if (typeof (value) === 'string') {
             return `"${value}"`;
-        } else if (typeof(value) === 'number') {
+        } else if (typeof (value) === 'number') {
             return value;
-        } else if (typeof(value) === 'boolean') {
+        } else if (typeof (value) === 'boolean') {
             return value ? true : false;
         } else {
             return null;

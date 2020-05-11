@@ -3,9 +3,7 @@
 @implementation Snippets 
 
         - (void)testFirst { 
- NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-
-[[MParticle sharedInstance] logScreen:@"screen" eventInfo: eventInfo];
+ [[MParticle sharedInstance] logScreen:@"screen" eventInfo: nil];
  
  }
 

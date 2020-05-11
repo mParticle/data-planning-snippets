@@ -349,8 +349,8 @@ MParticle.sharedInstance().identity.currentUser?.setUserAttribute("Achieved Leve
 Map<String, String> attributes = new HashMap<>();
 attributes.put("A_String_Key", "non");
 attributes.put("A Date Key", "2006-12-23T04:29:08.365Z");
-attributes.put("A Number Key", "5.0906951716");
-attributes.put("A Bool Key", "true");
+attributes.put("A Number Key", 5.0906951716);
+attributes.put("A Bool Key", true);
 MPEvent event = new MPEvent.Builder("event name", MParticle.EventType.Transaction)
     .customAttributes(attributes)
     .build();
@@ -505,8 +505,8 @@ user.setUserAttributes(attributes);
 val attributes = mapOf(
     "A_String_Key" to "non",
     "A Date Key" to "2006-12-23T04:29:08.365Z",
-    "A Number Key" to "5.0906951716",
-    "A Bool Key" to "true"
+    "A Number Key" to 5.0906951716,
+    "A Bool Key" to true
 )
 val event = MPEvent.Builder("event name", MParticle.EventType.Transaction)
     .customAttributes(attributes)
@@ -663,7 +663,7 @@ val attributes = mapOf(
     "Achieved Level" to "-33028890.365"
 )
 val user = MParticle.getInstance()?.Identity()?.currentUser
-user?.setUserAttributes(attributes)
+user?.userAttributes = attributes
 
 
 `;
@@ -797,6 +797,267 @@ mParticle.Identity.getCurrentUser().setUserAttribute("$Age", "961.138597")
 mParticle.Identity.getCurrentUser().setUserAttribute("$gender", "aliquip enim id do")
 mParticle.Identity.getCurrentUser().setUserAttribute("Achieved Level", "-33028890.365")
 
+
+
+`;
+
+    static readonly wholePython = `\
+// Data Plan Point 1
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('event name', 'transaction')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 2
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Simple Event Name', 'other')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 3
+// 
+from mparticle.models.screen_view_event import ScreenViewEvent
+
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.models.screen_view_event.ScreenViewEvent()
+        
+batch.events = [event]
+
+try: 
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print "Exception while calling mParticle: %s\n" % e
+        
+
+
+
+// Data Plan Point 4
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Timed Event', 'transaction')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 5
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Simple Event', 'other')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 6
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('First Selection Time', 'navigation')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 7
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Video Playback', 'other')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 8
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Video Changed Rate', 'other')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 9
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('play', 'default')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 10
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Session Start', 'default')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 11
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Session End', 'default')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 12
+// 
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('Media Content End', 'default')
+event.timestamp_unixtime_ms = example_timestamp
+        
+        batch.events = [event]
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
+
+
+// Data Plan Point 13
+// User Attributes
+        
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+        
+        
+        try: 
+            api_instance.upload_events(batch)
+            # you can also send multiple batches at a time to decrease the amount of network calls
+            #api_instance.bulk_upload_events([batch, batch])
+        except mparticle.rest.ApiException as e:
+            print "Exception while calling mParticle: %s\n" % e
+                
 
 
 `;

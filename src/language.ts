@@ -6,7 +6,8 @@ export enum Language {
     AndroidJava = 5,
     JavaScript = 6,
     JavaEventsKotlin = 7,
-    JavaEventsJava = 8
+    JavaEventsJava = 8,
+    Python = 9
 }
 
 export type Dictionary = {

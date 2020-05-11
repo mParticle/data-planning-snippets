@@ -42,17 +42,17 @@ describe('MPSnippets ', () => {
         expect(resultString).toEqual(Results.wholeJS);
     });
 
+    it('testTranslateDataPlanPython', () => {
+        const jsonSchema = fixtures.whole_data_plan;
+        var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Python)
+
+        console.log("Whole Data Plan:\n", resultString)
+
+        expect(resultString).toEqual(Results.wholePython);
+    });
+
     it('testLocationEvent', () => {
         const jsonSchema = fixtures.custom_event.location;
-
-        const result: Dictionary = {
-            "data": {
-                "custom_event_type": "location",
-                "event_name": "loca",
-                "custom_attributes": {
-                }
-            }
-        };
 
         const validator: DataPlanValidator = { definition: jsonSchema, type: DataPlanValidatorType.JSONSchema };
         validator.definition = jsonSchema;
@@ -63,16 +63,13 @@ describe('MPSnippets ', () => {
 
         var resultString = MPSnippets.createSnippet(dataPlanPoint, Language.JSON)
         console.log("JSON:\n", resultString)
-        expect(resultString).toEqual(JSON.stringify(result));
+        expect(resultString).toEqual("{\"data\":{\"custom_event_type\":\"location\",\"event_name\":\"loca\",\"custom_attributes\":null}}");
 
         resultString = MPSnippets.createSnippet(dataPlanPoint, Language.Swift)
         console.log("Swift:\n", resultString)
         expect(resultString).toEqual(
             `\
-let customEvent = MPEvent.init(name: "loca", type: .location)
-let eventInfo = [String: Any].init()
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"loca\", type: .location)
 MParticle.sharedInstance().logEvent(customEvent!)
 `
         );
@@ -82,10 +79,6 @@ MParticle.sharedInstance().logEvent(customEvent!)
         expect(resultString).toEqual(
             `\
 MPEvent *customEvent = [[MPEvent alloc] initWithName:@"loca" type: MPEventTypeLocation];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-
-customEvent.customAttributes = eventInfo;
-
 [[MParticle sharedInstance] logEvent:customEvent];
 `
         );
