@@ -14,13 +14,12 @@ session_start.timestamp_unixtime_ms = example_timestamp
 
 batch.events = [session_start]
 
-try: 
+try:
     api_instance.upload_events(batch)
     # you can also send multiple batches at a time to decrease the amount of network calls
     #api_instance.bulk_upload_events([batch, batch])
 except mparticle.rest.ApiException as e:
-    print "Exception while calling mParticle: %s\n" % e
-    `;
+    print "Exception while calling mParticle: %s\n" % e`;
 
     createSessionEndSnippet = (exampleJSON: Dictionary) =>
         `\
@@ -34,13 +33,12 @@ session_end.timestamp_unixtime_ms = example_timestamp + example_duration
     
 batch.events = [session_end]
 
-try: 
+try:
     api_instance.upload_events(batch)
     # you can also send multiple batches at a time to decrease the amount of network calls
     #api_instance.bulk_upload_events([batch, batch])
 except mparticle.rest.ApiException as e:
-    print "Exception while calling mParticle: %s\n" % e
-    `;
+    print "Exception while calling mParticle: %s\n" % e`;
 
     createScreenViewSnippet({ data }: Dictionary): string {
         let returnString = `\
@@ -49,8 +47,7 @@ from mparticle.models.screen_view_event import ScreenViewEvent
 batch = mparticle.Batch()
 batch.environment = 'development'
 
-event = mparticle.models.screen_view_event.ScreenViewEvent()
-        `;
+event = mparticle.models.screen_view_event.ScreenViewEvent()`;
 
         if (data['custom_attributes']) {
             returnString += this.customAttributesLines(
@@ -60,13 +57,12 @@ event = mparticle.models.screen_view_event.ScreenViewEvent()
         returnString += `\
 batch.events = [event]
 
-try: 
+try:
     api_instance.upload_events(batch)
     # you can also send multiple batches at a time to decrease the amount of network calls
     #api_instance.bulk_upload_events([batch, batch])
 except mparticle.rest.ApiException as e:
-    print "Exception while calling mParticle: %s\n" % e
-        `;
+    print "Exception while calling mParticle: %s\n" % e`;
         return returnString + '\n';
     }
 
@@ -74,13 +70,12 @@ except mparticle.rest.ApiException as e:
         const customEventType = data['custom_event_type'] as string;
         const typeString = this.stringEventType(customEventType);
 
-        let returnString = `\        
+        let returnString = `\
 batch = mparticle.Batch()
 batch.environment = 'development'
 
 event = mparticle.AppEvent('${data['event_name']}', '${typeString}')
-event.timestamp_unixtime_ms = example_timestamp
-        `;
+event.timestamp_unixtime_ms = example_timestamp`;
 
         if (data['custom_attributes']) {
             returnString += this.customAttributesLines(
@@ -89,15 +84,14 @@ event.timestamp_unixtime_ms = example_timestamp
         }
 
         returnString += `\
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                `;
+batch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print "Exception while calling mParticle: %s\n" % e`;
         return returnString;
     }
 
@@ -138,48 +132,42 @@ event.timestamp_unixtime_ms = example_timestamp
         `Not currently supported by data plan V1`;
 
     createUserAttributesSnippet(exampleJSON: Dictionary): string {
-        let returnString = `\        
+        let returnString = `\
 batch = mparticle.Batch()
-batch.environment = 'development'
-
-        `;
+batch.environment = 'development'`;
 
         if (exampleJSON) {
             returnString += this.userAttributes(exampleJSON);
         }
 
         returnString += `\
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                `;
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print "Exception while calling mParticle: %s\n" % e`;
         return returnString;
     }
 
     createUserIdentitiesSnippet(exampleJSON: Dictionary): string {
-        let returnString = `\        
+        let returnString = `\
 batch = mparticle.Batch()
-batch.environment = 'development'
-
-        `;
+batch.environment = 'development'`;
 
         if (exampleJSON['user_identities']) {
             returnString += this.userIdentities(exampleJSON['user_identities']);
         }
 
         returnString += `\
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                `;
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print "Exception while calling mParticle: %s\n" % e`;
         return returnString;
     }
 

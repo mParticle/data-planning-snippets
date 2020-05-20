@@ -1,452 +1,385 @@
 {
     "custom_event": {
         "location": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "location"
-                        },
-                        "event_name": {
-                            "const": "loca"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "loca",
+                    "custom_event_type": "location"
                 }
-            }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
         },
         "transaction": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "transaction"
-                        },
-                        "event_name": {
-                            "const": "transa"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "transa",
+                    "custom_event_type": "transaction"
                 }
-            }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
         },
         "user_content": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "userContent"
-                        },
-                        "event_name": {
-                            "const": "userCont"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "userCont",
+                    "custom_event_type": "userContent"
                 }
-            }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
         },
         "user_preference": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "userPreference"
-                        },
-                        "event_name": {
-                            "const": "userPref"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "userPref",
+                    "custom_event_type": "userPreference"
                 }
-            }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
         },
         "social": {
-            "data": {
-                "additionalProperties": false,
-                "properties": {
-                    "custom_event_type": {
-                        "const": "social"
-                    },
-                    "event_name": {
-                        "const": "soc"
-                    },
-                    "custom_attributes": {
-                        "additionalProperties": false,
-                        "properties": {},
-                        "required": []
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "soc",
+                    "custom_event_type": "social"
+                }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
                     }
-                },
-                "required": [
-                    "custom_event_type",
-                    "event_name"
-                ]
-            }
+                }
+            },
+            "active_transformation_ids": null
         },
         "other": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "other"
-                        },
-                        "event_name": {
-                            "const": "other"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "other",
+                    "custom_event_type": "other"
                 }
-            }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
         },
         "unknown": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "unknown"
-                        },
-                        "event_name": {
-                            "const": "unk"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "unk",
+                    "custom_event_type": "unknown"
                 }
-            }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
         },
         "navigation": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "navi",
+                    "custom_event_type": "navigation"
+                }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
                     "properties": {
-                        "custom_event_type": {
-                            "const": "navigation"
-                        },
-                        "event_name": {
-                            "const": "navi"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
+                        "data": {
+                            "additionalProperties": true,
                             "properties": {
-                                "viewName": {
-                                    "description": "",
-                                    "enum": [
-                                        "main menu"
-                                    ],
-                                    "type": "string"
+                                "custom_attributes": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "viewName": {
+                                            "description": "",
+                                            "enum": [
+                                                "main menu"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": []
                                 }
                             },
-                            "required": []
+                            "required": [],
+                            "type": "object"
                         }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
+                    }
                 }
-            }
-        },
-        "search": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "search"
-                        },
-                        "event_name": {
-                            "const": "search"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "filter1": {
-                                    "description": "",
-                                    "enum": [
-                                        "sci-fi"
-                                    ],
-                                    "type": "string"
-                                },
-                                "filter2": {
-                                    "description": "",
-                                    "enum": [
-                                        "2"
-                                    ],
-                                    "type": "number"
-                                },
-                                "filter3": {
-                                    "description": "",
-                                    "type": "boolean"
-                                },
-                                "filter4": {
-                                    "description": "",
-                                    "format": "date-time",
-                                    "type": "string"
-                                },
-                                "filter5": {
-                                    "description": "",
-                                    "format": "date",
-                                    "type": "string"
-                                },
-                                "filter6": {
-                                    "description": "",
-                                    "type": "null"
-                                }
-                            },
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
-                }
-            }
-        },
-        "default": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "custom_event_type": {
-                            "const": "transaction"
-                        },
-                        "event_name": {
-                            "const": "event name"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "A_String_Key": {
-                                    "const": "string",
-                                    "type": "string"
-                                },
-                                "A Date Key": {
-                                    "const": "date-time",
-                                    "type": "string"
-                                },
-                                "A Number Key": {
-                                    "const": "string",
-                                    "type": "string"
-                                }
-                            },
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "custom_event_type",
-                        "event_name"
-                    ]
-                }
-            }
+            },
+            "active_transformation_ids": null
         }
     },
-    "screen_view": {
-        "first": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "screen_name": {
-                            "const": "screen"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "screen_name"
-                    ]
-                }
+    "default": {
+        "description": "",
+        "match": {
+            "type": "custom_event",
+            "criteria": {
+                "event_name": "event name",
+                "custom_event_type": "transaction"
             }
         },
-        "second": {
-            "properties": {
-                "data": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "screen_name": {
-                            "const": "Video Streams"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "Launch": {
-                                    "const": true
-                                }
-                            },
-                            "required": []
-                        }
-                    },
-                    "required": [
-                        "screen_name"
-                    ]
-                }
-            }
-        },
-        "third": {
-            "properties": {
-                "data": {
-                    "additionalProperties": true,
-                    "properties": {
-                        "screen_name": {
-                            "const": "abc"
-                        },
-                        "custom_attributes": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "foo": {
-                                    "description": "",
-                                    "maximum": 10,
-                                    "minimum": 5,
-                                    "type": "number"
-                                }
-                            },
-                            "required": [
-                                "foo"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "screen_name",
-                        "custom_attributes"
-                    ]
-                }
-            }
-        }
-    },
-    "simple_event": {
-        "properties": {
-            "data": {
-                "additionalProperties": false,
+        "validator": {
+            "type": "json_schema",
+            "definition": {
                 "properties": {
-                    "custom_event_type": {
-                        "const": "other"
-                    },
-                    "event_name": {
-                        "const": "Simple Event Name"
-                    },
-                    "custom_attributes": {
-                        "additionalProperties": false,
+                    "data": {
+                        "additionalProperties": true,
                         "properties": {
-                            "SimpleKey": {
-                                "const": "string"
+                            "custom_attributes": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "A_String_Key": {
+                                        "const": "string",
+                                        "type": "string"
+                                    },
+                                    "A Date Key": {
+                                        "const": "date-time",
+                                        "type": "string"
+                                    },
+                                    "A Number Key": {
+                                        "const": "string",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": []
                             }
                         },
-                        "required": []
+                        "required": [],
+                        "type": "object"
                     }
-                },
-                "required": [
-                    "custom_event_type",
-                    "event_name"
-                ]
-            }
-        }
-    },
-    "user_attribute": {
-        "additionalProperties": false,
-        "properties": {
-            "name": {
-                "description": "",
-                "enum": [
-                    "Sarah Conner"
-                ],
-                "type": "string"
-            },
-            "age": {
-                "description": "",
-                "enum": [
-                    "34"
-                ],
-                "type": "number"
-            },
-            "deceased": {
-                "description": "",
-                "type": "boolean",
-                "const": true
-            },
-            "deathDate": {
-                "description": "",
-                "format": "date-time",
-                "type": "string",
-                "const": "1996-02-24T17:32:31.082Z"
-            },
-            "birthDate": {
-                "description": "",
-                "format": "date",
-                "type": "string",
-                "const": "1984-05-15"
-            },
-            "xFactor": {
-                "description": "",
-                "type": "null"
+                }
             }
         },
-        "required": []
+        "active_transformation_ids": null
+    },
+    "screen_view": {
+        "description": "",
+        "match": {
+            "type": "screen_view",
+            "criteria": {
+                "screen_name": "screen"
+            }
+        },
+        "validator": {
+            "type": "json_schema",
+            "definition": {
+                "properties": {
+                    "data": {
+                        "additionalProperties": true,
+                        "properties": {},
+                        "required": [],
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "active_transformation_ids": null
+    },
+    "session_start": {
+        "description": "",
+        "match": {
+            "type": "session_start",
+            "criteria": {
+                "session_id": "1932417"
+            }
+        },
+        "validator": {
+            "type": "json_schema",
+            "definition": {
+                "properties": {
+                    "data": {
+                        "additionalProperties": true,
+                        "properties": {},
+                        "required": [],
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "active_transformation_ids": null
+    },
+    "session_end": {
+        "description": "",
+        "match": {
+            "type": "session_end",
+            "criteria": {
+                "session_id": "1932417"
+            }
+        },
+        "validator": {
+            "type": "json_schema",
+            "definition": {
+                "properties": {
+                    "data": {
+                        "additionalProperties": true,
+                        "properties": {},
+                        "required": [],
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "active_transformation_ids": null
+    },
+    "user_attribute": {
+        "description": "User Attributes",
+        "match": {
+            "type": "user_attributes",
+            "criteria": {}
+        },
+        "validator": {
+            "type": "json_schema",
+            "definition": {
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "enum": [
+                            "Sarah Conner"
+                        ],
+                        "type": "string"
+                    },
+                    "age": {
+                        "description": "",
+                        "enum": [
+                            "34"
+                        ],
+                        "type": "number"
+                    },
+                    "deceased": {
+                        "description": "",
+                        "type": "boolean",
+                        "const": true
+                    },
+                    "deathDate": {
+                        "description": "",
+                        "format": "date-time",
+                        "type": "string",
+                        "const": "1996-02-24T17:32:31.082Z"
+                    },
+                    "birthDate": {
+                        "description": "",
+                        "format": "date",
+                        "type": "string",
+                        "const": "1984-05-15"
+                    },
+                    "xFactor": {
+                        "description": "",
+                        "type": "null"
+                    }
+                },
+                "required": []
+            }
+        },
+        "active_transformation_ids": null
     },
     "whole_data_plan": {
         "version": 1,
-        "data_plan_id": "sample_test",
+        "data_plan_id": "present_plan",
         "version_description": null,
-        "activated_environment": "production",
-        "created_on": "2019-11-18T14:37:04.12",
-        "created_by": "X@mparticle.com",
-        "last_modified_on": "2019-11-18T14:37:39.027",
-        "last_modified_by": "X@mparticle.com",
+        "activated_environment": "none",
+        "created_on": "2020-05-11T16:32:19.183",
+        "created_by": "bstalnaker@mparticle.com",
+        "last_modified_on": "2020-05-12T15:03:16.607",
+        "last_modified_by": "bstalnaker@mparticle.com",
         "version_document": {
             "data_points": [
                 {
@@ -454,8 +387,8 @@
                     "match": {
                         "type": "custom_event",
                         "criteria": {
-                            "event_name": "event name",
-                            "custom_event_type": "transaction"
+                            "event_name": "CustomAttribution",
+                            "custom_event_type": "attribution"
                         }
                     },
                     "validator": {
@@ -464,209 +397,21 @@
                             "properties": {
                                 "data": {
                                     "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "transaction"
-                                        },
-                                        "event_name": {
-                                            "const": "event name"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "A_String_Key": {
-                                                    "const": "non"
-                                                },
-                                                "A Date Key": {
-                                                    "format": "date-time",
-                                                    "const": "2006-12-23T04:29:08.365Z"
-                                                },
-                                                "A Number Key": {
-                                                    "const": 5.0906951716
-                                                },
-                                                "A Bool Key": {
-                                                    "const": true
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
                                 }
                             }
                         }
-                    }
+                    },
+                    "active_transformation_ids": null
                 },
                 {
                     "description": "",
                     "match": {
                         "type": "custom_event",
                         "criteria": {
-                            "event_name": "Simple Event Name",
-                            "custom_event_type": "other"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "other"
-                                        },
-                                        "event_name": {
-                                            "const": "Simple Event Name"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "SimpleKey": {
-                                                    "const": "eu dolore aute"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "screen_view",
-                        "criteria": {
-                            "screen_name": "Video Streams"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "screen_name": {
-                                            "const": "Video Streams"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "Launch": {
-                                                    "pattern": "^([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])$",
-                                                    "const": "FaLse"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "screen_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "Timed Event",
-                            "custom_event_type": "transaction"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "transaction"
-                                        },
-                                        "event_name": {
-                                            "const": "Timed Event"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "EventLength": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "46815516954.4"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "Simple Event",
-                            "custom_event_type": "other"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "other"
-                                        },
-                                        "event_name": {
-                                            "const": "Simple Event"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "SimpleKey": {
-                                                    "const": "labore ipsum irure"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "First Selection Time",
+                            "event_name": "CustomNavigation",
                             "custom_event_type": "navigation"
                         }
                     },
@@ -676,42 +421,260 @@
                             "properties": {
                                 "data": {
                                     "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "navigation"
-                                        },
-                                        "event_name": {
-                                            "const": "First Selection Time"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "title": {
-                                                    "const": "nisi irure"
-                                                },
-                                                "EventLength": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "10"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
                                 }
                             }
                         }
-                    }
+                    },
+                    "active_transformation_ids": null
                 },
                 {
                     "description": "",
                     "match": {
                         "type": "custom_event",
                         "criteria": {
-                            "event_name": "Video Playback",
+                            "event_name": "CustomLocation",
+                            "custom_event_type": "location"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomSearch",
+                            "custom_event_type": "search"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomTransaction",
+                            "custom_event_type": "transaction"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomUserContent",
+                            "custom_event_type": "user_content"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomUserPreference",
+                            "custom_event_type": "user_preference"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomSocial",
+                            "custom_event_type": "social"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomOther",
+                            "custom_event_type": "other"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomUnknown",
+                            "custom_event_type": "unknown"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomMedia",
+                            "custom_event_type": "media"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "screen_view",
+                        "criteria": {
+                            "screen_name": "ScreenView"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {},
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "A custom event with every type of Custom Attribute",
+                    "match": {
+                        "type": "custom_event",
+                        "criteria": {
+                            "event_name": "CustomAllAttributes",
                             "custom_event_type": "other"
                         }
                     },
@@ -722,307 +685,112 @@
                                 "data": {
                                     "additionalProperties": true,
                                     "properties": {
-                                        "custom_event_type": {
-                                            "const": "other"
+                                        "event_id": {
+                                            "description": "",
+                                            "type": "number"
                                         },
-                                        "event_name": {
-                                            "const": "Video Playback"
+                                        "canonical_name": {
+                                            "description": "",
+                                            "type": "string"
+                                        },
+                                        "is_main_thread": {
+                                            "description": "",
+                                            "type": "boolean"
                                         },
                                         "custom_attributes": {
                                             "additionalProperties": false,
+                                            "description": "",
                                             "properties": {
-                                                "title": {
-                                                    "const": "nostrud est ut aute"
+                                                "Null Attribute": {
+                                                    "description": "",
+                                                    "type": "null"
+                                                },
+                                                "Number Attribute": {
+                                                    "description": "",
+                                                    "type": "number",
+                                                    "const": -74821511.11661537
+                                                },
+                                                "Boolean Attribute": {
+                                                    "description": "",
+                                                    "type": "boolean",
+                                                    "const": true
+                                                },
+                                                "URI String Attribute": {
+                                                    "description": "",
+                                                    "format": "uri",
+                                                    "type": "string",
+                                                    "const": "https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ"
+                                                },
+                                                "IPV6 String Attribute": {
+                                                    "description": "",
+                                                    "format": "ipv6",
+                                                    "type": "string",
+                                                    "const": "dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae"
+                                                },
+                                                "IPV4 String Attribute": {
+                                                    "description": "",
+                                                    "format": "ipv4",
+                                                    "type": "string",
+                                                    "const": "107.250.244.137"
+                                                },
+                                                "HostName String Attribute": {
+                                                    "description": "",
+                                                    "format": "hostname",
+                                                    "type": "string",
+                                                    "const": "cefjNFGAKPwzKngeGLfSIvpReZ.pggn"
+                                                },
+                                                "Date String Attribute": {
+                                                    "description": "",
+                                                    "format": "date",
+                                                    "type": "string",
+                                                    "const": "1940-10-16"
+                                                },
+                                                "Time String Attribute": {
+                                                    "description": "",
+                                                    "format": "time",
+                                                    "type": "string",
+                                                    "const": "22:53:17.911Z"
+                                                },
+                                                "DateTime String Attribute": {
+                                                    "description": "",
+                                                    "format": "date-time",
+                                                    "type": "string",
+                                                    "const": "1963-08-06T12:16:22.823Z"
+                                                },
+                                                "Email String Attribute": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "test@gmail.com"
+                                                    ],
+                                                    "format": "email",
+                                                    "type": "string"
                                                 }
                                             },
-                                            "required": []
+                                            "required": [
+                                                "URI String Attribute",
+                                                "IPV6 String Attribute",
+                                                "IPV4 String Attribute",
+                                                "HostName String Attribute",
+                                                "Date String Attribute",
+                                                "Time String Attribute",
+                                                "DateTime String Attribute",
+                                                "Email String Attribute"
+                                            ],
+                                            "type": "object"
                                         }
                                     },
                                     "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
+                                        "event_id",
+                                        "canonical_name",
+                                        "is_main_thread",
+                                        "custom_attributes"
+                                    ],
+                                    "type": "object"
                                 }
                             }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "Video Changed Rate",
-                            "custom_event_type": "other"
                         }
                     },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "other"
-                                        },
-                                        "event_name": {
-                                            "const": "Video Changed Rate"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "Rate": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "-870743973.1e293828302"
-                                                },
-                                                "title": {
-                                                    "const": "ea occaecat esse"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "play",
-                            "custom_event_type": "media"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "media"
-                                        },
-                                        "event_name": {
-                                            "const": "play"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "content_id": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "223015.501"
-                                                },
-                                                "stream_type": {
-                                                    "const": "amet reprehenderit in aute"
-                                                },
-                                                "media_session_id": {
-                                                    "const": "o"
-                                                },
-                                                "content_duration": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "-440540155"
-                                                },
-                                                "content_title": {
-                                                    "const": "laborum esse sunt officia"
-                                                },
-                                                "content_type": {
-                                                    "const": "laborum voluptate ex"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "Session Start",
-                            "custom_event_type": "media"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "media"
-                                        },
-                                        "event_name": {
-                                            "const": "Session Start"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "media_session_id": {
-                                                    "const": "ut laboris"
-                                                },
-                                                "content_duration": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "-825205"
-                                                },
-                                                "content_type": {
-                                                    "const": "ullamco et"
-                                                },
-                                                "content_title": {
-                                                    "const": "consectetur velit magna commodo anim"
-                                                },
-                                                "stream_type": {
-                                                    "const": "velit dolor Lorem elit officia"
-                                                },
-                                                "content_id": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "-082E+623365"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "Session End",
-                            "custom_event_type": "media"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "media"
-                                        },
-                                        "event_name": {
-                                            "const": "Session End"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "content_duration": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "13780778.38339081"
-                                                },
-                                                "stream_type": {
-                                                    "const": "nisi Except"
-                                                },
-                                                "media_session_id": {
-                                                    "const": "sunt id laborum sint pariatur"
-                                                },
-                                                "content_type": {
-                                                    "const": "enim ut quis aliqua labore"
-                                                },
-                                                "content_title": {
-                                                    "const": "elit ullamco sint voluptate"
-                                                },
-                                                "content_id": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "22006708.045"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "description": "",
-                    "match": {
-                        "type": "custom_event",
-                        "criteria": {
-                            "event_name": "Media Content End",
-                            "custom_event_type": "media"
-                        }
-                    },
-                    "validator": {
-                        "type": "json_schema",
-                        "definition": {
-                            "properties": {
-                                "data": {
-                                    "additionalProperties": true,
-                                    "properties": {
-                                        "custom_event_type": {
-                                            "const": "media"
-                                        },
-                                        "event_name": {
-                                            "const": "Media Content End"
-                                        },
-                                        "custom_attributes": {
-                                            "additionalProperties": false,
-                                            "properties": {
-                                                "content_duration": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "-7030355303E972986971"
-                                                },
-                                                "content_type": {
-                                                    "const": "esse ut"
-                                                },
-                                                "content_id": {
-                                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                                    "const": "-865711.6863"
-                                                },
-                                                "content_title": {
-                                                    "const": "esse"
-                                                },
-                                                "media_session_id": {
-                                                    "const": "consequat"
-                                                },
-                                                "stream_type": {
-                                                    "const": "ut non ea deserunt"
-                                                }
-                                            },
-                                            "required": []
-                                        }
-                                    },
-                                    "required": [
-                                        "custom_event_type",
-                                        "event_name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
+                    "active_transformation_ids": null
                 },
                 {
                     "description": "User Attributes",
@@ -1035,37 +803,64 @@
                         "definition": {
                             "additionalProperties": false,
                             "properties": {
-                                "example attribute key": {
+                                "Test String User Attribute": {
                                     "description": "",
-                                    "const": "esse Excepteur sit ipsum"
+                                    "type": "string",
+                                    "const": "amet"
                                 },
-                                "$Age": {
+                                "Test Number User Attribute": {
                                     "description": "",
-                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                    "const": "961.138597"
+                                    "type": "number",
+                                    "const": -97192120.28716555
                                 },
-                                "$gender": {
+                                "Test Bool User Attribute": {
                                     "description": "",
-                                    "const": "aliquip enim id do"
+                                    "type": "boolean",
+                                    "const": false
                                 },
-                                "Achieved Level": {
+                                "Test Null User Attribute": {
                                     "description": "",
-                                    "pattern": "^-?\\d+(\\.\\d+)?([eE][+\\-]?\\d+)?$",
-                                    "const": "-33028890.365"
+                                    "type": "null"
                                 }
                             },
                             "required": []
                         }
-                    }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "User Identities",
+                    "match": {
+                        "type": "user_identities",
+                        "criteria": {}
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "email": {
+                                    "description": "",
+                                    "enum": [
+                                        "test@gmail.com"
+                                    ],
+                                    "format": "email",
+                                    "type": "string"
+                                },
+                                "customerid": {
+                                    "description": "",
+                                    "type": "number",
+                                    "const": 84950869.74387908
+                                }
+                            },
+                            "required": []
+                        }
+                    },
+                    "active_transformation_ids": null
                 }
             ],
-            "settings": {
-                "validation_actions": {
-                    "event": "allow",
-                    "event_attribute": "allow",
-                    "user_attribute": "allow"
-                }
-            }
+            "transformations": null,
+            "active_transformation_ids": null
         }
     }
 }

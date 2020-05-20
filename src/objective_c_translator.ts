@@ -106,7 +106,7 @@ export class MPObjectiveC implements MPTranslator {
         exampleJSON ? this.userAttributes(exampleJSON) : '';
 
     createUserIdentitiesSnippet = (exampleJSON: Dictionary) =>
-        exampleJSON ? this.userIdentities(exampleJSON['user_identities']) : '';
+        exampleJSON ? this.userIdentities(exampleJSON) : '';
 
     createProductActionSnippet = (exampleJSON: Dictionary) => {
         const { data } = exampleJSON;

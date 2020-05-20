@@ -2,163 +2,102 @@ export class Results {
     static readonly wholeObjC = `\
 // Data Plan Point 1
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"event name" type: MPEventTypeTransaction];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"A_String_Key"] = @"non";
-eventInfo[@"A Date Key"] = @"2006-12-23T04:29:08.365Z";
-eventInfo[@"A Number Key"] = @5.0906951716;
-eventInfo[@"A Bool Key"] = @true;
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomAttribution\" type: MPEventTypeOther];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 2
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Simple Event Name" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"SimpleKey"] = @"eu dolore aute";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomNavigation\" type: MPEventTypeNavigation];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 3
 // 
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"Launch"] = @"FaLse";
-
-[[MParticle sharedInstance] logScreen:@"Video Streams" eventInfo: eventInfo];
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomLocation\" type: MPEventTypeLocation];
+[[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 4
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Timed Event" type: MPEventTypeTransaction];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"EventLength"] = @"46815516954.4";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomSearch\" type: MPEventTypeSearch];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 5
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Simple Event" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"SimpleKey"] = @"labore ipsum irure";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomTransaction\" type: MPEventTypeTransaction];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 6
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"First Selection Time" type: MPEventTypeNavigation];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"title"] = @"nisi irure";
-eventInfo[@"EventLength"] = @"10";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomUserContent\" type: MPEventTypeUserContent];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 7
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Video Playback" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"title"] = @"nostrud est ut aute";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomUserPreference\" type: MPEventTypeUserPreference];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 8
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Video Changed Rate" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"Rate"] = @"-870743973.1e293828302";
-eventInfo[@"title"] = @"ea occaecat esse";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomSocial\" type: MPEventTypeSocial];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 9
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"play" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"content_id"] = @"223015.501";
-eventInfo[@"stream_type"] = @"amet reprehenderit in aute";
-eventInfo[@"media_session_id"] = @"o";
-eventInfo[@"content_duration"] = @"-440540155";
-eventInfo[@"content_title"] = @"laborum esse sunt officia";
-eventInfo[@"content_type"] = @"laborum voluptate ex";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomOther\" type: MPEventTypeOther];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 10
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Session Start" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"media_session_id"] = @"ut laboris";
-eventInfo[@"content_duration"] = @"-825205";
-eventInfo[@"content_type"] = @"ullamco et";
-eventInfo[@"content_title"] = @"consectetur velit magna commodo anim";
-eventInfo[@"stream_type"] = @"velit dolor Lorem elit officia";
-eventInfo[@"content_id"] = @"-082E+623365";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomUnknown\" type: MPEventTypeMedia];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 11
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Session End" type: MPEventTypeOther];
-NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"content_duration"] = @"13780778.38339081";
-eventInfo[@"stream_type"] = @"nisi Except";
-eventInfo[@"media_session_id"] = @"sunt id laborum sint pariatur";
-eventInfo[@"content_type"] = @"enim ut quis aliqua labore";
-eventInfo[@"content_title"] = @"elit ullamco sint voluptate";
-eventInfo[@"content_id"] = @"22006708.045";
-
-customEvent.customAttributes = eventInfo;
-
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomMedia\" type: MPEventTypeOther];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 
 // Data Plan Point 12
 // 
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@"Media Content End" type: MPEventTypeOther];
+[[MParticle sharedInstance] logScreen:@\"ScreenView\" eventInfo: nil];
+
+
+
+// Data Plan Point 13
+// A custom event with every type of Custom Attribute
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomAllAttributes\" type: MPEventTypeOther];
 NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"content_duration"] = @"-7030355303E972986971";
-eventInfo[@"content_type"] = @"esse ut";
-eventInfo[@"content_id"] = @"-865711.6863";
-eventInfo[@"content_title"] = @"esse";
-eventInfo[@"media_session_id"] = @"consequat";
-eventInfo[@"stream_type"] = @"ut non ea deserunt";
+eventInfo[@\"URI String Attribute\"] = @\"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\";
+eventInfo[@\"IPV6 String Attribute\"] = @\"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\";
+eventInfo[@\"IPV4 String Attribute\"] = @\"107.250.244.137\";
+eventInfo[@\"HostName String Attribute\"] = @\"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\";
+eventInfo[@\"Date String Attribute\"] = @\"1940-10-16\";
+eventInfo[@\"Time String Attribute\"] = @\"22:53:17.911Z\";
+eventInfo[@\"DateTime String Attribute\"] = @\"1963-08-06T12:16:22.823Z\";
+eventInfo[@\"Email String Attribute\"] = @\"test@gmail.com\";
+eventInfo[@\"Null Attribute\"] = [NSNull null];
+eventInfo[@\"Number Attribute\"] = @-74821511.11661537;
+eventInfo[@\"Boolean Attribute\"] = @true;
 
 customEvent.customAttributes = eventInfo;
 
@@ -166,12 +105,19 @@ customEvent.customAttributes = eventInfo;
 
 
 
-// Data Plan Point 13
+// Data Plan Point 14
 // User Attributes
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"example attribute key" value:@"esse Excepteur sit ipsum"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"$Age" value:@"961.138597"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"$gender" value:@"aliquip enim id do"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"Achieved Level" value:@"-33028890.365"];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test String User Attribute\" value:@\"amet\"];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test Number User Attribute\" value:@-97192120.28716555];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test Bool User Attribute\" value:@false];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test Null User Attribute\" value:[NSNull null]];
+
+
+
+// Data Plan Point 15
+// User Identities
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"email" value:@"test@gmail.com"];
+[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"customerid" value:@84950869.74387908];
 
 
 
@@ -180,164 +126,121 @@ customEvent.customAttributes = eventInfo;
     static readonly wholeSwift = `\
 // Data Plan Point 1
 // 
-let customEvent = MPEvent.init(name: "event name", type: .transaction)
-var eventInfo = [String: Any].init()
-eventInfo["A_String_Key"] = "non"
-eventInfo["A Date Key"] = "2006-12-23T04:29:08.365Z"
-eventInfo["A Number Key"] = 5.0906951716
-eventInfo["A Bool Key"] = true
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomAttribution\", type: .other)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 2
 // 
-let customEvent = MPEvent.init(name: "Simple Event Name", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["SimpleKey"] = "eu dolore aute"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomNavigation\", type: .navigation)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 3
 // 
-var eventInfo = [String: Any].init()
-eventInfo["Launch"] = "FaLse"
-MParticle.sharedInstance().logScreen("Video Streams", eventInfo: eventInfo)
+let customEvent = MPEvent.init(name: \"CustomLocation\", type: .location)
+MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 4
 // 
-let customEvent = MPEvent.init(name: "Timed Event", type: .transaction)
-var eventInfo = [String: Any].init()
-eventInfo["EventLength"] = "46815516954.4"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomSearch\", type: .search)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 5
 // 
-let customEvent = MPEvent.init(name: "Simple Event", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["SimpleKey"] = "labore ipsum irure"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomTransaction\", type: .transaction)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 6
 // 
-let customEvent = MPEvent.init(name: "First Selection Time", type: .navigation)
-var eventInfo = [String: Any].init()
-eventInfo["title"] = "nisi irure"
-eventInfo["EventLength"] = "10"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomUserContent\", type: .userContent)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 7
 // 
-let customEvent = MPEvent.init(name: "Video Playback", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["title"] = "nostrud est ut aute"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomUserPreference\", type: .userPreference)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 8
 // 
-let customEvent = MPEvent.init(name: "Video Changed Rate", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["Rate"] = "-870743973.1e293828302"
-eventInfo["title"] = "ea occaecat esse"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomSocial\", type: .social)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 9
 // 
-let customEvent = MPEvent.init(name: "play", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["content_id"] = "223015.501"
-eventInfo["stream_type"] = "amet reprehenderit in aute"
-eventInfo["media_session_id"] = "o"
-eventInfo["content_duration"] = "-440540155"
-eventInfo["content_title"] = "laborum esse sunt officia"
-eventInfo["content_type"] = "laborum voluptate ex"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomOther\", type: .other)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 10
 // 
-let customEvent = MPEvent.init(name: "Session Start", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["media_session_id"] = "ut laboris"
-eventInfo["content_duration"] = "-825205"
-eventInfo["content_type"] = "ullamco et"
-eventInfo["content_title"] = "consectetur velit magna commodo anim"
-eventInfo["stream_type"] = "velit dolor Lorem elit officia"
-eventInfo["content_id"] = "-082E+623365"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomUnknown\", type: .media)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 11
 // 
-let customEvent = MPEvent.init(name: "Session End", type: .other)
-var eventInfo = [String: Any].init()
-eventInfo["content_duration"] = "13780778.38339081"
-eventInfo["stream_type"] = "nisi Except"
-eventInfo["media_session_id"] = "sunt id laborum sint pariatur"
-eventInfo["content_type"] = "enim ut quis aliqua labore"
-eventInfo["content_title"] = "elit ullamco sint voluptate"
-eventInfo["content_id"] = "22006708.045"
-customEvent?.customAttributes = eventInfo
-
+let customEvent = MPEvent.init(name: \"CustomMedia\", type: .other)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
 // Data Plan Point 12
 // 
-let customEvent = MPEvent.init(name: "Media Content End", type: .other)
+MParticle.sharedInstance().logScreen(\"ScreenView\", eventInfo: nil)
+
+
+
+// Data Plan Point 13
+// A custom event with every type of Custom Attribute
+let customEvent = MPEvent.init(name: \"CustomAllAttributes\", type: .other)
 var eventInfo = [String: Any].init()
-eventInfo["content_duration"] = "-7030355303E972986971"
-eventInfo["content_type"] = "esse ut"
-eventInfo["content_id"] = "-865711.6863"
-eventInfo["content_title"] = "esse"
-eventInfo["media_session_id"] = "consequat"
-eventInfo["stream_type"] = "ut non ea deserunt"
+eventInfo[\"URI String Attribute\"] = \"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\"
+eventInfo[\"IPV6 String Attribute\"] = \"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\"
+eventInfo[\"IPV4 String Attribute\"] = \"107.250.244.137\"
+eventInfo[\"HostName String Attribute\"] = \"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\"
+eventInfo[\"Date String Attribute\"] = \"1940-10-16\"
+eventInfo[\"Time String Attribute\"] = \"22:53:17.911Z\"
+eventInfo[\"DateTime String Attribute\"] = \"1963-08-06T12:16:22.823Z\"
+eventInfo[\"Email String Attribute\"] = \"test@gmail.com\"
+eventInfo[\"Null Attribute\"] = NSNull.init()
+eventInfo[\"Number Attribute\"] = -74821511.11661537
+eventInfo[\"Boolean Attribute\"] = true
 customEvent?.customAttributes = eventInfo
 
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 
-// Data Plan Point 13
+// Data Plan Point 14
 // User Attributes
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute("example attribute key", value: "esse Excepteur sit ipsum")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute("$Age", value: "961.138597")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute("$gender", value: "aliquip enim id do")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute("Achieved Level", value: "-33028890.365")
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test String User Attribute\", value: \"amet\")
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Number User Attribute\", value: -97192120.28716555)
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Bool User Attribute\", value: false)
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Null User Attribute\", value: NSNull.init())
+
+
+
+// Data Plan Point 15
+// User Identities
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"email\", value: \"test@gmail.com\")
+MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"customerid\", value: 84950869.74387908)
 
 
 
@@ -346,155 +249,126 @@ MParticle.sharedInstance().identity.currentUser?.setUserAttribute("Achieved Leve
     static readonly wholeJava = `\
 // Data Plan Point 1
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("A_String_Key", "non");
-attributes.put("A Date Key", "2006-12-23T04:29:08.365Z");
-attributes.put("A Number Key", 5.0906951716);
-attributes.put("A Bool Key", true);
-MPEvent event = new MPEvent.Builder("event name", MParticle.EventType.Transaction)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomAttribution\", MParticle.EventType.Attribution)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 2
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("SimpleKey", "eu dolore aute");
-MPEvent event = new MPEvent.Builder("Simple Event Name", MParticle.EventType.Other)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomNavigation\", MParticle.EventType.Navigation)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 3
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("Launch", "FaLse");
-MParticle.getInstance().logScreen("Video Streams", attributes);
+MPEvent event = new MPEvent.Builder(\"CustomLocation\", MParticle.EventType.Location)
+    .build();
+MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 4
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("EventLength", "46815516954.4");
-MPEvent event = new MPEvent.Builder("Timed Event", MParticle.EventType.Transaction)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomSearch\", MParticle.EventType.Search)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 5
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("SimpleKey", "labore ipsum irure");
-MPEvent event = new MPEvent.Builder("Simple Event", MParticle.EventType.Other)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomTransaction\", MParticle.EventType.Transaction)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 6
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("title", "nisi irure");
-attributes.put("EventLength", "10");
-MPEvent event = new MPEvent.Builder("First Selection Time", MParticle.EventType.Navigation)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomUserContent\", MParticle.EventType.User_content)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 7
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("title", "nostrud est ut aute");
-MPEvent event = new MPEvent.Builder("Video Playback", MParticle.EventType.Other)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomUserPreference\", MParticle.EventType.User_preference)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 8
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("Rate", "-870743973.1e293828302");
-attributes.put("title", "ea occaecat esse");
-MPEvent event = new MPEvent.Builder("Video Changed Rate", MParticle.EventType.Other)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomSocial\", MParticle.EventType.Social)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 9
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("content_id", "223015.501");
-attributes.put("stream_type", "amet reprehenderit in aute");
-attributes.put("media_session_id", "o");
-attributes.put("content_duration", "-440540155");
-attributes.put("content_title", "laborum esse sunt officia");
-attributes.put("content_type", "laborum voluptate ex");
-MPEvent event = new MPEvent.Builder("play", MParticle.EventType.Media)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomOther\", MParticle.EventType.Other)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 10
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("media_session_id", "ut laboris");
-attributes.put("content_duration", "-825205");
-attributes.put("content_type", "ullamco et");
-attributes.put("content_title", "consectetur velit magna commodo anim");
-attributes.put("stream_type", "velit dolor Lorem elit officia");
-attributes.put("content_id", "-082E+623365");
-MPEvent event = new MPEvent.Builder("Session Start", MParticle.EventType.Media)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomUnknown\", MParticle.EventType.Unknown)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 11
 // 
-Map<String, String> attributes = new HashMap<>();
-attributes.put("content_duration", "13780778.38339081");
-attributes.put("stream_type", "nisi Except");
-attributes.put("media_session_id", "sunt id laborum sint pariatur");
-attributes.put("content_type", "enim ut quis aliqua labore");
-attributes.put("content_title", "elit ullamco sint voluptate");
-attributes.put("content_id", "22006708.045");
-MPEvent event = new MPEvent.Builder("Session End", MParticle.EventType.Media)
-    .customAttributes(attributes)
+MPEvent event = new MPEvent.Builder(\"CustomMedia\", MParticle.EventType.Media)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
 // Data Plan Point 12
 // 
+MParticle.getInstance().logScreen(\"ScreenView\");
+
+
+// Data Plan Point 13
+// A custom event with every type of Custom Attribute
 Map<String, String> attributes = new HashMap<>();
-attributes.put("content_duration", "-7030355303E972986971");
-attributes.put("content_type", "esse ut");
-attributes.put("content_id", "-865711.6863");
-attributes.put("content_title", "esse");
-attributes.put("media_session_id", "consequat");
-attributes.put("stream_type", "ut non ea deserunt");
-MPEvent event = new MPEvent.Builder("Media Content End", MParticle.EventType.Media)
+attributes.put(\"URI String Attribute\", \"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\");
+attributes.put(\"IPV6 String Attribute\", \"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\");
+attributes.put(\"IPV4 String Attribute\", \"107.250.244.137\");
+attributes.put(\"HostName String Attribute\", \"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\");
+attributes.put(\"Date String Attribute\", \"1940-10-16\");
+attributes.put(\"Time String Attribute\", \"22:53:17.911Z\");
+attributes.put(\"DateTime String Attribute\", \"1963-08-06T12:16:22.823Z\");
+attributes.put(\"Email String Attribute\", \"test@gmail.com\");
+attributes.put(\"Null Attribute\", null);
+attributes.put(\"Number Attribute\", -74821511.11661537);
+attributes.put(\"Boolean Attribute\", true);
+MPEvent event = new MPEvent.Builder(\"CustomAllAttributes\", MParticle.EventType.Other)
     .customAttributes(attributes)
     .build();
 MParticle.getInstance().logEvent(event);
 
 
-// Data Plan Point 13
+// Data Plan Point 14
 // User Attributes
 Map<String, String> attributes = new HashMap<>();
-attributes.put("example attribute key", "esse Excepteur sit ipsum");
-attributes.put("$Age", "961.138597");
-attributes.put("$gender", "aliquip enim id do");
-attributes.put("Achieved Level", "-33028890.365");
+attributes.put(\"Test String User Attribute\", \"amet\");
+attributes.put(\"Test Number User Attribute\", -97192120.28716555);
+attributes.put(\"Test Bool User Attribute\", false);
+attributes.put(\"Test Null User Attribute\", null);
 MParticleUser user = MParticle.getInstance().Identity().getCurrentUser();
 user.setUserAttributes(attributes);
+
+
+// Data Plan Point 15
+// User Identities
+Map<MParticle.IdentityType, String> userIdentities = new HashMap<>();
+userIdentities.put(MParticle.IdentityType.Email, \"test@gmail.com\");
+userIdentities.put(MParticle.IdentityType.Customerid, 84950869.74387908);
+IdentityApiRequest request = IdentityApiRequest.withEmptyUser()
+    .userIdentities(userIdentities)
+    .build();
+MParticle.getInstance().Identity().identify(request);
 
 
 `;
@@ -502,168 +376,129 @@ user.setUserAttributes(attributes);
     static readonly wholeKotlin = `\
 // Data Plan Point 1
 // 
-val attributes = mapOf(
-    "A_String_Key" to "non",
-    "A Date Key" to "2006-12-23T04:29:08.365Z",
-    "A Number Key" to 5.0906951716,
-    "A Bool Key" to true
-)
-val event = MPEvent.Builder("event name", MParticle.EventType.Transaction)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomAttribution\", MParticle.EventType.Attribution)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 2
 // 
-val attributes = mapOf(
-    "SimpleKey" to "eu dolore aute"
-)
-val event = MPEvent.Builder("Simple Event Name", MParticle.EventType.Other)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomNavigation\", MParticle.EventType.Navigation)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 3
 // 
-val attributes = mapOf(
-    "Launch" to "FaLse"
-)
-MParticle.getInstance()?.logScreen("Video Streams", attributes)
+val event = MPEvent.Builder(\"CustomLocation\", MParticle.EventType.Location)
+    .build()
+MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 4
 // 
-val attributes = mapOf(
-    "EventLength" to "46815516954.4"
-)
-val event = MPEvent.Builder("Timed Event", MParticle.EventType.Transaction)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomSearch\", MParticle.EventType.Search)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 5
 // 
-val attributes = mapOf(
-    "SimpleKey" to "labore ipsum irure"
-)
-val event = MPEvent.Builder("Simple Event", MParticle.EventType.Other)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomTransaction\", MParticle.EventType.Transaction)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 6
 // 
-val attributes = mapOf(
-    "title" to "nisi irure",
-    "EventLength" to "10"
-)
-val event = MPEvent.Builder("First Selection Time", MParticle.EventType.Navigation)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomUserContent\", MParticle.EventType.User_content)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 7
 // 
-val attributes = mapOf(
-    "title" to "nostrud est ut aute"
-)
-val event = MPEvent.Builder("Video Playback", MParticle.EventType.Other)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomUserPreference\", MParticle.EventType.User_preference)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 8
 // 
-val attributes = mapOf(
-    "Rate" to "-870743973.1e293828302",
-    "title" to "ea occaecat esse"
-)
-val event = MPEvent.Builder("Video Changed Rate", MParticle.EventType.Other)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomSocial\", MParticle.EventType.Social)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 9
 // 
-val attributes = mapOf(
-    "content_id" to "223015.501",
-    "stream_type" to "amet reprehenderit in aute",
-    "media_session_id" to "o",
-    "content_duration" to "-440540155",
-    "content_title" to "laborum esse sunt officia",
-    "content_type" to "laborum voluptate ex"
-)
-val event = MPEvent.Builder("play", MParticle.EventType.Media)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomOther\", MParticle.EventType.Other)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 10
 // 
-val attributes = mapOf(
-    "media_session_id" to "ut laboris",
-    "content_duration" to "-825205",
-    "content_type" to "ullamco et",
-    "content_title" to "consectetur velit magna commodo anim",
-    "stream_type" to "velit dolor Lorem elit officia",
-    "content_id" to "-082E+623365"
-)
-val event = MPEvent.Builder("Session Start", MParticle.EventType.Media)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomUnknown\", MParticle.EventType.Unknown)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 11
 // 
-val attributes = mapOf(
-    "content_duration" to "13780778.38339081",
-    "stream_type" to "nisi Except",
-    "media_session_id" to "sunt id laborum sint pariatur",
-    "content_type" to "enim ut quis aliqua labore",
-    "content_title" to "elit ullamco sint voluptate",
-    "content_id" to "22006708.045"
-)
-val event = MPEvent.Builder("Session End", MParticle.EventType.Media)
-    .customAttributes(attributes)
+val event = MPEvent.Builder(\"CustomMedia\", MParticle.EventType.Media)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
 // Data Plan Point 12
 // 
+MParticle.getInstance()?.logScreen(\"ScreenView\")
+
+
+// Data Plan Point 13
+// A custom event with every type of Custom Attribute
 val attributes = mapOf(
-    "content_duration" to "-7030355303E972986971",
-    "content_type" to "esse ut",
-    "content_id" to "-865711.6863",
-    "content_title" to "esse",
-    "media_session_id" to "consequat",
-    "stream_type" to "ut non ea deserunt"
+    \"URI String Attribute\" to \"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\",
+    \"IPV6 String Attribute\" to \"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\",
+    \"IPV4 String Attribute\" to \"107.250.244.137\",
+    \"HostName String Attribute\" to \"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\",
+    \"Date String Attribute\" to \"1940-10-16\",
+    \"Time String Attribute\" to \"22:53:17.911Z\",
+    \"DateTime String Attribute\" to \"1963-08-06T12:16:22.823Z\",
+    \"Email String Attribute\" to \"test@gmail.com\",
+    \"Null Attribute\" to null,
+    \"Number Attribute\" to -74821511.11661537,
+    \"Boolean Attribute\" to true
 )
-val event = MPEvent.Builder("Media Content End", MParticle.EventType.Media)
+val event = MPEvent.Builder(\"CustomAllAttributes\", MParticle.EventType.Other)
     .customAttributes(attributes)
     .build()
 MParticle.getInstance()?.logEvent(event)
 
 
-// Data Plan Point 13
+// Data Plan Point 14
 // User Attributes
 val attributes = mapOf(
-    "example attribute key" to "esse Excepteur sit ipsum",
-    "$Age" to "961.138597",
-    "$gender" to "aliquip enim id do",
-    "Achieved Level" to "-33028890.365"
+    \"Test String User Attribute\" to \"amet\",
+    \"Test Number User Attribute\" to -97192120.28716555,
+    \"Test Bool User Attribute\" to false,
+    \"Test Null User Attribute\" to null
 )
 val user = MParticle.getInstance()?.Identity()?.currentUser
 user?.userAttributes = attributes
+
+
+// Data Plan Point 15
+// User Identities
+val userIdentities = mapOf(
+    MParticle.IdentityType.Email to \"test@gmail.com\",
+    MParticle.IdentityType.Customerid to 84950869.74387908
+)
+val request = IdentityApiRequest.withEmptyUser()
+    .userIdentities(userIdentities)
+    .build()
+MParticle.getInstance()?.Identity()?.identify(request)
 
 
 `;
@@ -671,131 +506,93 @@ user?.userAttributes = attributes
     static readonly wholeJS = `\
 // Data Plan Point 1
 // 
-let customAttributes = {
-    A_String_Key: "non",
-    A Date Key: "2006-12-23T04:29:08.365Z",
-    A Number Key: 5.0906951716,
-    A Bool Key: true,
-};
-mParticle.logEvent('event name', mParticle.EventType.Transaction, customAttributes)
+mParticle.logEvent('CustomAttribution', mParticle.EventType.Other)
 
 
 // Data Plan Point 2
 // 
-let customAttributes = {
-    SimpleKey: "eu dolore aute",
-};
-mParticle.logEvent('Simple Event Name', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomNavigation', mParticle.EventType.Navigation)
 
 
 // Data Plan Point 3
 // 
-let customAttributes = {
-    Launch: "FaLse",
-};
-mParticle.logPageView('Video Streams', customAttributes)
+mParticle.logEvent('CustomLocation', mParticle.EventType.Location)
 
 
 // Data Plan Point 4
 // 
-let customAttributes = {
-    EventLength: "46815516954.4",
-};
-mParticle.logEvent('Timed Event', mParticle.EventType.Transaction, customAttributes)
+mParticle.logEvent('CustomSearch', mParticle.EventType.Search)
 
 
 // Data Plan Point 5
 // 
-let customAttributes = {
-    SimpleKey: "labore ipsum irure",
-};
-mParticle.logEvent('Simple Event', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomTransaction', mParticle.EventType.Transaction)
 
 
 // Data Plan Point 6
 // 
-let customAttributes = {
-    title: "nisi irure",
-    EventLength: "10",
-};
-mParticle.logEvent('First Selection Time', mParticle.EventType.Navigation, customAttributes)
+mParticle.logEvent('CustomUserContent', mParticle.EventType.UserContent)
 
 
 // Data Plan Point 7
 // 
-let customAttributes = {
-    title: "nostrud est ut aute",
-};
-mParticle.logEvent('Video Playback', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomUserPreference', mParticle.EventType.UserPreference)
 
 
 // Data Plan Point 8
 // 
-let customAttributes = {
-    Rate: "-870743973.1e293828302",
-    title: "ea occaecat esse",
-};
-mParticle.logEvent('Video Changed Rate', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomSocial', mParticle.EventType.Social)
 
 
 // Data Plan Point 9
 // 
-let customAttributes = {
-    content_id: "223015.501",
-    stream_type: "amet reprehenderit in aute",
-    media_session_id: "o",
-    content_duration: "-440540155",
-    content_title: "laborum esse sunt officia",
-    content_type: "laborum voluptate ex",
-};
-mParticle.logEvent('play', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomOther', mParticle.EventType.Other)
 
 
 // Data Plan Point 10
 // 
-let customAttributes = {
-    media_session_id: "ut laboris",
-    content_duration: "-825205",
-    content_type: "ullamco et",
-    content_title: "consectetur velit magna commodo anim",
-    stream_type: "velit dolor Lorem elit officia",
-    content_id: "-082E+623365",
-};
-mParticle.logEvent('Session Start', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomUnknown', mParticle.EventType.Media)
 
 
 // Data Plan Point 11
 // 
-let customAttributes = {
-    content_duration: "13780778.38339081",
-    stream_type: "nisi Except",
-    media_session_id: "sunt id laborum sint pariatur",
-    content_type: "enim ut quis aliqua labore",
-    content_title: "elit ullamco sint voluptate",
-    content_id: "22006708.045",
-};
-mParticle.logEvent('Session End', mParticle.EventType.Other, customAttributes)
+mParticle.logEvent('CustomMedia', mParticle.EventType.Other)
 
 
 // Data Plan Point 12
 // 
-let customAttributes = {
-    content_duration: "-7030355303E972986971",
-    content_type: "esse ut",
-    content_id: "-865711.6863",
-    content_title: "esse",
-    media_session_id: "consequat",
-    stream_type: "ut non ea deserunt",
-};
-mParticle.logEvent('Media Content End', mParticle.EventType.Other, customAttributes)
+mParticle.logPageView('ScreenView')
 
 
 // Data Plan Point 13
+// A custom event with every type of Custom Attribute
+let customAttributes = {
+    URI String Attribute: \"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\",
+    IPV6 String Attribute: \"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\",
+    IPV4 String Attribute: \"107.250.244.137\",
+    HostName String Attribute: \"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\",
+    Date String Attribute: \"1940-10-16\",
+    Time String Attribute: \"22:53:17.911Z\",
+    DateTime String Attribute: \"1963-08-06T12:16:22.823Z\",
+    Email String Attribute: \"test@gmail.com\",
+    Null Attribute: null,
+    Number Attribute: -74821511.11661537,
+    Boolean Attribute: true,
+};
+mParticle.logEvent('CustomAllAttributes', mParticle.EventType.Other, customAttributes)
+
+
+// Data Plan Point 14
 // User Attributes
-mParticle.Identity.getCurrentUser().setUserAttribute("example attribute key", "esse Excepteur sit ipsum")
-mParticle.Identity.getCurrentUser().setUserAttribute("$Age", "961.138597")
-mParticle.Identity.getCurrentUser().setUserAttribute("$gender", "aliquip enim id do")
-mParticle.Identity.getCurrentUser().setUserAttribute("Achieved Level", "-33028890.365")
+mParticle.Identity.getCurrentUser().setUserAttribute(\"Test String User Attribute\", \"amet\")
+mParticle.Identity.getCurrentUser().setUserAttribute(\"Test Number User Attribute\", -97192120.28716555)
+mParticle.Identity.getCurrentUser().setUserAttribute(\"Test Bool User Attribute\", false)
+mParticle.Identity.getCurrentUser().setUserAttribute(\"Test Null User Attribute\", null)
+
+
+
+// Data Plan Point 15
+// User Identities
 
 
 
@@ -804,260 +601,253 @@ mParticle.Identity.getCurrentUser().setUserAttribute("Achieved Level", "-3302889
     static readonly wholePython = `\
 // Data Plan Point 1
 // 
-        
 batch = mparticle.Batch()
 batch.environment = 'development'
 
-event = mparticle.AppEvent('event name', 'transaction')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
+event = mparticle.AppEvent('CustomAttribution', 'default')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
 
 
 // Data Plan Point 2
 // 
-        
 batch = mparticle.Batch()
 batch.environment = 'development'
 
-event = mparticle.AppEvent('Simple Event Name', 'other')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
+event = mparticle.AppEvent('CustomNavigation', 'navigation')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
 
 
 // Data Plan Point 3
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomLocation', 'location')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 4
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomSearch', 'search')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 5
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomTransaction', 'transaction')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 6
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomUserContent', 'user_content')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 7
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomUserPreference', 'user_preference')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 8
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomSocial', 'social')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 9
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomOther', 'other')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 10
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomUnknown', 'unknown')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 11
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+event = mparticle.AppEvent('CustomMedia', 'default')
+event.timestamp_unixtime_ms = example_timestampbatch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 12
 // 
 from mparticle.models.screen_view_event import ScreenViewEvent
 
 batch = mparticle.Batch()
 batch.environment = 'development'
 
-event = mparticle.models.screen_view_event.ScreenViewEvent()
-        
-batch.events = [event]
+event = mparticle.models.screen_view_event.ScreenViewEvent()batch.events = [event]
 
-try: 
+try:
     api_instance.upload_events(batch)
     # you can also send multiple batches at a time to decrease the amount of network calls
     #api_instance.bulk_upload_events([batch, batch])
 except mparticle.rest.ApiException as e:
-    print "Exception while calling mParticle: %s\n" % e
-        
+    print \"Exception while calling mParticle: %s
+\" % e
 
-
-
-// Data Plan Point 4
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Timed Event', 'transaction')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 5
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Simple Event', 'other')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 6
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('First Selection Time', 'navigation')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 7
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Video Playback', 'other')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 8
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Video Changed Rate', 'other')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 9
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('play', 'default')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 10
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Session Start', 'default')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 11
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Session End', 'default')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
-
-
-// Data Plan Point 12
-// 
-        
-batch = mparticle.Batch()
-batch.environment = 'development'
-
-event = mparticle.AppEvent('Media Content End', 'default')
-event.timestamp_unixtime_ms = example_timestamp
-        
-        batch.events = [event]
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
 
 
 // Data Plan Point 13
-// User Attributes
-        
+// A custom event with every type of Custom Attribute
 batch = mparticle.Batch()
 batch.environment = 'development'
 
-        
-        
-        try: 
-            api_instance.upload_events(batch)
-            # you can also send multiple batches at a time to decrease the amount of network calls
-            #api_instance.bulk_upload_events([batch, batch])
-        except mparticle.rest.ApiException as e:
-            print "Exception while calling mParticle: %s\n" % e
-                
+event = mparticle.AppEvent('CustomAllAttributes', 'other')
+event.timestamp_unixtime_ms = example_timestamp
+batch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 14
+// User Attributes
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
+
+
+// Data Plan Point 15
+// User Identities
+batch = mparticle.Batch()
+batch.environment = 'development'
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print \"Exception while calling mParticle: %s
+\" % e
 
 
 `;

@@ -2,7 +2,6 @@
 import { MPSnippets } from '../../src/mpSnippets';
 import * as fixtures from '../fixtures/sample_datapoints.json'
 import { Language } from '../../src/language';
-import { DataPlanPoint, DataPlanValidator, DataPlanValidatorType, DataPlanMatch, DataPlanMatchType } from '@mparticle/data-planning-models';
 import * as fs from 'fs';
 
 function execShellCommand(cmd: any) {
@@ -26,54 +25,21 @@ describe('Swift Generation ', () => {
     }, 30 * 1000);
 
     it('Custom Event should be validated', async () => {
-        const match: DataPlanMatch = { type: DataPlanMatchType.CustomEvent };
-        const dataPlanPoint: DataPlanPoint = {};
-        dataPlanPoint.match = match;
+        const locationResult = MPSnippets.createSnippet(fixtures.custom_event.location, Language.Swift);
 
-        const locationSchema = fixtures.custom_event.location;
-        const locationValidator: DataPlanValidator = { definition: locationSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = locationValidator;
-        const locationResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const transactionResult = MPSnippets.createSnippet(fixtures.custom_event.transaction, Language.Swift);
 
-        const transactionSchema = fixtures.custom_event.transaction;
-        const transactionValidator: DataPlanValidator = { definition: transactionSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = transactionValidator;
-        const transactionResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const userContentResult = MPSnippets.createSnippet(fixtures.custom_event.user_content, Language.Swift);
 
-        const userContentSchema = fixtures.custom_event.user_content;
-        const userContentValidator: DataPlanValidator = { definition: userContentSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = userContentValidator;
-        const userContentResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const userPreferenceResult = MPSnippets.createSnippet(fixtures.custom_event.user_preference, Language.Swift);
 
-        const userPreferenceSchema = fixtures.custom_event.user_preference;
-        const userPreferenceValidator: DataPlanValidator = { definition: userPreferenceSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = userPreferenceValidator;
-        const userPreferenceResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const socialResult = MPSnippets.createSnippet(fixtures.custom_event.social, Language.Swift);
 
-        const socialSchema = fixtures.custom_event.social;
-        const socialValidator: DataPlanValidator = { definition: socialSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = socialValidator;
-        const socialResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const otherResult = MPSnippets.createSnippet(fixtures.custom_event.other, Language.Swift);
 
-        const otherSchema = fixtures.custom_event.other;
-        const otherValidator: DataPlanValidator = { definition: otherSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = otherValidator;
-        const otherResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const unknownResult = MPSnippets.createSnippet(fixtures.custom_event.unknown, Language.Swift);
 
-        const unknownSchema = fixtures.custom_event.unknown;
-        const unknownValidator: DataPlanValidator = { definition: unknownSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = unknownValidator;
-        const unknownResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
-
-        const navigationSchema = fixtures.custom_event.navigation;
-        const navigationValidator: DataPlanValidator = { definition: navigationSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = navigationValidator;
-        const navigationResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
-
-        const searchSchema = fixtures.custom_event.search;
-        const searchValidator: DataPlanValidator = { definition: searchSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = searchValidator;
-        const searchResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const navigationResult = MPSnippets.createSnippet(fixtures.custom_event.navigation, Language.Swift);
 
         const fixtureClass = `import UIKit\nimport mParticle_Apple_SDK\n\nclass Snippets: NSObject {\n
             func testLocation() {\n ${locationResult} \n}\n\n
@@ -84,7 +50,6 @@ describe('Swift Generation ', () => {
             func testOther() {\n ${otherResult} \n}\n\n
             func testUnknown() {\n ${unknownResult} \n}\n\n
             func testNaviation() {\n ${navigationResult} \n}\n\n
-            func testSearch() {\n ${searchResult} \n}\n
         }`;
 
         fs.writeFileSync('./test/swift/Swift_App/Swift_App/Snippets.swift', fixtureClass);
@@ -94,14 +59,7 @@ describe('Swift Generation ', () => {
     }, 30 * 1000);
 
     it('User Attribute Events should be validated', async () => {
-        const match: DataPlanMatch = { type: DataPlanMatchType.UserAttributes };
-        const dataPlanPoint: DataPlanPoint = {};
-        dataPlanPoint.match = match;
-
-        const firstSchema = fixtures.user_attribute;
-        const firstValidator: DataPlanValidator = { definition: firstSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = firstValidator;
-        const firstResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const firstResult = MPSnippets.createSnippet(fixtures.user_attribute, Language.Swift);
 
         const fixtureClass = `import UIKit\nimport mParticle_Apple_SDK\n\nclass Snippets: NSObject {\n
             func testFirst() { \n ${firstResult} \n }\n
@@ -113,23 +71,10 @@ describe('Swift Generation ', () => {
     }, 30 * 1000);
 
     it('ScreenView Events should be validated', async () => {
-        const match: DataPlanMatch = { type: DataPlanMatchType.ScreenView };
-        const dataPlanPoint: DataPlanPoint = {};
-        dataPlanPoint.match = match;
-
-        const firstSchema = fixtures.screen_view.first;
-        const firstValidator: DataPlanValidator = { definition: firstSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = firstValidator;
-        const firstResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
-
-        const secondSchema = fixtures.screen_view.second;
-        const secondValidator: DataPlanValidator = { definition: secondSchema, type: DataPlanValidatorType.JSONSchema };
-        dataPlanPoint.validator = secondValidator;
-        const secondResult = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
+        const firstResult = MPSnippets.createSnippet(fixtures.screen_view, Language.Swift);
 
         const fixtureClass = `import UIKit\nimport mParticle_Apple_SDK\n\nclass Snippets: NSObject {\n
             func testFirst() { \n ${firstResult} \n}\n\n
-            func testSecond() { \n ${secondResult} \n}\n
         }`;
 
         fs.writeFileSync('./test/swift/Swift_App/Swift_App/Snippets.swift', fixtureClass);

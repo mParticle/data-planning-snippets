@@ -8,13 +8,4 @@
  }
 
 
-        - (void)testSecond { 
- NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
-eventInfo[@"Launch"] = @true;
-
-[[MParticle sharedInstance] logScreen:@"Video Streams" eventInfo: eventInfo];
- 
- }
-
-
         @end

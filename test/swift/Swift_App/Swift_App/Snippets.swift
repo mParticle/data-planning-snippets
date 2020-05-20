@@ -9,11 +9,4 @@ class Snippets: NSObject {
 }
 
 
-            func testSecond() { 
- var eventInfo = [String: Any].init()
-eventInfo["Launch"] = true
-MParticle.sharedInstance().logScreen("Video Streams", eventInfo: eventInfo)
- 
-}
-
         }

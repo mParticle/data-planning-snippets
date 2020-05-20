@@ -140,7 +140,7 @@ export class MPSwift implements MPTranslator {
         exampleJSON ? this.userAttributes(exampleJSON) : '';
 
     createUserIdentitiesSnippet = (exampleJSON: Dictionary) =>
-        exampleJSON ? this.userIdentities(exampleJSON['user_identities']) : '';
+        exampleJSON ? this.userIdentities(exampleJSON) : '';
 
     createProductActionSnippet = ({ data }: Dictionary) => `\
 let product = MPProduct.init(name: "${data['product_name']}", sku: "${data['product_sku']}", quantity: ${data['product_quantity']}, price: ${data['product_price']})

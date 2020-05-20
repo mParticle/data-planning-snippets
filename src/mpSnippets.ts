@@ -1,7 +1,7 @@
 // tslint:disable: max-line-length
 import { MPTranslator } from './translator';
 import jsf from 'json-schema-faker';
-import { DataPlanPoint, DataPlanValidator, DataPlanMatch, DataPlanMatchType, DataPlanValidatorType } from '@mparticle/data-planning-models';
+import { DataPlanMatchType, DataPlanValidatorType } from '@mparticle/data-planning-models';
 import { MPObjectiveC } from './objective_c_translator';
 import { MPSwift } from './swift_translator';
 import { MPJavaScript } from './javascript_translator';
@@ -11,6 +11,7 @@ import { JavaDecorator } from './language-decorators/java_decorator';
 import { Language, Dictionary } from './language';
 import { MPJavaEvents } from './translators/java_events_translator';
 import { MPPython } from './python_translator';
+import { print } from 'util';
 
 export class MPSnippets {
     static translateDataPlanJSON(
@@ -20,22 +21,15 @@ export class MPSnippets {
         var allExamples = `// The following is example code for every event in your Data Plan
 
 `;
-        const dataPlanPointArray = dataPlanJSON.version_document.data_points as [DataPlanPoint];
+        const dataPlanPointArray = dataPlanJSON.version_document.data_points as [Dictionary];
 
-        allExamples = dataPlanPointArray.map((point: DataPlanPoint, index: number) => {
-            if (point.match && point.validator) {
+        allExamples = dataPlanPointArray.map((point: Dictionary, index: number) => {
+            if (point.match?.criteria && point.validator) {
                 var description: string = "";
                 if (point.description) {
                     description = point.description;
                 }
-                const matchType: DataPlanMatchType = point.match.type;
-                const jsonSchema: any = point.validator.definition;
-                const validatorType: DataPlanValidatorType = point.validator.type;
-
-                const validator: DataPlanValidator = { definition: jsonSchema, type: validatorType };
-                const match: DataPlanMatch = { type: matchType };
-                const dataPlanPoint: DataPlanPoint = { validator, match };
-                const resultString = MPSnippets.createSnippet(dataPlanPoint, language);
+                const resultString = MPSnippets.createSnippet(point, language);
 
                 return MPSnippets.getDataPlanPointString(description, resultString, index);
             }
@@ -64,12 +58,18 @@ ${resultString}
      * @category Advertising
      */
     static createSnippet(
-        dataPlanPoint: DataPlanPoint,
+        dataPlanPoint: Dictionary,
         language: Language
     ): string {
         const validatorJSON = dataPlanPoint?.validator?.definition;
+
+        for (var key in dataPlanPoint?.match?.criteria) {
+            validatorJSON.properties.data.properties[key] = dataPlanPoint?.match?.criteria[key];
+        }
+
         jsf.option('alwaysFakeOptionals', true);
         const exampleJSON = jsf.generate(validatorJSON) as Dictionary;
+
         if (language === Language.JSON) {
             return JSON.stringify(exampleJSON);
         }
