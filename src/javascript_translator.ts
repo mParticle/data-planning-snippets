@@ -98,17 +98,21 @@ export class MPJavaScript implements MPTranslator {
     createUserIdentitiesSnippet = (exampleJSON: Dictionary) =>
         exampleJSON ? this.userIdentities(exampleJSON['user_identities']) : '';
 
-    // TODO: not yet supported
     createProductActionSnippet = ({ data }: Dictionary) => `\
-        let product = mParticle.eCommerce.createProduct('${data['product_name']}','${data['product_sku']}, ${data['product_price']}, ${data['product_quantity']})
-        mParticle.eCommerce.logProductAction('mParticle.ProductAction.${data['product_action']}', [product], attrs)
+        let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
+        mParticle.eCommerce.logProductAction('mParticle.ProductAction.${data['action']}', [product], attrs)
         `;
 
-    // TODO: not yet supported
-    createProductImpressionSnippet = ({ data }: Dictionary) => `\
-    let product = mParticle.eCommerce.createProduct('${data['product_name']}','${data['product_sku']}, ${data['product_price']}, ${data['product_quantity']})
+    createPromotionActionSnippet = (exampleJSON: Dictionary) => {
+        const { data } = exampleJSON;
 
-    let commerceEvent = MPCommerceEvent.init(impressionName: "${data['impression_name']}", product: product)
+        return `Not currently supported by Javascript`;
+    };
+
+    createProductImpressionSnippet = ({ data }: Dictionary) => `\
+    let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
+
+    let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", product: product)
     MParticle.sharedInstance().logEvent(commerceEvent)\n`;
 
     private customAttributesLines(

@@ -371,6 +371,159 @@
         },
         "active_transformation_ids": null
     },
+    "commerce_events": {
+        "product_action": {
+            "description": "",
+            "match": {
+                "type": "product_action",
+                "criteria": {
+                    "action": "add_to_cart"
+                }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {
+                                "custom_attributes": {
+                                    "additionalProperties": false,
+                                    "description": "",
+                                    "properties": {
+                                        "session_id": {
+                                            "description": "",
+                                            "enum": [
+                                                "12345"
+                                            ],
+                                            "type": "number"
+                                        },
+                                        "canonical_name": {
+                                            "description": "",
+                                            "enum": [
+                                                "Slurm"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "is_main_thread": {
+                                            "description": "",
+                                            "type": "boolean",
+                                            "const": true
+                                        }
+                                    },
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
+        },
+        "promotion_action": {
+            "description": "",
+            "match": {
+                "type": "promotion_action",
+                "criteria": {
+                    "action": "view"
+                }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {
+                                "custom_attributes": {
+                                    "additionalProperties": false,
+                                    "description": "",
+                                    "properties": {
+                                        "session_id": {
+                                            "description": "",
+                                            "enum": [
+                                                "12345"
+                                            ],
+                                            "type": "number"
+                                        },
+                                        "canonical_name": {
+                                            "description": "",
+                                            "enum": [
+                                                "Slurm"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "is_main_thread": {
+                                            "description": "",
+                                            "type": "boolean",
+                                            "const": true
+                                        }
+                                    },
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
+        },
+        "product_impression": {
+            "description": "",
+            "match": {
+                "type": "product_impression",
+                "criteria": {}
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {
+                                "custom_attributes": {
+                                    "additionalProperties": false,
+                                    "description": "",
+                                    "properties": {
+                                        "session_id": {
+                                            "description": "",
+                                            "enum": [
+                                                "12345"
+                                            ],
+                                            "type": "number"
+                                        },
+                                        "canonical_name": {
+                                            "description": "",
+                                            "enum": [
+                                                "Slurm"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "is_main_thread": {
+                                            "description": "",
+                                            "type": "boolean",
+                                            "const": true
+                                        }
+                                    },
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
+        }
+    },
     "whole_data_plan": {
         "version": 1,
         "data_plan_id": "present_plan",
@@ -854,6 +1007,157 @@
                                 }
                             },
                             "required": []
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "product_action",
+                        "criteria": {
+                            "action": "add_to_cart"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "description": "",
+                                            "properties": {
+                                                "session_id": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "12345"
+                                                    ],
+                                                    "type": "number"
+                                                },
+                                                "canonical_name": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "Slurm"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "is_main_thread": {
+                                                    "description": "",
+                                                    "type": "boolean",
+                                                    "const": true
+                                                }
+                                            },
+                                            "required": [],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "promotion_action",
+                        "criteria": {
+                            "action": "view"
+                        }
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "description": "",
+                                            "properties": {
+                                                "session_id": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "12345"
+                                                    ],
+                                                    "type": "number"
+                                                },
+                                                "canonical_name": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "Slurm"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "is_main_thread": {
+                                                    "description": "",
+                                                    "type": "boolean",
+                                                    "const": true
+                                                }
+                                            },
+                                            "required": [],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "active_transformation_ids": null
+                },
+                {
+                    "description": "",
+                    "match": {
+                        "type": "product_impression",
+                        "criteria": {}
+                    },
+                    "validator": {
+                        "type": "json_schema",
+                        "definition": {
+                            "properties": {
+                                "data": {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "custom_attributes": {
+                                            "additionalProperties": false,
+                                            "description": "",
+                                            "properties": {
+                                                "session_id": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "12345"
+                                                    ],
+                                                    "type": "number"
+                                                },
+                                                "canonical_name": {
+                                                    "description": "",
+                                                    "enum": [
+                                                        "Slurm"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "is_main_thread": {
+                                                    "description": "",
+                                                    "type": "boolean",
+                                                    "const": true
+                                                }
+                                            },
+                                            "required": [],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [],
+                                    "type": "object"
+                                }
+                            }
                         }
                     },
                     "active_transformation_ids": null

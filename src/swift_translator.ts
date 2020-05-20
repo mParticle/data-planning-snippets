@@ -142,16 +142,98 @@ export class MPSwift implements MPTranslator {
     createUserIdentitiesSnippet = (exampleJSON: Dictionary) =>
         exampleJSON ? this.userIdentities(exampleJSON) : '';
 
-    createProductActionSnippet = ({ data }: Dictionary) => `\
-let product = MPProduct.init(name: "${data['product_name']}", sku: "${data['product_sku']}", quantity: ${data['product_quantity']}, price: ${data['product_price']})
-let commerceEvent = MPCommerceEvent.init(action: ${data['product_action']}', product: product)
-MParticle.sharedInstance().logEvent(commerceEvent)
-`;
+    createProductActionSnippet = ({ data }: Dictionary) => {
+        let actionString = data['product_action'] as string;
+        actionString = this.commerceEventActionEnum(actionString);
 
-    createProductImpressionSnippet = ({ data }: Dictionary) => `\
-let product = MPProduct.init(name: "${data['product_name']}", sku: "${data['product_sku']}", quantity: ${data['product_quantity']}, price: ${data['product_price']})
-let commerceEvent = MPCommerceEvent.init(impressionName: "${data['impression_name']}", product: product)
-MParticle.sharedInstance().logEvent(commerceEvent)\n`;
+        let returnString = `\
+let product = MPProduct.init(name: "productName", sku: "productId", quantity: 1, price: 19.99)
+let commerceEvent = MPCommerceEvent.init(action: ${actionString}, product: product)
+`
+        if (data['custom_attributes']) {
+            returnString =
+                returnString +
+                this.customAttributesLines(data['custom_attributes']);
+            returnString =
+                returnString + 'commerceEvent.customAttributes = eventInfo\n\n';
+        }
+        return (
+            returnString + 'MParticle.sharedInstance().logEvent(commerceEvent)\n'
+        );
+    };
+
+    private commerceEventActionEnum(value: string) {
+        if (value === 'add_to_cart') {
+            return '.addToCart';
+        } else if (value === 'remove_from_cart') {
+            return '.removeFromCart';
+        } else if (value === 'add_to_wishlist') {
+            return '.addToWishList';
+        } else if (value === 'remove_to_wishlist') {
+            return '.removeFromWishlist';
+        } else if (value === 'checkout') {
+            return '.checkout';
+        } else if (value === 'checkout_options') {
+            return '.checkoutOptions';
+        } else if (value === 'click') {
+            return '.click';
+        } else if (value === 'view') {
+            return '.viewDetail';
+        } else if (value === 'purchase') {
+            return '.purchase';
+        } else if (value === 'refund') {
+            return '.refund';
+        } else {
+            return '.addToCart';
+        }
+    }
+
+    createPromotionActionSnippet = (exampleJSON: Dictionary) => {
+        const { data } = exampleJSON;
+
+        var promotionAction = this.promotionActionEnum(exampleJSON['action']);
+
+        let returnString = `\
+let promotion = MPPromotion.init()
+let promotionContainer = MPPromotionContainer.init(action: ${promotionAction}, promotion: promotion)
+let commerceEvent = MPCommerceEvent.init(promotionContainer: promotionContainer)
+`;
+        if (data['custom_attributes']) {
+            returnString +=
+                this.customAttributesLines(data['custom_attributes']) +
+                'commerceEvent.customAttributes = eventInfo;\n\n';
+        }
+
+        return (
+            returnString + 'MParticle.sharedInstance().logEvent(commerceEvent)\n'
+        );
+    };
+
+    private promotionActionEnum(value: string) {
+        if (value === 'view') {
+            return '.view';
+        } else {
+            return '.click';
+        }
+    }
+
+    createProductImpressionSnippet = ({ data }: Dictionary) => {
+
+        let returnString = `\
+let product = MPProduct.init(name: "productName", sku: "productId", quantity: 1, price: 19.99)
+let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", product: product)
+`
+        if (data['custom_attributes']) {
+            returnString =
+                returnString +
+                this.customAttributesLines(data['custom_attributes']);
+            returnString =
+                returnString + 'commerceEvent.customAttributes = eventInfo\n\n';
+        }
+        return (
+            returnString + 'MParticle.sharedInstance().logEvent(commerceEvent)\n'
+        );
+    };
 
     private customAttributesLines(
         customAttributesProperties: Dictionary

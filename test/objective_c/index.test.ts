@@ -76,9 +76,29 @@ describe('Objective C Generation ', () => {
         const firstResult = MPSnippets.createSnippet(fixtures.screen_view, Language.ObjectiveC);
 
         const fixtureClass = `#import "Snippets.h"\n@import mParticle_Apple_SDK;\n@implementation Snippets \n
-        - (void)testFirst { \n ${firstResult} \n }\n\n
-        @end`;
+- (void)testFirst {\n${firstResult}\n}\n\n
+@end`;
         fs.writeFileSync('./test/objective_c/Objective_C_App/Objective_C_App/Snippets.m', fixtureClass);
+
+        const workspaceFile = './test/objective_c/Objective_C_App/Objective_C_App.xcworkspace';
+        const command = `xcodebuild -workspace ${workspaceFile} -scheme Objective_C_App`;
+        await execShellCommand(command);
+    }, 30 * 1000);
+
+    it('Commerce Events should be validated', async () => {
+        const productActionResult = MPSnippets.createSnippet(fixtures.commerce_events.product_action, Language.ObjectiveC);
+
+        const promotionActionResult = MPSnippets.createSnippet(fixtures.commerce_events.promotion_action, Language.ObjectiveC);
+
+        const productImpressionResult = MPSnippets.createSnippet(fixtures.commerce_events.product_impression, Language.ObjectiveC);
+
+        const fixtureClass = `#import "Snippets.h"\n@import mParticle_Apple_SDK;\n@implementation Snippets \n
+- (void)testProductAction { \n ${productActionResult} \n }\n\n
+- (void)testPromotion { \n ${promotionActionResult} \n }\n\n
+- (void)testProductImpression { \n ${productImpressionResult} \n }\n\n
+@end`;
+        fs.writeFileSync('./test/objective_c/Objective_C_App/Objective_C_App/Snippets.m', fixtureClass);
+
 
         const workspaceFile = './test/objective_c/Objective_C_App/Objective_C_App.xcworkspace';
         const command = `xcodebuild -workspace ${workspaceFile} -scheme Objective_C_App`;

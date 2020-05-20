@@ -171,12 +171,54 @@ except mparticle.rest.ApiException as e:
         return returnString;
     }
 
-    createProductActionSnippet = (exampleJSON: Dictionary) => {
-        return `Not currently supported by data plan V1`;
+    createProductActionSnippet({ data }: Dictionary): string {
+        const productAction = data['action'] as string;
+        const actionString = this.stringProductAction(productAction);
+
+        let returnString = `\
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+product = mparticle.Product()
+product.name = 'Example Product'
+product.id = 'sample-sku'
+product.price = 19.99
+
+product_action = mparticle.ProductAction('${actionString}')
+product_action.products = [product]
+product_action.tax_amount = 1.50
+product_action.total_amount = 21.49
+
+commerce_event = mparticle.CommerceEvent(product_action)
+commerce_event.timestamp_unixtime_ms = example_timestamp
+`
+
+        if (data['custom_attributes']) {
+            returnString += this.customAttributesLines(
+                data['custom_attributes']
+            );
+        }
+
+        returnString += `\
+batch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print "Exception while calling mParticle: %s\n" % e`;
+        return returnString;
+    }
+
+    createPromotionActionSnippet = (exampleJSON: Dictionary) => {
+        const { data } = exampleJSON;
+
+        return `Not currently supported by Python`;
     };
 
     createProductImpressionSnippet(exampleJSON: Dictionary): string {
-        return `Not currently supported by data plan V1`;
+        return `Not currently supported by Python`;
     }
 
     private customAttributesLines(customAttributesProperties: Dictionary): string {
@@ -261,6 +303,32 @@ except mparticle.rest.ApiException as e:
             default: {
                 return 'default';
             }
+        }
+    }
+
+    private stringProductAction(value: string) {
+        if (value === 'add_to_cart') {
+            return 'add_to_cart';
+        } else if (value === 'remove_from_cart') {
+            return 'remove_from_cart';
+        } else if (value === 'add_to_wishlist') {
+            return 'add_to_wishlist';
+        } else if (value === 'remove_to_wishlist') {
+            return 'remove_to_wishlist';
+        } else if (value === 'checkout') {
+            return 'checkout';
+        } else if (value === 'checkout_options') {
+            return 'checkout_options';
+        } else if (value === 'click') {
+            return 'click';
+        } else if (value === 'view') {
+            return 'view';
+        } else if (value === 'purchase') {
+            return 'purchase';
+        } else if (value === 'refund') {
+            return 'refund';
+        } else {
+            return 'add_to_cart';
         }
     }
 }

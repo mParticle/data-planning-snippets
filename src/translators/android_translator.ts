@@ -13,7 +13,7 @@ export class MPAndroid implements MPTranslator {
     constructor(language: LanguageDecorator) {
         this.language = language;
     }
-    
+
     mparticleGetInstance = () => new MethodCall('MParticle', 'getInstance', [], true, true)
 
     getIdentityInstanceToCallSnippet = () => this.mparticleGetInstance().addMethodCallSameLine("Identity");
@@ -82,7 +82,7 @@ export class MPAndroid implements MPTranslator {
             this.language.dictionaryInitializer(attributeVariable, attributes, true);
             eventVariable.initialization?.addMethodCall('customAttributes', [attributeVariable])
             codeBlock
-                .addStatement(attributeVariable)     
+                .addStatement(attributeVariable)
         }
         eventVariable.initialization?.addMethodCall('build')
         let logEvent = this.mparticleGetInstance().addMethodCallSameLine("logEvent", [eventVariable], true)
@@ -128,8 +128,8 @@ export class MPAndroid implements MPTranslator {
             let attributesStatement = this.language.dictionaryInitializer(attributesVariable, customAttribteus);
             let mparticleUserVariable = new Variable('MParticleUser', 'user')
                 .initializer(this.mparticleGetInstance()
-                                    .addMethodCallSameLine('Identity')
-                                    .addMethodCallSameLine('getCurrentUser', [], true))
+                    .addMethodCallSameLine('Identity')
+                    .addMethodCallSameLine('getCurrentUser', [], true))
             let setAttributesMethod = new MethodCall(mparticleUserVariable, 'setUserAttributes', [attributesVariable]);
             return new CodeBlock()
                 .addStatement(attributesStatement)
@@ -146,11 +146,11 @@ export class MPAndroid implements MPTranslator {
         let screenName = data['screen_name'];
         let attributes = data['custom_attributes']
 
-        
+
         if (attributes) {
             let attributesVariable = new Variable('Map', 'attributes')
                 .setGenerics('String', 'String')
-            
+
             this.language.dictionaryInitializer(attributesVariable, attributes);
             return new CodeBlock()
                 .addStatement(attributesVariable)
@@ -171,10 +171,10 @@ export class MPAndroid implements MPTranslator {
         let exceptionVariable = new Variable('Exception')
             .initializer(new Constructor('Exception'))
             .addComment('replace this with your exception')
-        let attributesVariable: Variable|null = null
+        let attributesVariable: Variable | null = null
         if (attribtues) {
             attributesVariable = new Variable('Map', 'eventData')
-                    .setGenerics('String', 'String')
+                .setGenerics('String', 'String')
             let attributesStatement = this.language.dictionaryInitializer(attributesVariable, attribtues, true);
             return new CodeBlock()
                 .addStatement(attributesStatement)
@@ -199,17 +199,17 @@ export class MPAndroid implements MPTranslator {
         let responseCode = properties['response_code']
         return new Statement(this.mparticleGetInstance().addMethodCallSameLine('logNetworkPerformance', [eventName, startTime, httpMethod, duration, bytesSent, bytesReceived, "{REQUEST-STRING}", responseCode]))
             .toSnippet(this.language);
-            
+
     }
 
     createProductActionSnippet(properties: Dictionary): string {
         const { data } = properties;
 
-        let name = data['product_name']
-        let sku = data['product_sku']
-        let quantity = data['product_quantity']
-        let price = data['product_price']
-        let productAction = data['product_action']
+        let name = 'productName'
+        let sku = 'productId'
+        let quantity = 1
+        let price = 19.99
+        let productAction = data['action']
 
         let productVariable = new Variable('Product')
             .initializer(
@@ -228,7 +228,35 @@ export class MPAndroid implements MPTranslator {
             .toSnippet(this.language);
     }
 
+    createPromotionActionSnippet = (exampleJSON: Dictionary) => {
+        const { data } = exampleJSON;
+
+        return `Not currently supported by Android`;
+    };
+
     createProductImpressionSnippet(properties: Dictionary): string {
-        throw new Error("Method not implemented.");
+        const { data } = properties;
+
+        let name = 'productName'
+        let sku = 'productId'
+        let quantity = 1
+        let price = 19.99
+        let productAction = data['action']
+
+        let productVariable = new Variable('Product')
+            .initializer(
+                new Constructor('Product.Builder', [name, sku, price])
+                    .addMethodCall('quantity', [quantity])
+                    .addMethodCall('build')
+            );
+        let commerceEventVariable = new Variable('CommerceEvent')
+            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]))
+        let logEventMethodCall = this.mparticleGetInstance().addMethodCall('logEvent', [commerceEventVariable], true);
+
+        return new CodeBlock()
+            .addStatement(productVariable)
+            .addStatement(commerceEventVariable)
+            .addStatement(logEventMethodCall)
+            .toSnippet(this.language);
     }
 }

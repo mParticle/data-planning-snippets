@@ -11,7 +11,6 @@ import { JavaDecorator } from './language-decorators/java_decorator';
 import { Language, Dictionary } from './language';
 import { MPJavaEvents } from './translators/java_events_translator';
 import { MPPython } from './python_translator';
-import { print } from 'util';
 
 export class MPSnippets {
     static translateDataPlanJSON(
@@ -55,7 +54,6 @@ ${resultString}
      * Create a code snippet
      * @param dataPlanPoint An object representing an [[AdBreak]] (collection of ads)
      * @param language An object representing an [[AdBreak]] (collection of ads)
-     * @category Advertising
      */
     static createSnippet(
         dataPlanPoint: Dictionary,
@@ -139,6 +137,9 @@ ${resultString}
             }
             case DataPlanMatchType.ProductImpression: {
                 return translator.createProductImpressionSnippet(exampleJSON);
+            }
+            case DataPlanMatchType.PromotionAction: {
+                return translator.createPromotionActionSnippet(exampleJSON);
             }
             default: {
                 return translator.createCustomEventSnippet(exampleJSON);

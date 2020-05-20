@@ -82,4 +82,23 @@ describe('Swift Generation ', () => {
         const command = `xcodebuild -workspace ${workspaceFile} -scheme Swift_App`;
         await execShellCommand(command);
     }, 30 * 1000);
+
+    it('Commerce Events should be validated', async () => {
+        const productActionResult = MPSnippets.createSnippet(fixtures.commerce_events.product_action, Language.Swift);
+
+        const promotionActionResult = MPSnippets.createSnippet(fixtures.commerce_events.promotion_action, Language.Swift);
+
+        const productImpressionResult = MPSnippets.createSnippet(fixtures.commerce_events.product_impression, Language.Swift);
+
+        const fixtureClass = `import UIKit\nimport mParticle_Apple_SDK\n\nclass Snippets: NSObject {\n
+func testProductAction() {\n ${productActionResult} \n}\n\n
+func testPromotion() {\n ${promotionActionResult} \n}\n\n
+func testProductImpression() {\n ${productImpressionResult} \n}\n\n
+}`;
+
+        fs.writeFileSync('./test/swift/Swift_App/Swift_App/Snippets.swift', fixtureClass);
+        const workspaceFile = './test/swift/Swift_App/Swift_App.xcworkspace';
+        const command = `xcodebuild -workspace ${workspaceFile} -scheme Swift_App`;
+        await execShellCommand(command);
+    }, 30 * 1000);
 });

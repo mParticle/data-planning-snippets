@@ -43,8 +43,6 @@ describe('MPSnippets ', () => {
         const jsonSchema = fixtures.whole_data_plan;
         var resultString = MPSnippets.translateDataPlanJSON(jsonSchema, Language.Python)
 
-        console.log("Whole Data Plan:\n", resultString)
-
         expect(resultString).toEqual(Results.wholePython);
     });
 });

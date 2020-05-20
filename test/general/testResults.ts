@@ -121,6 +121,52 @@ customEvent.customAttributes = eventInfo;
 
 
 
+// Data Plan Point 16
+// 
+MPProduct *product = [[MPProduct alloc] initWithName:@"ProductName" sku:@"ProductId" quantity:@1 price:@19.99];
+MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithAction:MPCommerceEventActionAddToCart product:product];
+NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
+eventInfo[@"session_id"] = @12345;
+eventInfo[@"canonical_name"] = @"Slurm";
+eventInfo[@"is_main_thread"] = @true;
+
+commerceEvent.customAttributes = eventInfo;
+
+[[MParticle sharedInstance] logEvent:commerceEvent];
+
+
+
+// Data Plan Point 17
+// 
+MPPromotion *promotion = [[MPPromotion alloc] init];
+MPPromotionContainer *promotionContainer = [[MPPromotionContainer alloc] initWithAction:MPPromotionActionClick promotion:promotion];
+MPCommerceEvent *commerceEvent = [[MPCommerceEvent alloc] initWithPromotionContainer:promotionContainer];
+NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
+eventInfo[@"session_id"] = @12345;
+eventInfo[@"canonical_name"] = @"Slurm";
+eventInfo[@"is_main_thread"] = @true;
+
+commerceEvent.customAttributes = eventInfo;
+
+[[MParticle sharedInstance] logEvent:commerceEvent];
+
+
+
+// Data Plan Point 18
+// 
+MPProduct *product = [[MPProduct alloc] initWithName:@"ProductName" sku:@"ProductId" quantity:@1 price:@19.99];
+MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithImpressionName:@"ImpressionName" product:product];
+NSMutableDictionary *eventInfo = [[NSMutableDictionary alloc] init];
+eventInfo[@"session_id"] = @12345;
+eventInfo[@"canonical_name"] = @"Slurm";
+eventInfo[@"is_main_thread"] = @true;
+
+commerceEvent.customAttributes = eventInfo;
+
+[[MParticle sharedInstance] logEvent:commerceEvent];
+
+
+
 `;
 
     static readonly wholeSwift = `\
@@ -241,6 +287,49 @@ MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Null Us
 // User Identities
 MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"email\", value: \"test@gmail.com\")
 MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"customerid\", value: 84950869.74387908)
+
+
+
+// Data Plan Point 16
+// 
+let product = MPProduct.init(name: "productName", sku: "productId", quantity: 1, price: 19.99)
+let commerceEvent = MPCommerceEvent.init(action: .addToCart, product: product)
+var eventInfo = [String: Any].init()
+eventInfo["session_id"] = 12345
+eventInfo["canonical_name"] = "Slurm"
+eventInfo["is_main_thread"] = true
+commerceEvent.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(commerceEvent)
+
+
+
+// Data Plan Point 17
+// 
+let promotion = MPPromotion.init()
+let promotionContainer = MPPromotionContainer.init(action: .click, promotion: promotion)
+let commerceEvent = MPCommerceEvent.init(promotionContainer: promotionContainer)
+var eventInfo = [String: Any].init()
+eventInfo["session_id"] = 12345
+eventInfo["canonical_name"] = "Slurm"
+eventInfo["is_main_thread"] = true
+commerceEvent.customAttributes = eventInfo;
+
+MParticle.sharedInstance().logEvent(commerceEvent)
+
+
+
+// Data Plan Point 18
+// 
+let product = MPProduct.init(name: "productName", sku: "productId", quantity: 1, price: 19.99)
+let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", product: product)
+var eventInfo = [String: Any].init()
+eventInfo["session_id"] = 12345
+eventInfo["canonical_name"] = "Slurm"
+eventInfo["is_main_thread"] = true
+commerceEvent.customAttributes = eventInfo
+
+MParticle.sharedInstance().logEvent(commerceEvent)
 
 
 
@@ -369,6 +458,31 @@ IdentityApiRequest request = IdentityApiRequest.withEmptyUser()
     .userIdentities(userIdentities)
     .build();
 MParticle.getInstance().Identity().identify(request);
+
+
+// Data Plan Point 16
+// 
+Product product = new Product.Builder("productName", "productId", 19.99)
+    .quantity(1)
+    .build();
+CommerceEvent commerceEvent = new CommerceEvent.Builder("add_to_cart", product);
+MParticle.getInstance()
+    .logEvent(commerceEvent);
+
+
+// Data Plan Point 17
+// 
+Not currently supported by Android
+
+
+// Data Plan Point 18
+// 
+Product product = new Product.Builder("productName", "productId", 19.99)
+    .quantity(1)
+    .build();
+CommerceEvent commerceEvent = new CommerceEvent.Builder(null, product);
+MParticle.getInstance()
+    .logEvent(commerceEvent);
 
 
 `;
@@ -501,6 +615,31 @@ val request = IdentityApiRequest.withEmptyUser()
 MParticle.getInstance()?.Identity()?.identify(request)
 
 
+// Data Plan Point 16
+// 
+val product = Product.Builder("productName", "productId", 19.99)
+    .quantity(1)
+    .build()
+val commerceEvent = CommerceEvent.Builder("add_to_cart", product)
+MParticle.getInstance()
+    ?.logEvent(commerceEvent)
+
+
+// Data Plan Point 17
+// 
+Not currently supported by Android
+
+
+// Data Plan Point 18
+// 
+val product = Product.Builder("productName", "productId", 19.99)
+    .quantity(1)
+    .build()
+val commerceEvent = CommerceEvent.Builder(null, product)
+MParticle.getInstance()
+    ?.logEvent(commerceEvent)
+
+
 `;
 
     static readonly wholeJS = `\
@@ -593,6 +732,27 @@ mParticle.Identity.getCurrentUser().setUserAttribute(\"Test Null User Attribute\
 
 // Data Plan Point 15
 // User Identities
+
+
+
+// Data Plan Point 16
+// 
+        let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
+        mParticle.eCommerce.logProductAction('mParticle.ProductAction.add_to_cart', [product], attrs)
+        
+
+
+// Data Plan Point 17
+// 
+Not currently supported by Javascript
+
+
+// Data Plan Point 18
+// 
+    let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
+
+    let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", product: product)
+    MParticle.sharedInstance().logEvent(commerceEvent)
 
 
 
@@ -848,6 +1008,45 @@ try:
 except mparticle.rest.ApiException as e:
     print \"Exception while calling mParticle: %s
 \" % e
+
+
+// Data Plan Point 16
+// 
+batch = mparticle.Batch()
+batch.environment = 'development'
+
+product = mparticle.Product()
+product.name = 'Example Product'
+product.id = 'sample-sku'
+product.price = 19.99
+
+product_action = mparticle.ProductAction('add_to_cart')
+product_action.products = [product]
+product_action.tax_amount = 1.50
+product_action.total_amount = 21.49
+
+commerce_event = mparticle.CommerceEvent(product_action)
+commerce_event.timestamp_unixtime_ms = example_timestamp
+
+batch.events = [event]
+
+try:
+    api_instance.upload_events(batch)
+    # you can also send multiple batches at a time to decrease the amount of network calls
+    #api_instance.bulk_upload_events([batch, batch])
+except mparticle.rest.ApiException as e:
+    print "Exception while calling mParticle: %s
+" % e
+
+
+// Data Plan Point 17
+// 
+Not currently supported by Python
+
+
+// Data Plan Point 18
+// 
+Not currently supported by Python
 
 
 `;

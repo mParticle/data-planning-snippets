@@ -21,7 +21,7 @@ export class MPJavaEvents implements MPTranslator {
 
     private createBatchAddEventAndSend(eventVariable: Variable): Expression[] {
         let batchVariable = new Variable("Batch")
-                .addDefaultInitializer(x => x.addMethodCall("addEventsItem", [eventVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("addEventsItem", [eventVariable]))
         let uploadEventMethodCall = this.eventsApiVariable().createMethodCall("uploadEvents", [batchVariable])
         return [batchVariable, uploadEventMethodCall]
     }
@@ -57,25 +57,25 @@ export class MPJavaEvents implements MPTranslator {
         let screenName = data['screen_name']
 
         let dataVariable = new Variable("ScreenViewEventData", "data")
-                .addDefaultInitializer(x => x.addMethodCall("screenName", ['the screen name']))
+            .addDefaultInitializer(x => x.addMethodCall("screenName", ['the screen name']))
         let eventVariable = new Variable("ScreenViewEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
-        let uploadStuff = this.createBatchAddEventAndSend(eventVariable)        
-        
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+        let uploadStuff = this.createBatchAddEventAndSend(eventVariable)
+
         let codeBlock = new CodeBlock()
-                .addStatement(this.eventsApiVariable())
-                .addStatement(dataVariable)
-                .addStatement(eventVariable)
-                .addStatements(uploadStuff)
+            .addStatement(this.eventsApiVariable())
+            .addStatement(dataVariable)
+            .addStatement(eventVariable)
+            .addStatements(uploadStuff)
         if (attributes && Object.keys(attributes).length > 0) {
             let attributesVariable = this.getAttributesVariable(attributes)
             let setAttributesMethodCall = eventVariable
-                    .createMethodCall("getData", [], true)
-                    .addMethodCallSameLine("setCustomAttributes", [attributesVariable])
+                .createMethodCall("getData", [], true)
+                .addMethodCallSameLine("setCustomAttributes", [attributesVariable])
             codeBlock
                 .addStatement(attributesVariable, 1)
                 .addStatement(setAttributesMethodCall, 4)
-        } 
+        }
         return codeBlock.toSnippet(this.language)
     }
 
@@ -86,19 +86,19 @@ export class MPJavaEvents implements MPTranslator {
         let attributes = data['custom_attributes']
 
         let dataVariable = new Variable("CustomEventData", "data")
-                .addDefaultInitializer(x => 
-                    x
-                        .addMethodCall("customEventType", [new ValueExpression(eventType, false)])
-                        .addMethodCall("eventName", [eventName]))                
+            .addDefaultInitializer(x =>
+                x
+                    .addMethodCall("customEventType", [new ValueExpression(eventType, false)])
+                    .addMethodCall("eventName", [eventName]))
         let eventVariable = new Variable("CustomEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
-        
+
         let codeBlock = new CodeBlock()
-                .addStatement(this.eventsApiVariable())
-                .addStatement(dataVariable)
-                .addStatement(eventVariable)
-                .addStatements(uploadEventMethodCall)
+            .addStatement(this.eventsApiVariable())
+            .addStatement(dataVariable)
+            .addStatement(eventVariable)
+            .addStatements(uploadEventMethodCall)
         if (attributes && Object.keys(attributes).length > 0) {
             let attributesVariable = this.getAttributesVariable(attributes)
             let setAttributesMethodCall = eventVariable.createMethodCall("getData", [], true)
@@ -116,16 +116,16 @@ export class MPJavaEvents implements MPTranslator {
         let attributes = data['custom_attributes'];
 
         let dataVariable = new Variable("CrashReportEventData", 'data')
-                .addDefaultInitializer(x => x.addMethodCall("message", [exceptionName]))
+            .addDefaultInitializer(x => x.addMethodCall("message", [exceptionName]))
         let eventVariable = new Variable("CrashReportEvent", "event")
-                .addDefaultInitializer()
+            .addDefaultInitializer()
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
-        
+
         let codeBlock = new CodeBlock()
-                .addStatement(this.eventsApiVariable())
-                .addStatement(dataVariable)
-                .addStatement(eventVariable)
-                .addStatements(uploadEventMethodCall)
+            .addStatement(this.eventsApiVariable())
+            .addStatement(dataVariable)
+            .addStatement(eventVariable)
+            .addStatements(uploadEventMethodCall)
         if (attributes && Object.keys(attributes).length > 0) {
             let attributesVariable = this.getAttributesVariable(attributes)
             let setAttributesMethodCall = eventVariable.createMethodCall("getData", [], true)
@@ -140,23 +140,23 @@ export class MPJavaEvents implements MPTranslator {
 
     createOptOutSnippet(properties: Dictionary): string {
         let dataVariable = new Variable("OptOutEventData", "data")
-                .addDefaultInitializer(x => x.addMethodCall("isOptedOut", [true]))
+            .addDefaultInitializer(x => x.addMethodCall("isOptedOut", [true]))
         let eventVariable = new Variable("OptOutEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
             .addStatement(dataVariable)
             .addStatement(eventVariable)
             .addStatements(uploadEventMethodCall)
-            .toSnippet(this.language)      
+            .toSnippet(this.language)
     }
 
     createFirstRunSnippet(properties: Dictionary): string {
         let dataVariable = new Variable("ApplicationStateTransitionEventData", "data")
-                .addDefaultInitializer(x => x.addMethodCall("isFirstRun", [true]))
+            .addDefaultInitializer(x => x.addMethodCall("isFirstRun", [true]))
         let eventVariable = new Variable("ApplicationStateTransitionEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -168,13 +168,13 @@ export class MPJavaEvents implements MPTranslator {
 
     createApplicationStateTransitionSnippet(properties: Dictionary): string {
         let dataVariable = new Variable("ApplicationStateTransitionEventData", "data")
-                .addDefaultInitializer(x => 
-                    x.addMethodCall(
-                        "applicationTransitionType", 
-                        [new ValueExpression("ApplicationStateTransitionEventData.ApplicationTransitionTypeEnum.FOREGROUND", false)])
-                    )
+            .addDefaultInitializer(x =>
+                x.addMethodCall(
+                    "applicationTransitionType",
+                    [new ValueExpression("ApplicationStateTransitionEventData.ApplicationTransitionTypeEnum.FOREGROUND", false)])
+            )
         let eventVariable = new Variable("ApplicationStateTransitionEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -192,21 +192,21 @@ export class MPJavaEvents implements MPTranslator {
         let bytesSent = properties['bytes_sent']
         let bytesReceived = properties['bytes_received']
         let responseCode = properties['response_code']
-        
+
         let dataVariable = new Variable("NetworkPerformanceEventData", "data")
-                .addDefaultInitializer(x => {
-                    x
-                        .addMethodCall("timeElapsed", [new ValueExpression(duration + "L", false)])
-                        .addMethodCall("bytesIn", [new ValueExpression(bytesReceived + "L", false)])
-                        .addMethodCall("bytesOut", [new ValueExpression(bytesSent + "L", false)])
-                        .addMethodCall("responseCode", [new ValueExpression([responseCode], false)])
-                        .addMethodCall("httpVerb", [httpMethod])
-                })
+            .addDefaultInitializer(x => {
+                x
+                    .addMethodCall("timeElapsed", [new ValueExpression(duration + "L", false)])
+                    .addMethodCall("bytesIn", [new ValueExpression(bytesReceived + "L", false)])
+                    .addMethodCall("bytesOut", [new ValueExpression(bytesSent + "L", false)])
+                    .addMethodCall("responseCode", [new ValueExpression([responseCode], false)])
+                    .addMethodCall("httpVerb", [httpMethod])
+            })
         let dataMethodCalls = dataVariable
-                .createMethodCall("canonicalName", [eventName])
-                .addMethodCall("eventStartUnixtimeMs", [new ValueExpression(startTime + "L", false)])
+            .createMethodCall("canonicalName", [eventName])
+            .addMethodCall("eventStartUnixtimeMs", [new ValueExpression(startTime + "L", false)])
         let eventVariable = new Variable("NetworkPerformanceEvent", "event")
-                    .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -220,9 +220,9 @@ export class MPJavaEvents implements MPTranslator {
     createBreadcrumbSnippet(properties: Dictionary): string {
         let eventName = properties['event_name'];
         let dataVariable = new Variable("BreadcrumbEventData")
-                .addDefaultInitializer(x => x.addMethodCall("label", [eventName]))
+            .addDefaultInitializer(x => x.addMethodCall("label", [eventName]))
         let eventVariable = new Variable("BreadcrumbEvent")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable)
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -258,10 +258,10 @@ export class MPJavaEvents implements MPTranslator {
 
     createUserAttributesSnippet(properties: Dictionary): string {
         let userAttributesVariable = new Variable("Map", "userAttributes")
-                .setGenerics("String", "Object")
+            .setGenerics("String", "Object")
         this.language.dictionaryInitializer(userAttributesVariable, properties)
         let batchVariable = new Variable("Batch")
-                .addDefaultInitializer(x => x.addMethodCall('userAttributes', [userAttributesVariable]))
+            .addDefaultInitializer(x => x.addMethodCall('userAttributes', [userAttributesVariable]))
         let eventsUploadMethodCall = this.eventsApiVariable().createMethodCall('uploadEvents', [batchVariable])
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -273,13 +273,13 @@ export class MPJavaEvents implements MPTranslator {
 
     createUserIdentitiesSnippet(properties: Dictionary): string {
         let userIdentitesVariable = new Variable("UserIdentities")
-                .addDefaultInitializer(x => {
-                    for (const key in properties) {
-                        x.addMethodCall(key.toString(), [properties[key]])
-                    }
-                });
+            .addDefaultInitializer(x => {
+                for (const key in properties) {
+                    x.addMethodCall(key.toString(), [properties[key]])
+                }
+            });
         let batchVariable = new Variable("Batch")
-                    .addDefaultInitializer(x => x.addMethodCall("userIdentities", [userIdentitesVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("userIdentities", [userIdentitesVariable]))
         let eventsUploadMethodCall = this.eventsApiVariable().createMethodCall("uploadEvents", [batchVariable])
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -312,9 +312,9 @@ export class MPJavaEvents implements MPTranslator {
                     .addMethodCall("addProductsItem", [productVariable])
             })
         let dataVariable = new Variable("CommerceEventData", "data")
-                .addDefaultInitializer(x => x.addMethodCall("productAction", [productActionVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("productAction", [productActionVariable]))
         let eventVariable = new Variable("CommerceEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable);
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())
@@ -325,6 +325,12 @@ export class MPJavaEvents implements MPTranslator {
             .addStatements(uploadEventMethodCall)
             .toSnippet(this.language);
     }
+
+    createPromotionActionSnippet = (exampleJSON: Dictionary) => {
+        const { data } = exampleJSON;
+
+        return `Not currently supported by data plan V1`;
+    };
 
     createProductImpressionSnippet(properties: Dictionary): string {
         let { data } = properties
@@ -349,9 +355,9 @@ export class MPJavaEvents implements MPTranslator {
                     .addMethodCall("addProductsItem", [productVariable])
             })
         let dataVariable = new Variable("CommerceEventData", "data")
-                .addDefaultInitializer(x => x.addMethodCall("addProductImpressionsItem", [productImpressionVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("addProductImpressionsItem", [productImpressionVariable]))
         let eventVariable = new Variable("CommerceEvent", "event")
-                .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
+            .addDefaultInitializer(x => x.addMethodCall("data", [dataVariable]))
         let uploadEventMethodCall = this.createBatchAddEventAndSend(eventVariable);
         return new CodeBlock()
             .addStatement(this.eventsApiVariable())

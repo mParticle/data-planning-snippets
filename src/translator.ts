@@ -40,4 +40,7 @@ export interface MPTranslator {
     createProductActionSnippet(exampleJSON: Dictionary): string;
 
     createProductImpressionSnippet(exampleJSON: Dictionary): string;
+
+    createPromotionActionSnippet(exampleJSON: Dictionary): string;
+
 }

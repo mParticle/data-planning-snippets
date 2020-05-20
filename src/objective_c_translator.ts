@@ -110,37 +110,91 @@ export class MPObjectiveC implements MPTranslator {
 
     createProductActionSnippet = (exampleJSON: Dictionary) => {
         const { data } = exampleJSON;
-        return `\
-    MPProduct *product = [[MPProduct alloc] initWithName:@"${data['product_name']}" sku:@"${data['product_sku']}" quantity:@${data['product_quantity']} price:@${data['product_price']}];
-    [[MPCommerceEvent alloc] initWithAction:MPCommerceEventAction${exampleJSON['product_action']} product:product]
-    [[MParticle sharedInstance] logEvent:commerceEvent];
-        `;
+        var action = this.commerceEventActionEnum(data['action']);
+
+        let returnString = `\
+MPProduct *product = [[MPProduct alloc] initWithName:@"ProductName" sku:@"ProductId" quantity:@1 price:@19.99];
+MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithAction:${action} product:product];
+`;
+        if (data['custom_attributes']) {
+            returnString +=
+                this.customAttributesLines(data['custom_attributes']) +
+                'commerceEvent.customAttributes = eventInfo;\n\n';
+        }
+
+        returnString += '[[MParticle sharedInstance] logEvent:commerceEvent];';
+        return returnString + '\n';
     };
 
-    createProductImpressionSnippet(exampleJSON: Dictionary): string {
-        let returnString = '';
+    private commerceEventActionEnum(value: string) {
+        if (value === 'add_to_cart') {
+            return 'MPCommerceEventActionAddToCart';
+        } else if (value === 'remove_from_cart') {
+            return 'MPCommerceEventActionRemoveFromCart';
+        } else if (value === 'add_to_wishlist') {
+            return 'MPCommerceEventActionAddToWishList';
+        } else if (value === 'remove_to_wishlist') {
+            return 'MPCommerceEventActionRemoveFromWishlist';
+        } else if (value === 'checkout') {
+            return 'MPCommerceEventActionCheckout';
+        } else if (value === 'checkout_options') {
+            return 'MPCommerceEventActionCheckoutOptions';
+        } else if (value === 'click') {
+            return 'MPCommerceEventActionClick';
+        } else if (value === 'view') {
+            return 'MPCommerceEventActionViewDetail';
+        } else if (value === 'purchase') {
+            return 'MPCommerceEventActionPurchase';
+        } else if (value === 'refund') {
+            return 'MPCommerceEventActionRefund';
+        } else {
+            return 'MPCommerceEventActionAddToCart';
+        }
+    }
+
+    createPromotionActionSnippet = (exampleJSON: Dictionary) => {
         const { data } = exampleJSON;
 
-        returnString =
-            'MPProduct *product = [[MPProduct alloc] initWithName:@"' +
-            data['product_name'] +
-            '" sku:@"' +
-            data['product_sku'] +
-            '" quantity:@' +
-            data['product_quantity'] +
-            ' price:@' +
-            exampleJSON['product_price'] +
-            '];\n';
-        returnString =
-            returnString +
-            '[[MPCommerceEvent alloc] initWithImpressionName:@"' +
-            data['impression_name'] +
-            '" product:product];\n';
-        returnString =
-            returnString +
-            '[[MParticle sharedInstance] logEvent:commerceEvent];\n';
+        var promotionAction = this.promotionActionEnum(exampleJSON['action']);
 
-        return returnString;
+        let returnString = `\
+MPPromotion *promotion = [[MPPromotion alloc] init];
+MPPromotionContainer *promotionContainer = [[MPPromotionContainer alloc] initWithAction:${promotionAction} promotion:promotion];
+MPCommerceEvent *commerceEvent = [[MPCommerceEvent alloc] initWithPromotionContainer:promotionContainer];
+`;
+        if (data['custom_attributes']) {
+            returnString +=
+                this.customAttributesLines(data['custom_attributes']) +
+                'commerceEvent.customAttributes = eventInfo;\n\n';
+        }
+
+        returnString += '[[MParticle sharedInstance] logEvent:commerceEvent];';
+        return returnString + '\n';
+    };
+
+    private promotionActionEnum(value: string) {
+        if (value === 'view') {
+            return 'MPPromotionActionView';
+        } else {
+            return 'MPPromotionActionClick';
+        }
+    }
+
+    createProductImpressionSnippet(exampleJSON: Dictionary): string {
+        const { data } = exampleJSON;
+
+        let returnString = `\
+MPProduct *product = [[MPProduct alloc] initWithName:@"ProductName" sku:@"ProductId" quantity:@1 price:@19.99];
+MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithImpressionName:@"ImpressionName" product:product];
+`;
+        if (data['custom_attributes']) {
+            returnString +=
+                this.customAttributesLines(data['custom_attributes']) +
+                'commerceEvent.customAttributes = eventInfo;\n\n';
+        }
+
+        returnString += '[[MParticle sharedInstance] logEvent:commerceEvent];';
+        return returnString + '\n';
     }
 
     private customAttributesLines(
