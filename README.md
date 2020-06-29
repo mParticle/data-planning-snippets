@@ -1,11 +1,12 @@
-# data-planning-snippets
-<img src="https://static.mparticle.com/sdk/mp_logo_black.svg" width="280"><br>
-
-[![npm](https://img.shields.io/npm/v/@mparticle/data-planning-snippets.svg?maxAge=2592000)](https://www.npmjs.com/package/@mparticle/data-planning-snippets) [![Build Status](https://travis-ci.com/mParticle/data-planning-snippets.svg?branch=master)](https://travis-ci.com/mParticle/data-planning-snippets)
-
 # mParticle Data Planning Snippets SDK
 
+<img src="https://static.mparticle.com/sdk/mp_logo_black.svg" width="280"><br>
+
+[![npm](https://img.shields.io/npm/v/@mparticle/data-planning-snippets.svg?maxAge=2592000)](https://www.npmjs.com/package/@mparticle/data-planning-snippets)
+
 Hello! This is the public repo of the mParticle Data Planning Snippet SDK. We've built the mParticle platform to take a new approach to web and mobile app data and the platform has grown to support 200+ services and SDKs, including developer tools, analytics, attribution, messaging, and advertising services. mParticle is designed to serve as the connector between all of these services - check out [our site](http://mparticle.com), or hit us at developers@mparticle.com to learn more.
+
+:arrow_right: [**Check out the demo here**](https://mparticle.github.io/data-planning-snippets/)
 
 ## Documentation
 
@@ -43,12 +44,13 @@ To get a `DataPlanPoint` you'll first need to fetch your DataPlan using the [Dat
 import { MPSnippets } from '@mparticle/data-planning-snippets';
 
 // Generate a Swift snippet
-const exampleCode = MPSnippets.createSnippet(dataPlanPoint, Language.Swift)
+const exampleCode = MPSnippets.createSnippet(dataPlanPoint, Language.Swift);
 
 // Generate a Objective C snippet
-const exampleCode = MPSnippets.createSnippet(dataPlanPoint, Language.ObjectiveC)
-
-
+const exampleCode = MPSnippets.createSnippet(
+    dataPlanPoint,
+    Language.ObjectiveC
+);
 ```
 
 # Contribution Guidelines
@@ -78,4 +80,3 @@ This package comes with the NPM package [pre-commit](https://www.npmjs.com/packa
 ## License
 
 The mParticle Web Media SDK is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). See the LICENSE file for more info.
-

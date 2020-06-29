@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/mParticle/data-planning-snippets/static/css/main.ccd03105.chunk.css",
-    "main.js": "/mParticle/data-planning-snippets/static/js/main.8000ccf7.chunk.js",
-    "main.js.map": "/mParticle/data-planning-snippets/static/js/main.8000ccf7.chunk.js.map",
-    "runtime-main.js": "/mParticle/data-planning-snippets/static/js/runtime-main.62ec4a91.js",
-    "runtime-main.js.map": "/mParticle/data-planning-snippets/static/js/runtime-main.62ec4a91.js.map",
-    "static/css/2.e4403f87.chunk.css": "/mParticle/data-planning-snippets/static/css/2.e4403f87.chunk.css",
-    "static/js/2.52e95a72.chunk.js": "/mParticle/data-planning-snippets/static/js/2.52e95a72.chunk.js",
-    "static/js/2.52e95a72.chunk.js.map": "/mParticle/data-planning-snippets/static/js/2.52e95a72.chunk.js.map",
-    "index.html": "/mParticle/data-planning-snippets/index.html",
-    "precache-manifest.e2aeebc70cda8ddb7515f6dec79a0bf7.js": "/mParticle/data-planning-snippets/precache-manifest.e2aeebc70cda8ddb7515f6dec79a0bf7.js",
-    "service-worker.js": "/mParticle/data-planning-snippets/service-worker.js",
-    "static/css/2.e4403f87.chunk.css.map": "/mParticle/data-planning-snippets/static/css/2.e4403f87.chunk.css.map",
-    "static/css/main.ccd03105.chunk.css.map": "/mParticle/data-planning-snippets/static/css/main.ccd03105.chunk.css.map",
-    "static/js/2.52e95a72.chunk.js.LICENSE.txt": "/mParticle/data-planning-snippets/static/js/2.52e95a72.chunk.js.LICENSE.txt"
+    "main.css": "/data-planning-snippets/static/css/main.ccd03105.chunk.css",
+    "main.js": "/data-planning-snippets/static/js/main.c73d01df.chunk.js",
+    "main.js.map": "/data-planning-snippets/static/js/main.c73d01df.chunk.js.map",
+    "runtime-main.js": "/data-planning-snippets/static/js/runtime-main.61e2484a.js",
+    "runtime-main.js.map": "/data-planning-snippets/static/js/runtime-main.61e2484a.js.map",
+    "static/css/2.e4403f87.chunk.css": "/data-planning-snippets/static/css/2.e4403f87.chunk.css",
+    "static/js/2.80efa5e7.chunk.js": "/data-planning-snippets/static/js/2.80efa5e7.chunk.js",
+    "static/js/2.80efa5e7.chunk.js.map": "/data-planning-snippets/static/js/2.80efa5e7.chunk.js.map",
+    "index.html": "/data-planning-snippets/index.html",
+    "precache-manifest.a38e2968ad313c26b2f408d67bd39486.js": "/data-planning-snippets/precache-manifest.a38e2968ad313c26b2f408d67bd39486.js",
+    "service-worker.js": "/data-planning-snippets/service-worker.js",
+    "static/css/2.e4403f87.chunk.css.map": "/data-planning-snippets/static/css/2.e4403f87.chunk.css.map",
+    "static/css/main.ccd03105.chunk.css.map": "/data-planning-snippets/static/css/main.ccd03105.chunk.css.map",
+    "static/js/2.80efa5e7.chunk.js.LICENSE.txt": "/data-planning-snippets/static/js/2.80efa5e7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.62ec4a91.js",
+    "static/js/runtime-main.61e2484a.js",
     "static/css/2.e4403f87.chunk.css",
-    "static/js/2.52e95a72.chunk.js",
+    "static/js/2.80efa5e7.chunk.js",
     "static/css/main.ccd03105.chunk.css",
-    "static/js/main.8000ccf7.chunk.js"
+    "static/js/main.c73d01df.chunk.js"
   ]
 }
