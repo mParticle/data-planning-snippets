@@ -8,7 +8,7 @@
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.1.2",
         "ace-builds": "^1.4.8",
-        "jsoneditor": "^8.6.4",
+        "jsoneditor": "^9.5.6",
         "jsoneditor-react": "^3.0.0",
         "react": "^16.13.1",
         "react-ace": "^8.1.0",
