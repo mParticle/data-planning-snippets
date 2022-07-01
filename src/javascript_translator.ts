@@ -98,10 +98,21 @@ export class MPJavaScript implements MPTranslator {
     createUserIdentitiesSnippet = (exampleJSON: Dictionary) =>
         exampleJSON ? this.userIdentities(exampleJSON['user_identities']) : '';
 
-    createProductActionSnippet = ({ data }: Dictionary) => `\
-        let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
-        mParticle.eCommerce.logProductAction('mParticle.ProductAction.${data['action']}', [product], attrs)
+    createProductActionSnippet = ({ data }: Dictionary) => {
+        function capitalizeFirstLetter(word: string) {
+            return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+        }
+
+        // ProductActionType comes in from data['action'] in snake case format, ie. add_to_cart, but for Web it needs to be TitleCase, ie. AddToCart
+        let modifiedActionName = data['action'].split('_').map((word: string) => {
+            return capitalizeFirstLetter(word)
+        }).join('');
+
+        return `
+let product = mParticle.eCommerce.createProduct('productName', 'productId', 19.199, 1)
+mParticle.eCommerce.logProductAction(mParticle.ProductActionType.${modifiedActionName}, [product])
         `;
+    } 
 
     createPromotionActionSnippet = (exampleJSON: Dictionary) => {
         const { data } = exampleJSON;
@@ -110,10 +121,11 @@ export class MPJavaScript implements MPTranslator {
     };
 
     createProductImpressionSnippet = ({ data }: Dictionary) => `\
-    let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
+let product = mParticle.eCommerce.createProduct('productName', 'productId', 19.199, 1)
 
-    let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", product: product)
-    MParticle.sharedInstance().logEvent(commerceEvent)\n`;
+var impression = mParticle.eCommerce.createImpression('impressionName', product);
+mParticle.eCommerce.logImpression(impression);
+`
 
     private customAttributesLines(
         customAttributesProperties: Dictionary
@@ -127,8 +139,13 @@ export class MPJavaScript implements MPTranslator {
                     const value = this.stringForValue(
                         customAttributesProperties[property]
                     );
-                    sampleCode +=
-                        `\n    ${property}: ${value},`;
+                    if (property.split(' ').length >1) {
+                        sampleCode +=
+                            `\n    '${property}': ${value},`;    
+                    } else {
+                        sampleCode +=
+                            `\n    ${property}: ${value},`;
+                    }
                 }
             }
             sampleCode += `\n};`
@@ -162,8 +179,7 @@ export class MPJavaScript implements MPTranslator {
         return '';
     }
 
-    // tslint:disable-next-line: no-any
-    private stringForValue(value: any) {
+    private stringForValue(value: string | number | boolean) {
         if (typeof (value) === 'string') {
             return `"${value}"`;
         } else if (typeof (value) === 'number') {

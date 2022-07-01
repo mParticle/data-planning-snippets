@@ -47,7 +47,7 @@
     },
     "license": "Apache-2.0",
     "dependencies": {
-        "@mparticle/data-planning-models": "0.1.0-alpha.0",
+        "@mparticle/data-planning-models": "^0.1.4",
         "json-schema-faker": "^0.5.0-rc23"
     }
 }

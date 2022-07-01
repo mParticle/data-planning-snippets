@@ -706,17 +706,17 @@ mParticle.logPageView('ScreenView')
 // Data Plan Point 13
 // A custom event with every type of Custom Attribute
 let customAttributes = {
-    URI String Attribute: \"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\",
-    IPV6 String Attribute: \"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\",
-    IPV4 String Attribute: \"107.250.244.137\",
-    HostName String Attribute: \"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\",
-    Date String Attribute: \"1940-10-16\",
-    Time String Attribute: \"22:53:17.911Z\",
-    DateTime String Attribute: \"1963-08-06T12:16:22.823Z\",
-    Email String Attribute: \"test@gmail.com\",
-    Null Attribute: null,
-    Number Attribute: -74821511.11661537,
-    Boolean Attribute: true,
+    'URI String Attribute': \"https://WfoLHunYeaXIJwEZPUWZToGbnwZhwbjle.qygeUaqLLr6hLrvjRQ,XgRhP0sdu6E44dU,XuKRgvNNGUgHB,nj6OzNxo2GLZ\",
+    'IPV6 String Attribute': \"dbec:1374:f734:4eae:ed97:8cc9:2cd1:30ae\",
+    'IPV4 String Attribute': \"107.250.244.137\",
+    'HostName String Attribute': \"cefjNFGAKPwzKngeGLfSIvpReZ.pggn\",
+    'Date String Attribute': \"1940-10-16\",
+    'Time String Attribute': \"22:53:17.911Z\",
+    'DateTime String Attribute': \"1963-08-06T12:16:22.823Z\",
+    'Email String Attribute': \"test@gmail.com\",
+    'Null Attribute': null,
+    'Number Attribute': -74821511.11661537,
+    'Boolean Attribute': true,
 };
 mParticle.logEvent('CustomAllAttributes', mParticle.EventType.Other, customAttributes)
 
@@ -737,8 +737,9 @@ mParticle.Identity.getCurrentUser().setUserAttribute(\"Test Null User Attribute\
 
 // Data Plan Point 16
 // 
-        let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
-        mParticle.eCommerce.logProductAction('mParticle.ProductAction.add_to_cart', [product], attrs)
+
+let product = mParticle.eCommerce.createProduct('productName', 'productId', 19.199, 1)
+mParticle.eCommerce.logProductAction(mParticle.ProductActionType.AddToCart, [product])
         
 
 
@@ -749,10 +750,10 @@ Not currently supported by Javascript
 
 // Data Plan Point 18
 // 
-    let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)
+let product = mParticle.eCommerce.createProduct('productName', 'productId', 19.199, 1)
 
-    let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", product: product)
-    MParticle.sharedInstance().logEvent(commerceEvent)
+var impression = mParticle.eCommerce.createImpression('impressionName', product);
+mParticle.eCommerce.logImpression(impression);
 
 
 
