@@ -1,0 +1,20 @@
+{
+    "short_name": "mP Snippets",
+    "name": "mParticle Snippets",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#2c38a7",
+    "background_color": "#ffffff"
+}

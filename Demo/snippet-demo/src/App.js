@@ -6,6 +6,8 @@ import 'jsoneditor-react/es/editor.min.css';
 import { MPSnippets } from '@mparticle/data-planning-snippets';
 import { DataPlanMatchType } from '@mparticle/data-planning-models';
 import AceEditor from 'react-ace';
+import 'ace-builds/webpack-resolver'
+import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-monokai';
 
@@ -48,9 +50,8 @@ class DemoForm extends Component {
             );
         } catch (e) {
             content = 'There is something wrong with your JSON';
-            console.log(e);
+            console.error(e);
         }
-        console.log(content);
 
         this.setState(state => ({
             content,
@@ -78,11 +79,13 @@ class DemoForm extends Component {
                             src="https://static.mparticle.com/sdk/mp_logo_black.svg"
                             width={280}
                             alt="mParticle"
+                            rel="noopener noreferrer"
                         />
                         <a
                             className="github"
                             href="https://github.com/mParticle/data-planning-snippets"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
@@ -100,9 +103,11 @@ class DemoForm extends Component {
                             className="icons"
                             href="https://www.npmjs.com/package/@mparticle/data-planning-snippets"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="mr"
+                                alt="shields.io badge"
                                 src="https://img.shields.io/npm/v/@mparticle/data-planning-snippets.svg?maxAge=2592000"
                             />
                         </a>
@@ -110,9 +115,11 @@ class DemoForm extends Component {
                             className="icons"
                             href="https://travis-ci.com/mParticle/data-planning-snippets"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 className="mr"
+                                alt="travis ci badge"
                                 src="https://travis-ci.com/mParticle/data-planning-snippets.svg?branch=master"
                             />
                         </a>
