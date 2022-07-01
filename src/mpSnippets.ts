@@ -41,13 +41,12 @@ export class MPSnippets {
     }
 
     private static getDataPlanPointString(description: string, resultString: string, index: number): string {
-        return `\
-// Data Plan Point ${index + 1}
-// ${description}
-${resultString}
-
-
-`;
+        var output = [
+            `// Data Plan Point ${index + 1}`,
+            description ? `// ${description}` : null,
+            resultString,
+        ]
+        return output.filter(n => n).join('\n') + '\n\n';
     }
 
     /**
