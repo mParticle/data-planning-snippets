@@ -70,8 +70,6 @@ export class MPAndroid implements MPTranslator {
 
         let codeBlock = new CodeBlock();
 
-
-
         let eventVariable = new Variable('MPEvent', 'event')
             .initializer(new Constructor('MPEvent.Builder', [eventName, new ValueExpression(eventType, false)]))
 
@@ -97,7 +95,15 @@ export class MPAndroid implements MPTranslator {
         let userIdentities: Dictionary = [];
         if (data && Object.keys(data).length > 0) {
             for (const key in data) {
-                userIdentities['MParticle.IdentityType.' + this.utils.capitalize(key)] = data[key]
+                switch(key) {
+                    case "ios_idfv": break; //ignore
+                    case "customerid": userIdentities['MParticle.IdentityType.CustomerId'] = data[key]; break;
+                    case "facebookcustomaudienceid": userIdentities['MParticle.IdentityType.FacebookCustomAudienceId'] = data[key]; break;
+                    case "mobilenumber": userIdentities['MParticle.IdentityType.MobileNumber'] = data[key]; break;
+                    case "phonenumber2": userIdentities['MParticle.IdentityType.PhoneNumber2'] = data[key]; break;
+                    case "phonenumber3": userIdentities['MParticle.IdentityType.PhoneNumber3'] = data[key]; break;
+                    default: userIdentities['MParticle.IdentityType.' + this.utils.capitalize(key)] = data[key]; break;
+                }
             }
             let userIdentitiesVariable = new Variable('Map', 'userIdentities')
                 .setGenerics('MParticle.IdentityType', 'String')
@@ -207,7 +213,7 @@ export class MPAndroid implements MPTranslator {
 
         let name = 'productName'
         let sku = 'productId'
-        let quantity = 1
+        let quantity = 1.0
         let price = 19.99
         let productAction = data['action']
 
@@ -218,7 +224,7 @@ export class MPAndroid implements MPTranslator {
                     .addMethodCall('build')
             );
         let commerceEventVariable = new Variable('CommerceEvent')
-            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]))
+            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]).addMethodCall('build'))
         let logEventMethodCall = this.mparticleGetInstance().addMethodCall('logEvent', [commerceEventVariable], true);
 
         return new CodeBlock()
@@ -239,7 +245,7 @@ export class MPAndroid implements MPTranslator {
 
         let name = 'productName'
         let sku = 'productId'
-        let quantity = 1
+        let quantity = 1.0
         let price = 19.99
         let productAction = data['action']
 
@@ -250,7 +256,7 @@ export class MPAndroid implements MPTranslator {
                     .addMethodCall('build')
             );
         let commerceEventVariable = new Variable('CommerceEvent')
-            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]))
+            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]).addMethodCall('build'))
         let logEventMethodCall = this.mparticleGetInstance().addMethodCall('logEvent', [commerceEventVariable], true);
 
         return new CodeBlock()
