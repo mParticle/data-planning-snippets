@@ -463,7 +463,7 @@ MParticle.getInstance().Identity().identify(request);
 // Data Plan Point 16
 // 
 Product product = new Product.Builder("productName", "productId", 19.99)
-    .quantity(1)
+    .quantity(1.5)
     .build();
 CommerceEvent commerceEvent = new CommerceEvent.Builder("add_to_cart", product);
 MParticle.getInstance()
@@ -478,7 +478,7 @@ Not currently supported by Android
 // Data Plan Point 18
 // 
 Product product = new Product.Builder("productName", "productId", 19.99)
-    .quantity(1)
+    .quantity(1.5)
     .build();
 CommerceEvent commerceEvent = new CommerceEvent.Builder(null, product);
 MParticle.getInstance()
