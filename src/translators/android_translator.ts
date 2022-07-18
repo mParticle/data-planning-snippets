@@ -213,7 +213,7 @@ export class MPAndroid implements MPTranslator {
 
         let name = 'productName'
         let sku = 'productId'
-        let quantity = 1.0
+        let quantity = 1.5
         let price = 19.99
         let productAction = data['action']
 
@@ -245,7 +245,7 @@ export class MPAndroid implements MPTranslator {
 
         let name = 'productName'
         let sku = 'productId'
-        let quantity = 1.0
+        let quantity = 1.5
         let price = 19.99
         let productAction = data['action']
 
