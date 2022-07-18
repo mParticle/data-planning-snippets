@@ -737,7 +737,14 @@ var MPJavaScript = /** @class */ (function () {
         };
         this.createProductActionSnippet = function (_a) {
             var data = _a.data;
-            return "        let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)\n        mParticle.eCommerce.logProductAction('mParticle.ProductAction." + data['action'] + "', [product], attrs)\n        ";
+            function capitalizeFirstLetter(word) {
+                return "" + word.charAt(0).toUpperCase() + word.slice(1);
+            }
+            // ProductActionType comes in from data['action'] in snake case format, ie. add_to_cart, but for Web it needs to be TitleCase, ie. AddToCart
+            var modifiedActionName = data['action'].split('_').map(function (word) {
+                return capitalizeFirstLetter(word);
+            }).join('');
+            return "\nlet product = mParticle.eCommerce.createProduct('productName', 'productId', 19.199, 1)\nmParticle.eCommerce.logProductAction(mParticle.ProductActionType." + modifiedActionName + ", [product])\n        ";
         };
         this.createPromotionActionSnippet = function (exampleJSON) {
             var data = exampleJSON.data;
@@ -745,7 +752,7 @@ var MPJavaScript = /** @class */ (function () {
         };
         this.createProductImpressionSnippet = function (_a) {
             var data = _a.data;
-            return "    let product = mParticle.eCommerce.createProduct(productName, productId, 19.199, 1)\n\n    let commerceEvent = MPCommerceEvent.init(impressionName: \"impressionName\", product: product)\n    MParticle.sharedInstance().logEvent(commerceEvent)\n";
+            return "let product = mParticle.eCommerce.createProduct('productName', 'productId', 19.199, 1)\n\nvar impression = mParticle.eCommerce.createImpression('impressionName', product);\nmParticle.eCommerce.logImpression(impression);\n";
         };
     }
     MPJavaScript.prototype.createSessionStartSnippet = function (exampleJSON) {
@@ -807,8 +814,14 @@ var MPJavaScript = /** @class */ (function () {
             for (var property in customAttributesProperties) {
                 if (customAttributesProperties.hasOwnProperty(property)) {
                     var value = this.stringForValue(customAttributesProperties[property]);
-                    sampleCode +=
-                        "\n    " + property + ": " + value + ",";
+                    if (property.split(' ').length > 1) {
+                        sampleCode +=
+                            "\n    '" + property + "': " + value + ",";
+                    }
+                    else {
+                        sampleCode +=
+                            "\n    " + property + ": " + value + ",";
+                    }
                 }
             }
             sampleCode += "\n};";
@@ -833,7 +846,6 @@ var MPJavaScript = /** @class */ (function () {
         // TODO: Not yet supported
         return '';
     };
-    // tslint:disable-next-line: no-any
     MPJavaScript.prototype.stringForValue = function (value) {
         if (typeof (value) === 'string') {
             return "\"" + value + "\"";
@@ -2262,7 +2274,12 @@ var MPSnippets = /** @class */ (function () {
         return allExamples;
     };
     MPSnippets.getDataPlanPointString = function (description, resultString, index) {
-        return "// Data Plan Point " + (index + 1) + "\n// " + description + "\n" + resultString + "\n\n\n";
+        var output = [
+            "// Data Plan Point " + (index + 1),
+            description ? "// " + description : null,
+            resultString,
+        ];
+        return output.filter(function (n) { return n; }).join('\n') + '\n\n';
     };
     /**
      * Create a code snippet
