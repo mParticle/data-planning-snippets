@@ -218,16 +218,22 @@ MParticle.sharedInstance().logEvent(customEvent!)
 
 // Data Plan Point 14
 // User Attributes
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test String User Attribute\", value: \"amet\")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Number User Attribute\", value: -97192120.28716555)
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Bool User Attribute\", value: false)
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"Test Null User Attribute\", value: NSNull.init())
+var attributes = [String: Any]()
+attributes[\"Test String User Attribute\"] = \"amet\"
+attributes[\"Test Number User Attribute\"] = -97192120.28716555
+attributes[\"Test Bool User Attribute\"] = false
+attributes[\"Test Null User Attribute\"] = NSNull.init()
+if let user = MParticle.sharedInstance().identity.currentUser {
+    user.userAttributes = attributes
+}
 
 
 // Data Plan Point 15
 // User Identities
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"email\", value: \"test@gmail.com\")
-MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"customerid\", value: 84950869.74387908)
+let request = MPIdentityApiRequest.withEmptyUser()
+request.setIdentity(\"test@gmail.com\", identityType: .email)
+request.setIdentity(84950869.74387908, identityType: .customerId)
+MParticle.sharedInstance().identity.identify(request)
 
 
 // Data Plan Point 16

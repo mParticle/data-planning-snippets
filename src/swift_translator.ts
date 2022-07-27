@@ -261,15 +261,40 @@ let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", produ
         const returnString: string[] = [];
 
         if (Object.keys(userAttributesProperties).length > 0) {
-            for (const key in userAttributesProperties) {
-                if (userAttributesProperties.hasOwnProperty(key)) {
-                    const value = this.stringForValue(
-                        userAttributesProperties[key]
-                    );
-                    returnString.push(
-                        `MParticle.sharedInstance().identity.currentUser?.setUserAttribute("${key}", value: ${value})`
-                    );
+            if (Object.keys(userAttributesProperties).length == 1) {
+                for (const key in userAttributesProperties) {
+                    if (userAttributesProperties.hasOwnProperty(key)) {
+                        const value = this.stringForValue(
+                            userAttributesProperties[key]
+                        );
+                        returnString.push(
+                            `MParticle.sharedInstance().identity.currentUser?.setUserAttribute("${key}", value: ${value})`
+                        );
+                    }
                 }
+            } else {
+                returnString.push(
+                    `var attributes = [String: Any]()`
+                );
+                for (const key in userAttributesProperties) {
+                    if (userAttributesProperties.hasOwnProperty(key)) {
+                        const value = this.stringForValue(
+                            userAttributesProperties[key]
+                        );
+                        returnString.push(
+                            `attributes["${key}"] = ${value}`
+                        );
+                    }
+                }
+                returnString.push(
+                    `if let user = MParticle.sharedInstance().identity.currentUser {`
+                );
+                returnString.push(
+                    `    user.userAttributes = attributes`
+                );
+                returnString.push(
+                    `}`
+                );
             }
         }
         return returnString.join('\n') + '\n';
@@ -279,16 +304,62 @@ let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", produ
         const returnString: string[] = [];
 
         if (Object.keys(userIdentitiesProperties).length > 0) {
-            for (const property in userIdentitiesProperties) {
-                if (userIdentitiesProperties.hasOwnProperty(property)) {
-                    const valueType = this.stringForValue(
-                        userIdentitiesProperties[property]
+            returnString.push(
+                `let request = MPIdentityApiRequest.withEmptyUser()`
+            );
+            for (var type in userIdentitiesProperties) {
+                if (userIdentitiesProperties.hasOwnProperty(type)) {
+                    const value = this.stringForValue(
+                        userIdentitiesProperties[type]
                     );
+                    switch (type) {
+                        case "customerid":
+                            type = "customerId"
+                            break;
+
+                        case "facebookcustomaudienceid":
+                            type = "facebookCustomAudienceId"
+                            break;
+
+                        case "mobilenumber":
+                            type = "mobileNumber"
+                            break;
+
+                        case "phonenumber2":
+                            type = "phoneNumber2"
+                            break;
+
+                        case "phonenumber3":
+                            type = "phoneNumber3"
+                            break;
+
+                        case "iosadvertiserid":
+                            type = "iosAdvertiserId"
+                            break;
+
+                        case "iosvendorid":
+                            type = "iosVendorId"
+                            break;
+
+                        case "pushtoken":
+                            type = "pushToken"
+                            break;
+
+                        case "deviceapplicationstamp":
+                            type = "deviceApplicationStamp"
+                            break;
+                    
+                        default:
+                            break;
+                    }
                     returnString.push(
-                        `MParticle.sharedInstance().identity.currentUser?.setUserAttribute("${property}", value: ${valueType})`
+                        `request.setIdentity(${value}, identityType: .${type})`
                     );
                 }
             }
+            returnString.push(
+                `MParticle.sharedInstance().identity.identify(request)`
+            );
         }
         return returnString.join('\n') + '\n';
     }
