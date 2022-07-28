@@ -344,24 +344,60 @@ var MPObjectiveC = /** @class */ (function () {
     MPObjectiveC.prototype.userAttributes = function (userAttributesProperties) {
         var returnString = '';
         if (Object.keys(userAttributesProperties).length > 0) {
+            returnString += "NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];\n";
             for (var property in userAttributesProperties) {
                 if (userAttributesProperties.hasOwnProperty(property)) {
                     var valueType = this.stringForValue(userAttributesProperties[property]);
-                    returnString += "[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"" + property + "\" value:" + valueType + "];\n";
+                    returnString += "attributes[@\"" + property + "\"] = " + valueType + ";\n";
                 }
             }
+            returnString += "[[[MParticle sharedInstance].identity currentUser] setUserAttributes:attributes];\n";
         }
         return returnString;
     };
     MPObjectiveC.prototype.userIdentities = function (userIdentitiesProperties) {
         var returnString = '';
         if (Object.keys(userIdentitiesProperties).length > 0) {
+            returnString += "MPIdentityApiRequest *request = [MPIdentityApiRequest requestWithEmptyUser];\n";
             for (var property in userIdentitiesProperties) {
                 if (userIdentitiesProperties.hasOwnProperty(property)) {
-                    var valueType = this.stringForValue(userIdentitiesProperties[property]);
-                    returnString += "[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"" + property + "\" value:" + valueType + "];\n";
+                    var value = userIdentitiesProperties[property];
+                    switch (property) {
+                        case "customerid":
+                            property = "CustomerId";
+                            break;
+                        case "facebookcustomaudienceid":
+                            property = "FacebookCustomAudienceId";
+                            break;
+                        case "mobilenumber":
+                            property = "MobileNumber";
+                            break;
+                        case "phonenumber2":
+                            property = "PhoneNumber2";
+                            break;
+                        case "phonenumber3":
+                            property = "PhoneNumber3";
+                            break;
+                        case "iosadvertiserid":
+                            property = "IOSAdvertiserId";
+                            break;
+                        case "iosvendorid":
+                            property = "IOSVendorId";
+                            break;
+                        case "pushtoken":
+                            property = "PushToken";
+                            break;
+                        case "deviceapplicationstamp":
+                            property = "DeviceApplicationStamp";
+                            break;
+                        default:
+                            property = property.substring(0, 1).toUpperCase() + property.substring(1);
+                            break;
+                    }
+                    returnString += "[request setIdentity:@\"" + value + "\" identityType:MPIdentity" + property + "];\n";
                 }
             }
+            returnString += "[[[MParticle sharedInstance] identity] identify:request completion:nil];\n";
         }
         return returnString;
     };
@@ -628,11 +664,25 @@ var MPSwift = /** @class */ (function () {
     MPSwift.prototype.userAttributes = function (userAttributesProperties) {
         var returnString = [];
         if (Object.keys(userAttributesProperties).length > 0) {
-            for (var key in userAttributesProperties) {
-                if (userAttributesProperties.hasOwnProperty(key)) {
-                    var value = this.stringForValue(userAttributesProperties[key]);
-                    returnString.push("MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"" + key + "\", value: " + value + ")");
+            if (Object.keys(userAttributesProperties).length == 1) {
+                for (var key in userAttributesProperties) {
+                    if (userAttributesProperties.hasOwnProperty(key)) {
+                        var value = this.stringForValue(userAttributesProperties[key]);
+                        returnString.push("MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"" + key + "\", value: " + value + ")");
+                    }
                 }
+            }
+            else {
+                returnString.push("var attributes = [String: Any]()");
+                for (var key in userAttributesProperties) {
+                    if (userAttributesProperties.hasOwnProperty(key)) {
+                        var value = this.stringForValue(userAttributesProperties[key]);
+                        returnString.push("attributes[\"" + key + "\"] = " + value);
+                    }
+                }
+                returnString.push("if let user = MParticle.sharedInstance().identity.currentUser {");
+                returnString.push("    user.userAttributes = attributes");
+                returnString.push("}");
             }
         }
         return returnString.join('\n') + '\n';
@@ -640,12 +690,43 @@ var MPSwift = /** @class */ (function () {
     MPSwift.prototype.userIdentities = function (userIdentitiesProperties) {
         var returnString = [];
         if (Object.keys(userIdentitiesProperties).length > 0) {
-            for (var property in userIdentitiesProperties) {
-                if (userIdentitiesProperties.hasOwnProperty(property)) {
-                    var valueType = this.stringForValue(userIdentitiesProperties[property]);
-                    returnString.push("MParticle.sharedInstance().identity.currentUser?.setUserAttribute(\"" + property + "\", value: " + valueType + ")");
+            returnString.push("let request = MPIdentityApiRequest.withEmptyUser()");
+            for (var type in userIdentitiesProperties) {
+                if (userIdentitiesProperties.hasOwnProperty(type)) {
+                    var value = this.stringForValue(userIdentitiesProperties[type]);
+                    switch (type) {
+                        case "customerid":
+                            type = "customerId";
+                            break;
+                        case "facebookcustomaudienceid":
+                            type = "facebookCustomAudienceId";
+                            break;
+                        case "mobilenumber":
+                            type = "mobileNumber";
+                            break;
+                        case "phonenumber2":
+                            type = "phoneNumber2";
+                            break;
+                        case "phonenumber3":
+                            type = "phoneNumber3";
+                            break;
+                        case "iosadvertiserid":
+                            type = "iosAdvertiserId";
+                            break;
+                        case "iosvendorid":
+                            type = "iosVendorId";
+                            break;
+                        case "pushtoken":
+                            type = "pushToken";
+                            break;
+                        case "deviceapplicationstamp":
+                            type = "deviceApplicationStamp";
+                            break;
+                    }
+                    returnString.push("request.setIdentity(" + value + ", identityType: ." + type + ")");
                 }
             }
+            returnString.push("MParticle.sharedInstance().identity.identify(request)");
         }
         return returnString.join('\n') + '\n';
     };
@@ -1422,7 +1503,27 @@ var MPAndroid = /** @class */ (function () {
         var userIdentities = [];
         if (data && Object.keys(data).length > 0) {
             for (var key in data) {
-                userIdentities['MParticle.IdentityType.' + this.utils.capitalize(key)] = data[key];
+                switch (key) {
+                    case "ios_idfv": break; //ignore
+                    case "customerid":
+                        userIdentities['MParticle.IdentityType.CustomerId'] = data[key];
+                        break;
+                    case "facebookcustomaudienceid":
+                        userIdentities['MParticle.IdentityType.FacebookCustomAudienceId'] = data[key];
+                        break;
+                    case "mobilenumber":
+                        userIdentities['MParticle.IdentityType.MobileNumber'] = data[key];
+                        break;
+                    case "phonenumber2":
+                        userIdentities['MParticle.IdentityType.PhoneNumber2'] = data[key];
+                        break;
+                    case "phonenumber3":
+                        userIdentities['MParticle.IdentityType.PhoneNumber3'] = data[key];
+                        break;
+                    default:
+                        userIdentities['MParticle.IdentityType.' + this.utils.capitalize(key)] = data[key];
+                        break;
+                }
             }
             var userIdentitiesVariable = new Variable('Map', 'userIdentities')
                 .setGenerics('MParticle.IdentityType', 'String');
@@ -1523,7 +1624,7 @@ var MPAndroid = /** @class */ (function () {
         var data = properties.data;
         var name = 'productName';
         var sku = 'productId';
-        var quantity = 1;
+        var quantity = 1.5;
         var price = 19.99;
         var productAction = data['action'];
         var productVariable = new Variable('Product')
@@ -1531,7 +1632,7 @@ var MPAndroid = /** @class */ (function () {
             .addMethodCall('quantity', [quantity])
             .addMethodCall('build'));
         var commerceEventVariable = new Variable('CommerceEvent')
-            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]));
+            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]).addMethodCall('build'));
         var logEventMethodCall = this.mparticleGetInstance().addMethodCall('logEvent', [commerceEventVariable], true);
         return new CodeBlock()
             .addStatement(productVariable)
@@ -1543,7 +1644,7 @@ var MPAndroid = /** @class */ (function () {
         var data = properties.data;
         var name = 'productName';
         var sku = 'productId';
-        var quantity = 1;
+        var quantity = 1.5;
         var price = 19.99;
         var productAction = data['action'];
         var productVariable = new Variable('Product')
@@ -1551,7 +1652,7 @@ var MPAndroid = /** @class */ (function () {
             .addMethodCall('quantity', [quantity])
             .addMethodCall('build'));
         var commerceEventVariable = new Variable('CommerceEvent')
-            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]));
+            .initializer(new Constructor('CommerceEvent.Builder', [productAction, productVariable]).addMethodCall('build'));
         var logEventMethodCall = this.mparticleGetInstance().addMethodCall('logEvent', [commerceEventVariable], true);
         return new CodeBlock()
             .addStatement(productVariable)

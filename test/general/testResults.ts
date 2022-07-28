@@ -82,16 +82,20 @@ customEvent.customAttributes = eventInfo;
 
 // Data Plan Point 14
 // User Attributes
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test String User Attribute\" value:@\"amet\"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test Number User Attribute\" value:@-97192120.28716555];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test Bool User Attribute\" value:@false];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@\"Test Null User Attribute\" value:[NSNull null]];
+NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+attributes[@\"Test String User Attribute\"] = @\"amet\";
+attributes[@\"Test Number User Attribute\"] = @-97192120.28716555;
+attributes[@\"Test Bool User Attribute\"] = @false;
+attributes[@\"Test Null User Attribute\"] = [NSNull null];
+[[[MParticle sharedInstance].identity currentUser] setUserAttributes:attributes];
 
 
 // Data Plan Point 15
 // User Identities
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"email" value:@"test@gmail.com"];
-[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"customerid" value:@84950869.74387908];
+MPIdentityApiRequest *request = [MPIdentityApiRequest requestWithEmptyUser];
+[request setIdentity:@\"test@gmail.com\" identityType:MPIdentityEmail];
+[request setIdentity:@\"84950869.74387908\" identityType:MPIdentityCustomerId];
+[[[MParticle sharedInstance] identity] identify:request completion:nil];
 
 
 // Data Plan Point 16

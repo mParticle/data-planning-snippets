@@ -222,14 +222,16 @@ MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithImpressionNam
         let returnString = '';
 
         if (Object.keys(userAttributesProperties).length > 0) {
+            returnString += `NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];\n`;
             for (const property in userAttributesProperties) {
                 if (userAttributesProperties.hasOwnProperty(property)) {
                     const valueType = this.stringForValue(
                         userAttributesProperties[property]
                     );
-                    returnString += `[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"${property}" value:${valueType}];\n`;
+                    returnString += `attributes[@"${property}"] = ${valueType};\n`;
                 }
             }
+            returnString += `[[[MParticle sharedInstance].identity currentUser] setUserAttributes:attributes];\n`;
         }
         return returnString;
     }
@@ -238,14 +240,56 @@ MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithImpressionNam
         let returnString = '';
 
         if (Object.keys(userIdentitiesProperties).length > 0) {
-            for (const property in userIdentitiesProperties) {
+            returnString += `MPIdentityApiRequest *request = [MPIdentityApiRequest requestWithEmptyUser];\n`;
+
+            for (var property in userIdentitiesProperties) {
                 if (userIdentitiesProperties.hasOwnProperty(property)) {
-                    const valueType = this.stringForValue(
-                        userIdentitiesProperties[property]
-                    );
-                    returnString += `[[[MParticle sharedInstance].identity currentUser] setUserAttribute:@"${property}" value:${valueType}];\n`;
+                    const value = userIdentitiesProperties[property];
+                    switch (property) {
+                        case "customerid":
+                            property = "CustomerId"
+                            break;
+
+                        case "facebookcustomaudienceid":
+                            property = "FacebookCustomAudienceId"
+                            break;
+
+                        case "mobilenumber":
+                            property = "MobileNumber"
+                            break;
+
+                        case "phonenumber2":
+                            property = "PhoneNumber2"
+                            break;
+
+                        case "phonenumber3":
+                            property = "PhoneNumber3"
+                            break;
+
+                        case "iosadvertiserid":
+                            property = "IOSAdvertiserId"
+                            break;
+
+                        case "iosvendorid":
+                            property = "IOSVendorId"
+                            break;
+
+                        case "pushtoken":
+                            property = "PushToken"
+                            break;
+
+                        case "deviceapplicationstamp":
+                            property = "DeviceApplicationStamp"
+                            break;
+                    
+                        default:
+                            property = property.substring( 0, 1).toUpperCase() + property.substring(1)
+                            break;
+                    }
+                    returnString += `[request setIdentity:@\"${value}\" identityType:MPIdentity${property}];\n`;
                 }
             }
+            returnString += `[[[MParticle sharedInstance] identity] identify:request completion:nil];\n`;
         }
         return returnString;
     }
