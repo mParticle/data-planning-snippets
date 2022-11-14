@@ -94,9 +94,13 @@ class DemoForm extends Component {
                             />
                         </a>
                         <p />
-                        mParticle Snippets combines your data plan with example
-                        data generators, allowing users to generate mParticle
-                        events that conforms to your data plan.
+                        The mParticle Snippets tool generates working code blocks that log events using the 
+                        mParticle SDKs in a way that conforms to a data plan.\n\nTo use the Snippets tool:\n\n
+                        1. Copy the raw JSON from your data plan and paste it in the left column.\n\t2. Select the 
+                        appropriate language for your app and the mParticle SDK you are using with the language 
+                        dropdown menu.\n\t3. Use the generated code blocks that appear in the right column to correctly 
+                        log events from your app.\n\nFor an example with detailed instructions, visit mParticle 
+                        Snippets Tool in mParticle\’s developer documentation.
                     </div>
                     <div>
                         <a
