@@ -168,6 +168,30 @@
             },
             "active_transformation_ids": null
         },
+        "media": {
+            "description": "",
+            "match": {
+                "type": "custom_event",
+                "criteria": {
+                    "event_name": "media",
+                    "custom_event_type": "media"
+                }
+            },
+            "validator": {
+                "type": "json_schema",
+                "definition": {
+                    "properties": {
+                        "data": {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "required": [],
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "active_transformation_ids": null
+        },
         "navigation": {
             "description": "",
             "match": {

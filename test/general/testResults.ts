@@ -46,12 +46,12 @@ MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomOther\" type: MPEv
 
 
 // Data Plan Point 10
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomUnknown\" type: MPEventTypeMedia];
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomUnknown\" type: MPEventTypeUnknown];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
 // Data Plan Point 11
-MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomMedia\" type: MPEventTypeOther];
+MPEvent *customEvent = [[MPEvent alloc] initWithName:@\"CustomMedia\" type: MPEventTypeMedia];
 [[MParticle sharedInstance] logEvent:customEvent];
 
 
@@ -187,12 +187,12 @@ MParticle.sharedInstance().logEvent(customEvent!)
 
 
 // Data Plan Point 10
-let customEvent = MPEvent.init(name: \"CustomUnknown\", type: .media)
+let customEvent = MPEvent.init(name: \"CustomUnknown\", type: .unknown)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
 // Data Plan Point 11
-let customEvent = MPEvent.init(name: \"CustomMedia\", type: .other)
+let customEvent = MPEvent.init(name: \"CustomMedia\", type: .media)
 MParticle.sharedInstance().logEvent(customEvent!)
 
 
@@ -275,7 +275,6 @@ eventInfo["is_main_thread"] = true
 commerceEvent.customAttributes = eventInfo
 
 MParticle.sharedInstance().logEvent(commerceEvent)
-
 
 
 `;
@@ -398,7 +397,6 @@ CommerceEvent commerceEvent = new CommerceEvent.Builder(null, product)
     .build();
 MParticle.getInstance()
     .logEvent(commerceEvent);
-
 
 `;
 
@@ -555,10 +553,10 @@ mParticle.logEvent('CustomSocial', mParticle.EventType.Social)
 mParticle.logEvent('CustomOther', mParticle.EventType.Other)
 
 // Data Plan Point 10
-mParticle.logEvent('CustomUnknown', mParticle.EventType.Media)
+mParticle.logEvent('CustomUnknown', mParticle.EventType.Unknown)
 
 // Data Plan Point 11
-mParticle.logEvent('CustomMedia', mParticle.EventType.Other)
+mParticle.logEvent('CustomMedia', mParticle.EventType.Media)
 
 // Data Plan Point 12
 mParticle.logPageView('ScreenView')

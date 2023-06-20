@@ -62,7 +62,11 @@ describe('JavaScript Generation ', () => {
         eval(otherResult);
 
         const unknownResult = MPSnippets.createSnippet(fixtures.custom_event.unknown, Language.JavaScript);
-        expect(unknownResult).toBe(`mParticle.logEvent('unk', mParticle.EventType.Media)`);
+        expect(unknownResult).toBe(`mParticle.logEvent('unk', mParticle.EventType.Unknown)`);
+        eval(unknownResult);
+
+        const mediaResult = MPSnippets.createSnippet(fixtures.custom_event.media, Language.JavaScript);
+        expect(mediaResult).toBe(`mParticle.logEvent('media', mParticle.EventType.Media)`);
         eval(unknownResult);
 
         const navigationResult = MPSnippets.createSnippet(fixtures.custom_event.navigation, Language.JavaScript);
