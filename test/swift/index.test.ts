@@ -39,6 +39,8 @@ describe('Swift Generation ', () => {
 
         const unknownResult = MPSnippets.createSnippet(fixtures.custom_event.unknown, Language.Swift);
 
+        const mediaResult = MPSnippets.createSnippet(fixtures.custom_event.media, Language.Swift);
+
         const navigationResult = MPSnippets.createSnippet(fixtures.custom_event.navigation, Language.Swift);
 
         const fixtureClass = `import UIKit\nimport mParticle_Apple_SDK\n\nclass Snippets: NSObject {\n
@@ -49,6 +51,7 @@ describe('Swift Generation ', () => {
             func testSocial() {\n ${socialResult} \n}\n\n
             func testOther() {\n ${otherResult} \n}\n\n
             func testUnknown() {\n ${unknownResult} \n}\n\n
+            func testMedia() {\n ${mediaResult} \n}\n\n
             func testNaviation() {\n ${navigationResult} \n}\n\n
         }`;
 

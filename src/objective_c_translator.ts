@@ -333,8 +333,11 @@ MPCommerceEvent * commerceEvent = [[MPCommerceEvent alloc] initWithImpressionNam
             case 'other': {
                 return 'MPEventTypeOther';
             }
-            case 'unknown': {
+            case 'media': {
                 return 'MPEventTypeMedia';
+            }
+            case 'unknown': {
+                return 'MPEventTypeUnknown';
             }
             default: {
                 return 'MPEventTypeOther';

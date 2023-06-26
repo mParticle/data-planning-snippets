@@ -442,8 +442,11 @@ var MPObjectiveC = /** @class */ (function () {
             case 'other': {
                 return 'MPEventTypeOther';
             }
-            case 'unknown': {
+            case 'media': {
                 return 'MPEventTypeMedia';
+            }
+            case 'unknown': {
+                return 'MPEventTypeUnknown';
             }
             default: {
                 return 'MPEventTypeOther';
@@ -772,8 +775,11 @@ var MPSwift = /** @class */ (function () {
             case 'other': {
                 return '.other';
             }
-            case 'unknown': {
+            case 'media': {
                 return '.media';
+            }
+            case 'unknown': {
+                return '.unknown';
             }
             default: {
                 return '.other';
@@ -968,8 +974,11 @@ var MPJavaScript = /** @class */ (function () {
             case 'other': {
                 return 'Other';
             }
-            case 'unknown': {
+            case 'media': {
                 return 'Media';
+            }
+            case 'unknown': {
+                return 'Unknown';
             }
             default: {
                 return 'Other';

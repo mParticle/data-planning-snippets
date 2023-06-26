@@ -218,8 +218,11 @@ mParticle.eCommerce.logImpression(impression);
             case 'other': {
                 return 'Other';
             }
-            case 'unknown': {
+            case 'media': {
                 return 'Media';
+            }
+            case 'unknown': {
+                return 'Unknown';
             }
             default: {
                 return 'Other';

@@ -404,8 +404,11 @@ let commerceEvent = MPCommerceEvent.init(impressionName: "impressionName", produ
             case 'other': {
                 return '.other';
             }
-            case 'unknown': {
+            case 'media': {
                 return '.media';
+            }
+            case 'unknown': {
+                return '.unknown';
             }
             default: {
                 return '.other';

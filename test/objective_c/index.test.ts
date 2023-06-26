@@ -39,6 +39,8 @@ describe('Objective C Generation ', () => {
 
         const unknownResult = MPSnippets.createSnippet(fixtures.custom_event.unknown, Language.ObjectiveC);
 
+        const mediaResult = MPSnippets.createSnippet(fixtures.custom_event.media, Language.ObjectiveC);
+
         const navigationResult = MPSnippets.createSnippet(fixtures.custom_event.navigation, Language.ObjectiveC);
 
         const fixtureClass = `#import "Snippets.h"\n@import mParticle_Apple_SDK;\n@implementation Snippets \n
@@ -49,6 +51,7 @@ describe('Objective C Generation ', () => {
         - (void)testSocial { \n ${socialResult} \n }\n\n
         - (void)testOther { \n ${otherResult} \n }\n\n
         - (void)testUnknown { \n ${unknownResult} \n }\n\n
+        - (void)testMedia { \n ${mediaResult} \n }\n\n
         - (void)testNavigation { \n ${navigationResult} \n }\n\n
         @end`;
         fs.writeFileSync('./test/objective_c/Objective_C_App/Objective_C_App/Snippets.m', fixtureClass);
