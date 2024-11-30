@@ -40,7 +40,7 @@
         ]
     },
     "devDependencies": {
-        "typewriter": "^7.0.1"
+        "typewriter": "^7.4.1"
     },
     "homepage": "/data-planning-snippets/"
 }
