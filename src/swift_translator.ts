@@ -143,7 +143,7 @@ export class MPSwift implements MPTranslator {
         exampleJSON ? this.userIdentities(exampleJSON) : '';
 
     createProductActionSnippet = ({ data }: Dictionary) => {
-        let actionString = data['product_action'] as string;
+        let actionString = data['action'] as string;
         actionString = this.commerceEventActionEnum(actionString);
 
         let returnString = `\
